@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://nomenclatureItemEdit.caption"
+        focusComponent="form"
+        messagesPack="com.nniirt.eis.web.screens.nomenclatureitem">
+    <data>
+        <instance id="nomenclatureItemDc"
+                  class="com.nniirt.eis.entity.NomenclatureItem">
+            <view extends="_local">
+                <property name="uom" view="_minimal">
+                    <property name="nickname"/>
+                </property>
+            </view>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="nomenclatureItemDc">
+            <column width="350px">
+                <textField id="nameField" property="name"/>
+                <textField id="blueprintnameField" property="blueprintname"/>
+                <textField id="displaynameField" property="displayname"/>
+                <pickerField id="uomField" property="uom">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <textField id="idmdmField" property="idmdm"/>
+                <maskedField id="idpdmField" mask="hhhhhhhh-hhhh-hhhh-hhhh-hhhhhhhhhhhh" property="idpdm"/>
+                <maskedField id="idgalField" mask="hhhhhhhh-hhhh-hhhh-hhhh-hhhhhhhhhhhh" property="idgal"/>
+                <textField id="idarmField" property="idarm"/>
+                <lookupField id="informationSourceField" property="informationSource"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

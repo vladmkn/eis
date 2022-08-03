@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://nomenclatureItemBrowse.caption"
+        focusComponent="nomenclatureItemsTable"
+        messagesPack="com.nniirt.eis.web.screens.nomenclatureitem">
+    <data readOnly="true">
+        <collection id="nomenclatureItemsDc"
+                    class="com.nniirt.eis.entity.NomenclatureItem">
+            <view extends="_local">
+                <property name="uom" view="_minimal">
+                    <property name="nickname"/>
+                </property>
+            </view>
+            <loader id="nomenclatureItemsDl">
+                <query>
+                    <![CDATA[select e from eis_NomenclatureItem e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="nomenclatureItemsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="nomenclatureItemsTable"
+                dataLoader="nomenclatureItemsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="nomenclatureItemsTable"
+                    width="100%"
+                    dataContainer="nomenclatureItemsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="blueprintname"/>
+                <column id="displayname"/>
+                <column id="uom"/>
+                <column id="idmdm"/>
+                <column id="idpdm"/>
+                <column id="idgal"/>
+                <column id="idarm"/>
+                <column id="informationSource"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="nomenclatureItemsTable.create"/>
+                <button id="editBtn" action="nomenclatureItemsTable.edit"/>
+                <button id="removeBtn" action="nomenclatureItemsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

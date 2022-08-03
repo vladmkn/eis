@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://unitOfMeasureEdit.caption"
+        focusComponent="form"
+        messagesPack="com.nniirt.eis.web.screens.unitofmeasure">
+    <data>
+        <instance id="unitOfMeasureDc"
+                  class="com.nniirt.eis.entity.UnitOfMeasure">
+            <view extends="_local"/>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="unitOfMeasureDc">
+            <column width="350px">
+                <textField id="nicknameField" property="nickname"/>
+                <textField id="fullnameField" property="fullname"/>
+                <maskedField id="idpdmField" mask="hhhhhhhh-hhhh-hhhh-hhhh-hhhhhhhhhhhh" property="idpdm"/>
+                <maskedField id="idgalField" mask="hhhhhhhh-hhhh-hhhh-hhhh-hhhhhhhhhhhh" property="idgal"/>
+                <textField id="idmdmField" property="idmdm"/>
+                <textField id="idarmField" property="idarm"/>
+                <lookupField id="informationSourceField" property="informationSource"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

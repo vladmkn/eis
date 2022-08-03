@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-eis" insertBefore="administration" caption="mainMsg://menu_config.application-eis">
+        <item screen="eis_NomenclatureItem.browse" caption="mainMsg://menu_config.eis_NomenclatureItem.browse"/>
+        <item screen="eis_UnitOfMeasure.browse" caption="mainMsg://menu_config.eis_UnitOfMeasure.browse"/>
+        <item screen="eis_ImbaseCatalog.browse" caption="mainMsg://menu_config.eis_ImbaseCatalog.browse"/>
+    </menu>
+</menu-config>
