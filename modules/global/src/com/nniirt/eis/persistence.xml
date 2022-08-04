@@ -4,6 +4,5 @@
 
         <class>com.nniirt.eis.entity.UnitOfMeasure</class>
         <class>com.nniirt.eis.entity.NomenclatureItem</class>
-        <class>com.nniirt.eis.entity.ImbaseCatalog</class>
     </persistence-unit>
 </persistence>

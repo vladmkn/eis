@@ -3,6 +3,5 @@
     <menu id="application-eis" insertBefore="administration" caption="mainMsg://menu_config.application-eis">
         <item screen="eis_NomenclatureItem.browse" caption="mainMsg://menu_config.eis_NomenclatureItem.browse"/>
         <item screen="eis_UnitOfMeasure.browse" caption="mainMsg://menu_config.eis_UnitOfMeasure.browse"/>
-        <item screen="eis_ImbaseCatalog.browse" caption="mainMsg://menu_config.eis_ImbaseCatalog.browse"/>
     </menu>
 </menu-config>

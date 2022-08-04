@@ -14,7 +14,7 @@ create table EIS_UNIT_OF_MEASURE (
     IDPDM uuid,
     IDGAL uuid,
     IDMDM varchar(255),
-    IDARM integer,
+    IDARM bigint,
     INFORMATION_SOURCE integer,
     --
     primary key (ID)
@@ -38,8 +38,9 @@ create table EIS_NOMENCLATURE_ITEM (
     IDMDM varchar(255),
     IDPDM uuid,
     IDGAL uuid,
-    IDARM integer,
+    IDARM bigint,
     INFORMATION_SOURCE integer,
+    IS_USED varchar(100),
     --
     primary key (ID)
 )^

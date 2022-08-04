@@ -6,7 +6,10 @@ import com.haulmont.cuba.core.entity.StandardEntity;
 import javax.persistence.*;
 import java.util.UUID;
 
-@Table(name = "EIS_NOMENCLATURE_ITEM")
+@Table(name = "EIS_NOMENCLATURE_ITEM", indexes = {
+        @Index(name = "IDX_EIS_NOMENCLATURE_ITEM_NAME", columnList = "NAME"),
+        @Index(name = "IDX_EIS_NOMENCLATURE_ITEM_IDGAL", columnList = "IDGAL")
+})
 @Entity(name = "eis_NomenclatureItem")
 @NamePattern("%s|name")
 public class NomenclatureItem extends StandardEntity {
@@ -35,10 +38,29 @@ public class NomenclatureItem extends StandardEntity {
     private UUID idgal;
 
     @Column(name = "IDARM")
-    private Integer idarm;
+    private Long idarm;
 
     @Column(name = "INFORMATION_SOURCE")
     private Integer informationSource;
+
+    @Column(name = "IS_USED", length = 100)
+    private String isUsed;
+
+    public String getIsUsed() {
+        return isUsed;
+    }
+
+    public void setIsUsed(String isUsed) {
+        this.isUsed = isUsed;
+    }
+
+    public void setIdarm(Long idarm) {
+        this.idarm = idarm;
+    }
+
+    public Long getIdarm() {
+        return idarm;
+    }
 
     public InformationSources getInformationSource() {
         return informationSource == null ? null : InformationSources.fromId(informationSource);
@@ -54,14 +76,6 @@ public class NomenclatureItem extends StandardEntity {
 
     public void setDisplayname(String displayname) {
         this.displayname = displayname;
-    }
-
-    public Integer getIdarm() {
-        return idarm;
-    }
-
-    public void setIdarm(Integer idarm) {
-        this.idarm = idarm;
     }
 
     public UUID getIdgal() {

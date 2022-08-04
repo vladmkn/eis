@@ -13,6 +13,13 @@
             </view>
             <loader/>
         </instance>
+        <collection id="unitOfMeasureDc" class="com.nniirt.eis.entity.UnitOfMeasure" view="_minimal">
+            <loader id="unitOfMeasureDl">
+                <query>
+                    select e from eis_UnitOfMeasure e
+                </query>
+            </loader>
+        </collection>
     </data>
     <dialogMode height="600"
                 width="800"/>
@@ -22,12 +29,12 @@
                 <textField id="nameField" property="name"/>
                 <textField id="blueprintnameField" property="blueprintname"/>
                 <textField id="displaynameField" property="displayname"/>
-                <pickerField id="uomField" property="uom">
+                <lookupPickerField id="uomField" property="uom" optionsContainer="unitOfMeasureDc">
                     <actions>
                         <action id="lookup" type="picker_lookup"/>
                         <action id="clear" type="picker_clear"/>
                     </actions>
-                </pickerField>
+                </lookupPickerField>
                 <textField id="idmdmField" property="idmdm"/>
                 <maskedField id="idpdmField" mask="hhhhhhhh-hhhh-hhhh-hhhh-hhhhhhhhhhhh" property="idpdm"/>
                 <maskedField id="idgalField" mask="hhhhhhhh-hhhh-hhhh-hhhh-hhhhhhhhhhhh" property="idgal"/>

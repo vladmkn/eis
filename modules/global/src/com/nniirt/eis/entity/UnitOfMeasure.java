@@ -1,5 +1,6 @@
 package com.nniirt.eis.entity;
 
+import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 @Table(name = "EIS_UNIT_OF_MEASURE")
 @Entity(name = "eis_UnitOfMeasure")
+@NamePattern("%s|nickname")
 public class UnitOfMeasure extends StandardEntity {
     private static final long serialVersionUID = 6365141488559933683L;
 
@@ -28,10 +30,18 @@ public class UnitOfMeasure extends StandardEntity {
     private String idmdm;
 
     @Column(name = "IDARM")
-    private Integer idarm;
+    private Long idarm;
 
     @Column(name = "INFORMATION_SOURCE")
     private Integer informationSource;
+
+    public void setIdarm(Long idarm) {
+        this.idarm = idarm;
+    }
+
+    public Long getIdarm() {
+        return idarm;
+    }
 
     public InformationSources getInformationSource() {
         return informationSource == null ? null : InformationSources.fromId(informationSource);
@@ -47,14 +57,6 @@ public class UnitOfMeasure extends StandardEntity {
 
     public UUID getIdpdm() {
         return idpdm;
-    }
-
-    public Integer getIdarm() {
-        return idarm;
-    }
-
-    public void setIdarm(Integer idarm) {
-        this.idarm = idarm;
     }
 
     public String getIdmdm() {
