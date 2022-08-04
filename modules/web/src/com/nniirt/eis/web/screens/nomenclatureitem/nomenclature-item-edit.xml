@@ -28,7 +28,7 @@
             <column width="350px">
                 <textField id="nameField" property="name"/>
                 <textField id="blueprintnameField" property="blueprintname"/>
-                <textField id="displaynameField" property="displayname"/>
+                <textField id="displaynameField" property="displayname" visible="false"/>
                 <lookupPickerField id="uomField" property="uom" optionsContainer="unitOfMeasureDc">
                     <actions>
                         <action id="lookup" type="picker_lookup"/>

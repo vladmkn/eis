@@ -39,13 +39,13 @@
             <columns>
                 <column id="name"/>
                 <column id="blueprintname"/>
-                <column id="displayname"/>
+                <column id="displayname" visible="false"/>
                 <column id="uom"/>
-                <column id="idmdm"/>
-                <column id="idpdm"/>
+                <column id="idmdm" visible="false"/>
+                <column id="idpdm" visible="false"/>
                 <column id="idgal"/>
-                <column id="idarm"/>
-                <column id="informationSource"/>
+                <column id="idarm" visible="false"/>
+                <column id="informationSource" visible="false"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

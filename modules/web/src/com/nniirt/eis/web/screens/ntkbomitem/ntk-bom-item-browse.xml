@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://ntkBOMItemBrowse.caption"
+        focusComponent="ntkBOMItemsTable"
+        messagesPack="com.nniirt.eis.web.screens.ntkbomitem">
+    <data readOnly="true">
+        <collection id="ntkBOMItemsDc"
+                    class="com.nniirt.eis.entity.NtkBOMItem">
+            <view extends="_local">
+                <property name="component" view="_minimal"/>
+                <property name="ntkItem" view="_minimal">
+                    <property name="blueprint"/>
+                </property>
+            </view>
+            <loader id="ntkBOMItemsDl">
+                <query>
+                    <![CDATA[select e from eis_NtkBOMItem e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="ntkBOMItemsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="ntkBOMItemsTable"
+                dataLoader="ntkBOMItemsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="ntkBOMItemsTable"
+                    width="100%"
+                    dataContainer="ntkBOMItemsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="component"/>
+                <column id="quantity"/>
+                <column id="ntkItem"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="ntkBOMItemsTable.create"/>
+                <button id="editBtn" action="ntkBOMItemsTable.edit"/>
+                <button id="removeBtn" action="ntkBOMItemsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

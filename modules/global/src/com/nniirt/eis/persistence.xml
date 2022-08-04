@@ -4,5 +4,7 @@
 
         <class>com.nniirt.eis.entity.UnitOfMeasure</class>
         <class>com.nniirt.eis.entity.NomenclatureItem</class>
+        <class>com.nniirt.eis.entity.NtkItem</class>
+        <class>com.nniirt.eis.entity.NtkBOMItem</class>
     </persistence-unit>
 </persistence>

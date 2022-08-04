@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://ntkItemBrowse.caption"
+        focusComponent="ntkItemsTable"
+        messagesPack="com.nniirt.eis.web.screens.ntkitem">
+    <data readOnly="true">
+        <collection id="ntkItemsDc"
+                    class="com.nniirt.eis.entity.NtkItem">
+            <view extends="_local">
+                <property name="components" view="_minimal">
+                    <property name="component" view="_minimal">
+                        <property name="uom" view="_minimal"/>
+                    </property>
+                    <property name="quantity"/>
+                </property>
+                <property name="component" view="_minimal"/>
+            </view>
+            <loader id="ntkItemsDl">
+                <query>
+                    <![CDATA[select e from eis_NtkItem e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="ntkItemsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="ntkItemsTable"
+                dataLoader="ntkItemsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="ntkItemsTable"
+                    width="100%"
+                    dataContainer="ntkItemsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="blueprint"/>
+                <column id="name"/>
+                <column id="weight"/>
+                <column id="productId"/>
+                <column id="component"/>
+                <column id="quantity"/>
+                <column id="materialRoute"/>
+                <column id="materialSize"/>
+                <column id="geometry"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="ntkItemsTable.create"/>
+                <button id="editBtn" action="ntkItemsTable.edit"/>
+                <button id="removeBtn" action="ntkItemsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

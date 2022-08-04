@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://ntkItemEdit.caption"
+        focusComponent="form"
+        messagesPack="com.nniirt.eis.web.screens.ntkitem">
+    <data>
+        <instance id="ntkItemDc"
+                  class="com.nniirt.eis.entity.NtkItem">
+            <view extends="_local">
+                <property name="components" view="_minimal">
+                    <property name="component" view="_minimal">
+                        <property name="uom" view="_minimal"/>
+                    </property>
+                    <property name="quantity"/>
+                </property>
+                <property name="component" view="_minimal"/>
+            </view>
+            <loader/>
+            <collection id="componentsDc" property="components"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="ntkItemDc">
+            <column width="350px">
+                <textField id="blueprintField" property="blueprint"/>
+                <textField id="nameField" property="name"/>
+                <textField id="weightField" property="weight"/>
+                <textField id="productIdField" property="productId"/>
+                <pickerField id="componentField" property="component"/>
+                <textField id="quantityField" property="quantity"/>
+                <textField id="materialRouteField" property="materialRoute"/>
+                <textField id="materialSizeField" property="materialSize"/>
+                <textField id="geometryField" property="geometry"/>
+            </column>
+        </form>
+        <groupBox id="componentsBox"
+                  expand="componentsTable"
+                  stylename="light"
+                  caption="msg://ntkItemEdit.components">
+            <table id="componentsTable" dataContainer="componentsDc" width="100%">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="component"/>
+                    <column id="quantity"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="componentsTable.create"/>
+                    <button action="componentsTable.edit"/>
+                    <button action="componentsTable.remove"  stylename="danger"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
