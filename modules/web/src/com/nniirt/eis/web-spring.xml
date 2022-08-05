@@ -11,6 +11,7 @@
         <property name="serverSelector" ref="cuba_ServerSelector"/>
         <property name="remoteServices">
             <map>
+                <entry key="eis_NtkService" value="com.nniirt.eis.service.NtkService"/>
             </map>
         </property>
     </bean>

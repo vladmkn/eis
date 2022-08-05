@@ -33,6 +33,9 @@
             <collection id="componentsDc" property="components"/>
         </instance>
     </data>
+    <actions>
+        <action id="cloneNtk" caption="Клонировать" shortcut="ALT-T"/>
+    </actions>
     <dialogMode height="600"
                 width="800"/>
     <layout expand="editActions" spacing="true">
@@ -56,6 +59,9 @@
                 <textField id="createTsField" property="createTs" editable="false"/>
                 <textField id="updatedByField" property="updatedBy" editable="false"/>
                 <textField id="updateTsField" property="updateTs" editable="false"/>
+            </column>
+            <column>
+                <button id="cloneBtn" action="cloneNtk" caption="Клонировать" icon="COPY"/>
             </column>
         </form>
         <groupBox id="componentsBox"

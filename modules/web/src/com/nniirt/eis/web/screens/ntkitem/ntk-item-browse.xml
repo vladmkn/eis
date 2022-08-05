@@ -27,6 +27,9 @@
             </loader>
         </collection>
     </data>
+    <actions>
+        <action id="cloneNtk" shortcut="ALT-T"/>
+    </actions>
     <dialogMode height="600"
                 width="800"/>
     <layout expand="ntkItemsTable"
@@ -43,6 +46,7 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh" />
             </actions>
             <columns>
                 <column id="blueprint"/>
@@ -64,6 +68,7 @@
                 <button id="createBtn" action="ntkItemsTable.create"/>
                 <button id="editBtn" action="ntkItemsTable.edit"/>
                 <button id="removeBtn" action="ntkItemsTable.remove"/>
+                <button id="cloneBtn" action="cloneNtk" caption="Клонировать" icon="COPY"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
