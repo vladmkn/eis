@@ -15,6 +15,9 @@ public class NtkItem extends StandardEntity {
     @Column(name = "BLUEPRINT")
     private String blueprint;
 
+    @Column(name = "ROUTE")
+    private String route;
+
     @Column(name = "NAME")
     private String name;
 
@@ -42,6 +45,25 @@ public class NtkItem extends StandardEntity {
 
     @OneToMany(mappedBy = "ntkItem")
     private List<NtkBOMItem> components;
+
+    @Column(name = "STATUS")
+    private Integer status;
+
+    public DocumentStatuses getStatus() {
+        return status == null ? null : DocumentStatuses.fromId(status);
+    }
+
+    public void setStatus(DocumentStatuses status) {
+        this.status = status == null ? null : status.getId();
+    }
+
+    public String getRoute() {
+        return route;
+    }
+
+    public void setRoute(String route) {
+        this.route = route;
+    }
 
     public void setComponents(List<NtkBOMItem> components) {
         this.components = components;

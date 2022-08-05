@@ -13,6 +13,10 @@
                 <property name="ntkItem" view="_minimal">
                     <property name="blueprint"/>
                 </property>
+                <property name="createdBy"/>
+                <property name="createTs"/>
+                <property name="updatedBy"/>
+                <property name="updateTs"/>
             </view>
             <loader/>
         </instance>
@@ -45,6 +49,10 @@
                         <textField id="smetField" property="smet"/>
                         <textField id="saktivField" property="saktiv"/>
                         <textField id="shimField" property="shim"/>
+                        <textField id="createdByField" property="createdBy" editable="false"/>
+                        <textField id="createTsField" property="createTs" editable="false"/>
+                        <textField id="updatedByField" property="updatedBy" editable="false"/>
+                        <textField id="updateTsField" property="updateTs" editable="false"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

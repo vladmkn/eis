@@ -17,6 +17,8 @@
                 <property name="component" view="_minimal">
                     <property name="uom" view="_minimal"/>
                 </property>
+                <property name="createdBy"/>
+                <property name="createTs"/>
             </view>
             <loader id="ntkItemsDl">
                 <query>
@@ -53,6 +55,8 @@
                 <column id="materialRoute"/>
                 <column id="materialSize"/>
                 <column id="geometry"/>
+                <column id="route"/>
+                <column id="status"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

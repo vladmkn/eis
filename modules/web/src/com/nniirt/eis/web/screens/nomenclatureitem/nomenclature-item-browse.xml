@@ -27,6 +27,9 @@
                 applyTo="nomenclatureItemsTable"
                 dataLoader="nomenclatureItemsDl">
             <properties include=".*"/>
+            <custom name="name_exp" paramClass="java.lang.String" caption="Наименование (%)">
+                {E}.name like ?
+            </custom>
         </filter>
         <groupTable id="nomenclatureItemsTable"
                     width="100%"

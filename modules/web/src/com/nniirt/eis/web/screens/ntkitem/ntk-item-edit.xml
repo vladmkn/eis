@@ -24,6 +24,10 @@
                 <property name="component" view="_minimal">
                     <property name="uom" view="_minimal"/>
                 </property>
+                <property name="createdBy"/>
+                <property name="createTs"/>
+                <property name="updatedBy"/>
+                <property name="updateTs"/>
             </view>
             <loader/>
             <collection id="componentsDc" property="components"/>
@@ -44,6 +48,12 @@
                 <textField id="materialRouteField" property="materialRoute"/>
                 <textField id="materialSizeField" property="materialSize"/>
                 <textField id="geometryField" property="geometry"/>
+                <textField id="createdByField" property="createdBy" editable="false"/>
+                <textField id="createTsField" property="createTs" editable="false"/>
+                <textField id="updatedByField" property="updatedBy" editable="false"/>
+                <textField id="updateTsField" property="updateTs" editable="false"/>
+                <textField id="routeField" property="route"/>
+                <lookupField id="statusField" property="status"/>
             </column>
         </form>
         <groupBox id="componentsBox"
@@ -72,7 +82,7 @@
                 <buttonsPanel>
                     <button action="componentsTable.create"/>
                     <button action="componentsTable.edit"/>
-                    <button action="componentsTable.remove"  stylename="danger"/>
+                    <button action="componentsTable.remove" stylename="danger"/>
                 </buttonsPanel>
             </table>
         </groupBox>

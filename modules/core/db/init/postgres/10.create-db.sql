@@ -57,6 +57,7 @@ create table EIS_NTK_ITEM (
     DELETED_BY varchar(50),
     --
     BLUEPRINT varchar(255),
+    ROUTE varchar(255),
     NAME varchar(255),
     GEOMETRY varchar(255),
     WEIGHT double precision,
@@ -65,6 +66,7 @@ create table EIS_NTK_ITEM (
     QUANTITY double precision,
     MATERIAL_ROUTE varchar(255),
     MATERIAL_SIZE varchar(255),
+    STATUS integer,
     --
     primary key (ID)
 )^
