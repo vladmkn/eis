@@ -14,7 +14,9 @@
                     </property>
                     <property name="quantity"/>
                 </property>
-                <property name="component" view="_minimal"/>
+                <property name="component" view="_minimal">
+                    <property name="uom" view="_minimal"/>
+                </property>
             </view>
             <loader id="ntkItemsDl">
                 <query>
@@ -46,6 +48,7 @@
                 <column id="weight"/>
                 <column id="productId"/>
                 <column id="component"/>
+                <column id="component.uom"/>
                 <column id="quantity"/>
                 <column id="materialRoute"/>
                 <column id="materialSize"/>

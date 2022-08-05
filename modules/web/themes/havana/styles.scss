@@ -1,0 +1,11 @@
+@import "havana-defaults";
+@import "com.nniirt.eis/havana-ext-defaults";
+@import "app-components";
+@import "com.nniirt.eis/havana-ext";
+
+.havana {
+  // include auto-generated app components SCSS
+  @include app_components;
+
+  @include com_nniirt_eis-havana-ext;
+}

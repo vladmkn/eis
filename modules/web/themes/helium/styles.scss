@@ -1,0 +1,11 @@
+@import "helium-defaults";
+@import "com.nniirt.eis/helium-ext-defaults";
+@import "app-components";
+@import "com.nniirt.eis/helium-ext";
+
+.helium {
+  // include auto-generated app components SCSS
+  @include app_components;
+
+  @include com_nniirt_eis-helium-ext;
+}

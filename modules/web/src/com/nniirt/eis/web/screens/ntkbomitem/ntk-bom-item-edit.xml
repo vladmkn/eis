@@ -7,7 +7,9 @@
         <instance id="ntkBOMItemDc"
                   class="com.nniirt.eis.entity.NtkBOMItem">
             <view extends="_local">
-                <property name="component" view="_minimal"/>
+                <property name="component" view="_minimal">
+                    <property name="uom"/>
+                </property>
                 <property name="ntkItem" view="_minimal">
                     <property name="blueprint"/>
                 </property>
@@ -20,19 +22,29 @@
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="ntkBOMItemDc">
             <column width="350px">
-                <pickerField id="componentField" property="component">
-                    <actions>
-                        <action id="lookup" type="picker_lookup"/>
-                        <action id="clear" type="picker_clear"/>
-                    </actions>
-                </pickerField>
-                <textField id="quantityField" property="quantity"/>
-                <pickerField id="ntkItemField" property="ntkItem">
-                    <actions>
-                        <action id="lookup" type="picker_lookup"/>
-                        <action id="clear" type="picker_clear"/>
-                    </actions>
-                </pickerField>
+                        <pickerField id="componentField" property="component">
+                            <actions>
+                                <action id="lookup" type="picker_lookup"/>
+                                <action id="clear" type="picker_clear"/>
+                            </actions>
+                        </pickerField>
+                        <textField id="uomField" property="component.uom" editable="false"/>
+                        <textField id="quantityField" property="quantity"/>
+                        <pickerField id="ntkItemField" property="ntkItem">
+                            <actions>
+                                <action id="lookup" type="picker_lookup"/>
+                                <action id="clear" type="picker_clear"/>
+                            </actions>
+                        </pickerField>
+                        <textField id="routeField" property="route"/>
+                        <textField id="kzapField" property="kzap"/>
+                        <textField id="ratioField" property="ratio"/>
+                        <textArea rows="5" id="remarkField" property="remark"/>
+                        <textField id="slkmField" property="slkm"/>
+                        <textField id="sdragField" property="sdrag"/>
+                        <textField id="smetField" property="smet"/>
+                        <textField id="saktivField" property="saktiv"/>
+                        <textField id="shimField" property="shim"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

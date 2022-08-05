@@ -1,0 +1,11 @@
+@import "halo-defaults";
+@import "com.nniirt.eis/halo-ext-defaults";
+@import "app-components";
+@import "com.nniirt.eis/halo-ext";
+
+.halo {
+  // include auto-generated app components SCSS
+  @include app_components;
+
+  @include com_nniirt_eis-halo-ext;
+}

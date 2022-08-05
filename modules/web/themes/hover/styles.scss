@@ -1,0 +1,11 @@
+@import "hover-defaults";
+@import "com.nniirt.eis/hover-ext-defaults";
+@import "app-components";
+@import "com.nniirt.eis/hover-ext";
+
+.hover {
+  // include auto-generated app components SCSS
+  @include app_components;
+
+  @include com_nniirt_eis-hover-ext;
+}

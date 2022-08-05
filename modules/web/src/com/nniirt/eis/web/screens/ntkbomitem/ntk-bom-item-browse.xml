@@ -8,7 +8,9 @@
         <collection id="ntkBOMItemsDc"
                     class="com.nniirt.eis.entity.NtkBOMItem">
             <view extends="_local">
-                <property name="component" view="_minimal"/>
+                <property name="component" view="_minimal">
+                    <property name="uom"/>
+                </property>
                 <property name="ntkItem" view="_minimal">
                     <property name="blueprint"/>
                 </property>
@@ -39,8 +41,18 @@
             </actions>
             <columns>
                 <column id="component"/>
+                <column id="component.uom"/>
                 <column id="quantity"/>
                 <column id="ntkItem"/>
+                <column id="route"/>
+                <column id="slkm"/>
+                <column id="sdrag"/>
+                <column id="smet"/>
+                <column id="saktiv"/>
+                <column id="shim"/>
+                <column id="kzap"/>
+                <column id="ratio"/>
+                <column id="remark"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

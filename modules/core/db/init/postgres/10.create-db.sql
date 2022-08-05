@@ -82,6 +82,15 @@ create table EIS_NTK_BOM_ITEM (
     --
     COMPONENT_ID uuid,
     QUANTITY double precision,
+    ROUTE varchar(255),
+    SLKM double precision,
+    SDRAG double precision,
+    SMET double precision,
+    SAKTIV double precision,
+    SHIM double precision,
+    KZAP double precision,
+    RATIO double precision,
+    REMARK text,
     NTK_ITEM_ID uuid,
     --
     primary key (ID)

@@ -1,0 +1,5 @@
+@import "hover-ext";
+
+@mixin com_nniirt_eis {
+  @include com_nniirt_eis-hover-ext;
+}

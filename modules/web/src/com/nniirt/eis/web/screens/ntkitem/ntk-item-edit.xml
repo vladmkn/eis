@@ -12,8 +12,18 @@
                         <property name="uom" view="_minimal"/>
                     </property>
                     <property name="quantity"/>
+                    <property name="route"/>
+                    <property name="slkm"/>
+                    <property name="sdrag"/>
+                    <property name="smet"/>
+                    <property name="saktiv"/>
+                    <property name="shim"/>
+                    <property name="kzap"/>
+                    <property name="ratio"/>
                 </property>
-                <property name="component" view="_minimal"/>
+                <property name="component" view="_minimal">
+                    <property name="uom" view="_minimal"/>
+                </property>
             </view>
             <loader/>
             <collection id="componentsDc" property="components"/>
@@ -29,6 +39,7 @@
                 <textField id="weightField" property="weight"/>
                 <textField id="productIdField" property="productId"/>
                 <pickerField id="componentField" property="component"/>
+                <textField id="uomField" property="component.uom" editable="false"/>
                 <textField id="quantityField" property="quantity"/>
                 <textField id="materialRouteField" property="materialRoute"/>
                 <textField id="materialSizeField" property="materialSize"/>
@@ -47,7 +58,16 @@
                 </actions>
                 <columns>
                     <column id="component"/>
+                    <column id="component.uom"/>
                     <column id="quantity"/>
+                    <column id="route"/>
+                    <column id="slkm"/>
+                    <column id="sdrag"/>
+                    <column id="smet"/>
+                    <column id="saktiv"/>
+                    <column id="shim"/>
+                    <column id="kzap"/>
+                    <column id="ratio"/>
                 </columns>
                 <buttonsPanel>
                     <button action="componentsTable.create"/>
