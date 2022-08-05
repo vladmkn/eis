@@ -8,7 +8,7 @@ import java.util.List;
 
 @Table(name = "EIS_NTK_ITEM")
 @Entity(name = "eis_NtkItem")
-@NamePattern("%s|name")
+@NamePattern("%s %s|blueprint,name")
 public class NtkItem extends StandardEntity {
     private static final long serialVersionUID = 2230486159174544746L;
 

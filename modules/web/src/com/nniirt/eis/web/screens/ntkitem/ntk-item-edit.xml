@@ -46,14 +46,16 @@
                 <textField id="uomField" property="component.uom" editable="false"/>
                 <textField id="quantityField" property="quantity"/>
                 <textField id="materialRouteField" property="materialRoute"/>
+            </column>
+            <column width="250px">
+                <lookupField id="statusField" property="status"/>
+                <textField id="routeField" property="route"/>
                 <textField id="materialSizeField" property="materialSize"/>
                 <textField id="geometryField" property="geometry"/>
                 <textField id="createdByField" property="createdBy" editable="false"/>
                 <textField id="createTsField" property="createTs" editable="false"/>
                 <textField id="updatedByField" property="updatedBy" editable="false"/>
                 <textField id="updateTsField" property="updateTs" editable="false"/>
-                <textField id="routeField" property="route"/>
-                <lookupField id="statusField" property="status"/>
             </column>
         </form>
         <groupBox id="componentsBox"

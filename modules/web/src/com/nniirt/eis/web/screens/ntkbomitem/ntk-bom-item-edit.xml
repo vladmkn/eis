@@ -26,33 +26,29 @@
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="ntkBOMItemDc">
             <column width="350px">
-                        <pickerField id="componentField" property="component">
-                            <actions>
-                                <action id="lookup" type="picker_lookup"/>
-                                <action id="clear" type="picker_clear"/>
-                            </actions>
-                        </pickerField>
-                        <textField id="uomField" property="component.uom" editable="false"/>
-                        <textField id="quantityField" property="quantity"/>
-                        <pickerField id="ntkItemField" property="ntkItem">
-                            <actions>
-                                <action id="lookup" type="picker_lookup"/>
-                                <action id="clear" type="picker_clear"/>
-                            </actions>
-                        </pickerField>
-                        <textField id="routeField" property="route"/>
-                        <textField id="kzapField" property="kzap"/>
-                        <textField id="ratioField" property="ratio"/>
-                        <textArea rows="5" id="remarkField" property="remark"/>
-                        <textField id="slkmField" property="slkm"/>
-                        <textField id="sdragField" property="sdrag"/>
-                        <textField id="smetField" property="smet"/>
-                        <textField id="saktivField" property="saktiv"/>
-                        <textField id="shimField" property="shim"/>
-                        <textField id="createdByField" property="createdBy" editable="false"/>
-                        <textField id="createTsField" property="createTs" editable="false"/>
-                        <textField id="updatedByField" property="updatedBy" editable="false"/>
-                        <textField id="updateTsField" property="updateTs" editable="false"/>
+                <pickerField id="componentField" property="component">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <textField id="uomField" property="component.uom" enable="false"/>
+                <textField id="quantityField" property="quantity"/>
+                <textField id="routeField" property="route"/>
+                <textField id="kzapField" property="kzap"/>
+                <textField id="ratioField" property="ratio"/>
+                <textField id="slkmField" property="slkm"/>
+                <textArea rows="5" id="remarkField" property="remark"/>
+            </column>
+            <column width="200px">
+                <textField id="createdByField" property="createdBy" enable="false"/>
+                <textField id="createTsField" property="createTs" enable="false"/>
+                <textField id="updatedByField" property="updatedBy" enable="false"/>
+                <textField id="updateTsField" property="updateTs" enable="false"/>
+                <textField id="sdragField" property="sdrag"/>
+                <textField id="smetField" property="smet"/>
+                <textField id="saktivField" property="saktiv"/>
+                <textField id="shimField" property="shim"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">
