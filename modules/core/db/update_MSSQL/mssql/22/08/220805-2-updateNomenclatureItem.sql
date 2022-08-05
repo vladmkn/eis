@@ -1,0 +1,1 @@
+exec sp_rename 'EIS_NOMENCLATURE_ITEM.UOM_ID', 'UOM_ID__U75891', 'COLUMN' ^

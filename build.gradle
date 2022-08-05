@@ -98,6 +98,7 @@ configure(coreModule) {
         compileOnly(servletApi)
         jdbc(postgres)
         testRuntime(postgres)
+        jdbc('com.microsoft.sqlserver:mssql-jdbc:7.2.2.jre8') { exclude(group: 'com.microsoft.azure', module: 'azure-keyvault') }
     }
 
     task cleanConf(description: 'Cleans up conf directory', type: Delete) {
@@ -114,6 +115,14 @@ configure(coreModule) {
 
     task updateDb(dependsOn: assembleDbScripts, description: 'Updates local database', type: CubaDbUpdate) {
     }
+    task createDb_mssql(dependsOn: assembleDbScripts, description: 'Creates additional database - MSSQL', type: CubaDbCreation) {
+        storeName = 'MSSQL'
+    }
+    task updateDb_mssql(dependsOn: assembleDbScripts, description: 'Updates additional database - MSSQL', type: CubaDbUpdate) {
+        storeName = 'MSSQL'
+    }
+    task createAllDb(dependsOn: [createDb, createDb_mssql])
+    task updateAllDb(dependsOn: [updateDb, updateDb_mssql])
 }
 
 configure(webModule) {
