@@ -1,6 +1,5 @@
 package com.nniirt.eis.entity;
 
-import com.haulmont.chile.core.annotations.MetaProperty;
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
@@ -25,8 +24,8 @@ public class NomenclatureItemPDM extends StandardEntity {
     @Column(name = "DISPLAYNAME")
     private String displayname;
 
-    @MetaProperty
-    @Transient
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "UOM_ID")
     private UnitOfMeasurePDM uom;
 
     @Column(name = "IDMDM")
@@ -46,6 +45,14 @@ public class NomenclatureItemPDM extends StandardEntity {
 
     @Column(name = "IS_USED", length = 100)
     private String isUsed;
+
+    public UnitOfMeasurePDM getUom() {
+        return uom;
+    }
+
+    public void setUom(UnitOfMeasurePDM uom) {
+        this.uom = uom;
+    }
 
     public String getIsUsed() {
         return isUsed;
@@ -101,14 +108,6 @@ public class NomenclatureItemPDM extends StandardEntity {
 
     public void setIdmdm(String idmdm) {
         this.idmdm = idmdm;
-    }
-
-    public UnitOfMeasurePDM getUom() {
-        return uom;
-    }
-
-    public void setUom(UnitOfMeasurePDM uom) {
-        this.uom = uom;
     }
 
     public String getBlueprintname() {

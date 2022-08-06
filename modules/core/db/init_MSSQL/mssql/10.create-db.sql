@@ -12,6 +12,7 @@ create table EIS_NOMENCLATURE_ITEM (
     NAME varchar(455),
     BLUEPRINTNAME varchar(255),
     DISPLAYNAME varchar(255),
+    UOM_ID uniqueidentifier,
     IDMDM varchar(255),
     IDPDM uniqueidentifier,
     IDGAL uniqueidentifier,
