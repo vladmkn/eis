@@ -4,6 +4,7 @@ import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.UUID;
 
 @Table(name = "EIS_NOMENCLATURE_ITEM", indexes = {
@@ -15,20 +16,20 @@ import java.util.UUID;
 public class NomenclatureItemPDM extends StandardEntity {
     private static final long serialVersionUID = -6645312842549283419L;
 
-    @Column(name = "NAME", length = 455)
+    @Column(name = "NAME", length = 455, columnDefinition = "nvarchar(455)")
     private String name;
 
-    @Column(name = "BLUEPRINTNAME")
+    @Column(name = "BLUEPRINTNAME", columnDefinition = "nvarchar(255)")
     private String blueprintname;
 
-    @Column(name = "DISPLAYNAME")
+    @Column(name = "DISPLAYNAME", length = 455, columnDefinition = "nvarchar(455)")
     private String displayname;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UOM_ID")
     private UnitOfMeasurePDM uom;
 
-    @Column(name = "IDMDM")
+    @Column(name = "IDMDM", columnDefinition = "nvarchar(100)")
     private String idmdm;
 
     @Column(name = "IDPDM")
@@ -43,8 +44,20 @@ public class NomenclatureItemPDM extends StandardEntity {
     @Column(name = "INFORMATION_SOURCE")
     private Integer informationSource;
 
-    @Column(name = "IS_USED", length = 100)
+    @Column(name = "IS_USED", length = 100, columnDefinition = "nvarchar(255)")
     private String isUsed;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "LOAD_TS")
+    private Date loadTs;
+
+    public Date getLoadTs() {
+        return loadTs;
+    }
+
+    public void setLoadTs(Date loadTs) {
+        this.loadTs = loadTs;
+    }
 
     public UnitOfMeasurePDM getUom() {
         return uom;

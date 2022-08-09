@@ -21,7 +21,7 @@ public class NomenclatureItem extends StandardEntity {
     @Column(name = "BLUEPRINTNAME")
     private String blueprintname;
 
-    @Column(name = "DISPLAYNAME")
+    @Column(name = "DISPLAYNAME", length = 455)
     private String displayname;
 
     @ManyToOne(fetch = FetchType.LAZY)

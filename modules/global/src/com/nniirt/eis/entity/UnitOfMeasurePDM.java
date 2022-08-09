@@ -3,9 +3,8 @@ package com.nniirt.eis.entity;
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 import java.util.UUID;
 
 @Table(name = "EIS_UNIT_OF_MEASURE")
@@ -14,10 +13,10 @@ import java.util.UUID;
 public class UnitOfMeasurePDM extends StandardEntity {
     private static final long serialVersionUID = 6365141488559933683L;
 
-    @Column(name = "NICKNAME", length = 100)
+    @Column(name = "NICKNAME", length = 100, columnDefinition = "nvarchar(100)")
     private String nickname;
 
-    @Column(name = "FULLNAME")
+    @Column(name = "FULLNAME", columnDefinition = "nvarchar(255)")
     private String fullname;
 
     @Column(name = "IDPDM")
@@ -26,7 +25,7 @@ public class UnitOfMeasurePDM extends StandardEntity {
     @Column(name = "IDGAL")
     private UUID idgal;
 
-    @Column(name = "IDMDM")
+    @Column(name = "IDMDM", columnDefinition = "nvarchar(100)")
     private String idmdm;
 
     @Column(name = "IDARM")
@@ -34,6 +33,18 @@ public class UnitOfMeasurePDM extends StandardEntity {
 
     @Column(name = "INFORMATION_SOURCE")
     private Integer informationSource;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "LOAD_TS")
+    private Date loadTs;
+
+    public Date getLoadTs() {
+        return loadTs;
+    }
+
+    public void setLoadTs(Date loadTs) {
+        this.loadTs = loadTs;
+    }
 
     public void setIdarm(Long idarm) {
         this.idarm = idarm;

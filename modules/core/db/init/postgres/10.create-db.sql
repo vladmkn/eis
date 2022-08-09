@@ -33,7 +33,7 @@ create table EIS_NOMENCLATURE_ITEM (
     --
     NAME varchar(455),
     BLUEPRINTNAME varchar(255),
-    DISPLAYNAME varchar(255),
+    DISPLAYNAME varchar(455),
     UOM_ID uuid,
     IDMDM varchar(255),
     IDPDM uuid,

@@ -15,6 +15,9 @@
             </loader>
         </collection>
     </data>
+    <actions>
+        <action id="reloadData" shortcut="ALT-T"/>
+    </actions>
     <dialogMode height="600"
                 width="800"/>
     <layout expand="unitOfMeasuresTable"
@@ -31,6 +34,7 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh" />
             </actions>
             <columns>
                 <column id="nickname"/>
@@ -47,6 +51,7 @@
                 <button id="createBtn" action="unitOfMeasuresTable.create"/>
                 <button id="editBtn" action="unitOfMeasuresTable.edit"/>
                 <button id="removeBtn" action="unitOfMeasuresTable.remove"/>
+                <button id="reloadDataBtn" action="reloadData" caption="Обновить" icon="icons/refresh.png"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

@@ -1,1 +1,0 @@
-drop table EIS_IMBASEALL__U59548 ;
