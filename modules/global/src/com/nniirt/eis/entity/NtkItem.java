@@ -52,6 +52,14 @@ public class NtkItem extends StandardEntity {
     @Column(name = "STATUS")
     private Integer status;
 
+    public void setQuantity(Double quantity) {
+        this.quantity = quantity;
+    }
+
+    public Double getQuantity() {
+        return quantity;
+    }
+
     public String getNtkVersion() {
         return ntkVersion;
     }
@@ -114,14 +122,6 @@ public class NtkItem extends StandardEntity {
 
     public void setMaterialRoute(String materialRoute) {
         this.materialRoute = materialRoute;
-    }
-
-    public Double getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Double quantity) {
-        this.quantity = quantity;
     }
 
     public String getProductId() {

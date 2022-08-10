@@ -41,14 +41,14 @@
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="ntkItemDc">
             <column width="350px">
-                <textField id="blueprintField" property="blueprint"/>
+                <textField id="blueprintField" property="blueprint" />
                 <textField id="ntkVersionField" property="ntkVersion"/>
                 <textField id="nameField" property="name"/>
                 <textField id="weightField" property="weight"/>
                 <textField id="productIdField" property="productId"/>
                 <pickerField id="componentField" property="component"/>
                 <textField id="uomField" property="component.uom" editable="false"/>
-                <textField id="quantityField" property="quantity"/>
+                <textField  id="quantityField" property="quantity"/>
                 <textField id="materialRouteField" property="materialRoute"/>
             </column>
             <column width="250px">
