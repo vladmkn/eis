@@ -57,6 +57,7 @@ create table EIS_NTK_ITEM (
     DELETED_BY varchar(50),
     --
     BLUEPRINT varchar(255),
+    NTK_VERSION nvarchar(255),
     ROUTE varchar(255),
     NAME varchar(255),
     GEOMETRY varchar(255),

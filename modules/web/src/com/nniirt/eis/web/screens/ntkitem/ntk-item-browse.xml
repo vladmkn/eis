@@ -46,10 +46,11 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
-                <action id="refresh" type="refresh" />
+                <action id="refresh" type="refresh"/>
             </actions>
             <columns>
                 <column id="blueprint"/>
+                <column id="ntkVersion"/>
                 <column id="name"/>
                 <column id="weight"/>
                 <column id="productId"/>

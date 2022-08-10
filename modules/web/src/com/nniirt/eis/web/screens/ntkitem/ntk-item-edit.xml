@@ -42,6 +42,7 @@
         <form id="form" dataContainer="ntkItemDc">
             <column width="350px">
                 <textField id="blueprintField" property="blueprint"/>
+                <textField id="ntkVersionField" property="ntkVersion"/>
                 <textField id="nameField" property="name"/>
                 <textField id="weightField" property="weight"/>
                 <textField id="productIdField" property="productId"/>

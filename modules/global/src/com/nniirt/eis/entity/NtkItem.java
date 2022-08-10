@@ -15,6 +15,9 @@ public class NtkItem extends StandardEntity {
     @Column(name = "BLUEPRINT")
     private String blueprint;
 
+    @Column(name = "NTK_VERSION")
+    private String ntkVersion;
+
     @Column(name = "ROUTE")
     private String route;
 
@@ -48,6 +51,14 @@ public class NtkItem extends StandardEntity {
 
     @Column(name = "STATUS")
     private Integer status;
+
+    public String getNtkVersion() {
+        return ntkVersion;
+    }
+
+    public void setNtkVersion(String ntkVersion) {
+        this.ntkVersion = ntkVersion;
+    }
 
     public DocumentStatuses getStatus() {
         return status == null ? null : DocumentStatuses.fromId(status);
