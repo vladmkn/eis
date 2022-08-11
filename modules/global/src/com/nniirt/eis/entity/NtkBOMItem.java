@@ -3,6 +3,7 @@ package com.nniirt.eis.entity;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Table(name = "EIS_NTK_BOM_ITEM")
 @Entity(name = "eis_NtkBOMItem")
@@ -13,32 +14,32 @@ public class NtkBOMItem extends StandardEntity {
     @JoinColumn(name = "COMPONENT_ID")
     private NomenclatureItem component;
 
-    @Column(name = "QUANTITY")
-    private Double quantity;
+    @Column(name = "QUANTITY", precision = 28, scale = 8)
+    private BigDecimal quantity;
 
     @Column(name = "ROUTE")
     private String route;
 
-    @Column(name = "SLKM")
-    private Double slkm;
+    @Column(name = "SLKM", precision = 28, scale = 8)
+    private BigDecimal slkm;
 
-    @Column(name = "SDRAG")
-    private Double sdrag;
+    @Column(name = "SDRAG", precision = 28, scale = 8)
+    private BigDecimal sdrag;
 
-    @Column(name = "SMET")
-    private Double smet;
+    @Column(name = "SMET", precision = 28, scale = 8)
+    private BigDecimal smet;
 
-    @Column(name = "SAKTIV")
-    private Double saktiv;
+    @Column(name = "SAKTIV", precision = 28, scale = 8)
+    private BigDecimal saktiv;
 
-    @Column(name = "SHIM")
-    private Double shim;
+    @Column(name = "SHIM", precision = 28, scale = 8)
+    private BigDecimal shim;
 
-    @Column(name = "KZAP")
-    private Double kzap;
+    @Column(name = "KZAP", precision = 28, scale = 8)
+    private BigDecimal kzap;
 
-    @Column(name = "RATIO")
-    private Double ratio;
+    @Column(name = "RATIO", precision = 28, scale = 8)
+    private BigDecimal ratio;
 
     @Lob
     @Column(name = "REMARK")
@@ -48,68 +49,76 @@ public class NtkBOMItem extends StandardEntity {
     @JoinColumn(name = "NTK_ITEM_ID")
     private NtkItem ntkItem;
 
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
+    }
+
+    public BigDecimal getQuantity() {
+        return quantity;
+    }
+
+    public void setSlkm(BigDecimal slkm) {
+        this.slkm = slkm;
+    }
+
+    public BigDecimal getSlkm() {
+        return slkm;
+    }
+
+    public void setSdrag(BigDecimal sdrag) {
+        this.sdrag = sdrag;
+    }
+
+    public BigDecimal getSdrag() {
+        return sdrag;
+    }
+
+    public void setSmet(BigDecimal smet) {
+        this.smet = smet;
+    }
+
+    public BigDecimal getSmet() {
+        return smet;
+    }
+
+    public void setSaktiv(BigDecimal saktiv) {
+        this.saktiv = saktiv;
+    }
+
+    public BigDecimal getSaktiv() {
+        return saktiv;
+    }
+
+    public void setShim(BigDecimal shim) {
+        this.shim = shim;
+    }
+
+    public BigDecimal getShim() {
+        return shim;
+    }
+
+    public void setKzap(BigDecimal kzap) {
+        this.kzap = kzap;
+    }
+
+    public BigDecimal getKzap() {
+        return kzap;
+    }
+
+    public void setRatio(BigDecimal ratio) {
+        this.ratio = ratio;
+    }
+
+    public BigDecimal getRatio() {
+        return ratio;
+    }
+
     public String getRemark() {
         return remark;
     }
 
     public void setRemark(String remark) {
         this.remark = remark;
-    }
-
-    public Double getRatio() {
-        return ratio;
-    }
-
-    public void setRatio(Double ratio) {
-        this.ratio = ratio;
-    }
-
-    public Double getKzap() {
-        return kzap;
-    }
-
-    public void setKzap(Double kzap) {
-        this.kzap = kzap;
-    }
-
-    public Double getShim() {
-        return shim;
-    }
-
-    public void setShim(Double shim) {
-        this.shim = shim;
-    }
-
-    public Double getSaktiv() {
-        return saktiv;
-    }
-
-    public void setSaktiv(Double saktiv) {
-        this.saktiv = saktiv;
-    }
-
-    public Double getSmet() {
-        return smet;
-    }
-
-    public void setSmet(Double smet) {
-        this.smet = smet;
-    }
-
-    public Double getSdrag() {
-        return sdrag;
-    }
-
-    public void setSdrag(Double sdrag) {
-        this.sdrag = sdrag;
-    }
-
-    public Double getSlkm() {
-        return slkm;
-    }
-
-    public void setSlkm(Double slkm) {
-        this.slkm = slkm;
     }
 
     public String getRoute() {
@@ -126,14 +135,6 @@ public class NtkBOMItem extends StandardEntity {
 
     public void setNtkItem(NtkItem ntkItem) {
         this.ntkItem = ntkItem;
-    }
-
-    public Double getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Double quantity) {
-        this.quantity = quantity;
     }
 
     public NomenclatureItem getComponent() {

@@ -4,6 +4,7 @@ import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Table(name = "EIS_NTK_ITEM")
@@ -27,8 +28,8 @@ public class NtkItem extends StandardEntity {
     @Column(name = "GEOMETRY")
     private String geometry;
 
-    @Column(name = "WEIGHT")
-    private Double weight;
+    @Column(name = "WEIGHT", precision = 28, scale = 8)
+    private BigDecimal weight;
 
     @Column(name = "PRODUCT_ID")
     private String productId;
@@ -37,8 +38,8 @@ public class NtkItem extends StandardEntity {
     @JoinColumn(name = "COMPONENT_ID")
     private NomenclatureItem component;
 
-    @Column(name = "QUANTITY")
-    private Double quantity;
+    @Column(name = "QUANTITY", precision = 28, scale = 8)
+    private BigDecimal quantity;
 
     @Column(name = "MATERIAL_ROUTE")
     private String materialRoute;
@@ -52,11 +53,19 @@ public class NtkItem extends StandardEntity {
     @Column(name = "STATUS")
     private Integer status;
 
-    public void setQuantity(Double quantity) {
+    public void setWeight(BigDecimal weight) {
+        this.weight = weight;
+    }
+
+    public BigDecimal getWeight() {
+        return weight;
+    }
+
+    public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
 
-    public Double getQuantity() {
+    public BigDecimal getQuantity() {
         return quantity;
     }
 
@@ -130,14 +139,6 @@ public class NtkItem extends StandardEntity {
 
     public void setProductId(String productId) {
         this.productId = productId;
-    }
-
-    public Double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Double weight) {
-        this.weight = weight;
     }
 
     public String getName() {
