@@ -68,7 +68,7 @@
                           alwaysVisible="true">
                 <button id="createBtn" action="ntkItemsTable.create"/>
                 <button id="editBtn" action="ntkItemsTable.edit"/>
-                <button id="removeBtn" action="ntkItemsTable.remove"/>
+                <button id="removeBtn" action="ntkItemsTable.remove" stylename="danger"/>
                 <button id="cloneBtn" action="cloneNtk" caption="Клонировать" icon="COPY"/>
             </buttonsPanel>
         </groupTable>

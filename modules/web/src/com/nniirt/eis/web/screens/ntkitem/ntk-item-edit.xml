@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         caption="msg://ntkItemEdit.caption"
-        focusComponent="form"
+        focusComponent="formMainTab"
         messagesPack="com.nniirt.eis.web.screens.ntkitem">
     <data>
         <instance id="ntkItemDc"
@@ -39,37 +39,57 @@
     <dialogMode height="600"
                 width="800"/>
     <layout expand="editActions" spacing="true">
-        <form id="form" dataContainer="ntkItemDc">
-            <column width="350px">
-                <textField id="blueprintField" property="blueprint" />
-                <textField id="ntkVersionField" property="ntkVersion"/>
-                <textField id="nameField" property="name"/>
-                <textField id="weightField" property="weight"/>
-                <textField id="productIdField" property="productId"/>
-                <pickerField id="componentField" property="component"/>
-                <textField id="uomField" property="component.uom" editable="false"/>
-                <textField  id="quantityField" property="quantity"/>
-                <textField id="materialRouteField" property="materialRoute"/>
-            </column>
-            <column width="250px">
-                <lookupField id="statusField" property="status"/>
-                <textField id="routeField" property="route"/>
-                <textField id="materialSizeField" property="materialSize"/>
-                <textField id="geometryField" property="geometry"/>
-                <textField id="createdByField" property="createdBy" editable="false"/>
-                <textField id="createTsField" property="createTs" editable="false"/>
-                <textField id="updatedByField" property="updatedBy" editable="false"/>
-                <textField id="updateTsField" property="updateTs" editable="false"/>
-            </column>
-            <column>
-                <button id="cloneBtn" action="cloneNtk" caption="Клонировать" icon="COPY"/>
-            </column>
-        </form>
+        <tabSheet stylename="padded-tabbar">
+            <tab id="mainTab" caption="msg://ntkItemEdit.mainTab" margin="true" spacing="true">
+                <form id="formMainTab" dataContainer="ntkItemDc" captionPosition="TOP">
+                    <column width="350px">
+                        <textField id="blueprintField" property="blueprint"/>
+                        <textField id="nameField" colspan="3" property="name" width="100%"/>
+                        <textField id="routeField" property="route"/>
+                        <textField id="geometryField" property="geometry"/>
+                    </column>
+                    <column width="150px">
+                        <textField id="ntkVersionField" property="ntkVersion"/>
+                        <textField id="productIdField" property="productId"/>
+                        <!--                <button id="cloneBtn" action="cloneNtk" caption="Клонировать" icon="COPY"/>-->
+                    </column>
+                    <column width="150px">
+                        <lookupField id="statusField" property="status"/>
+                        <textField id="weightField" property="weight"/>
+                    </column>
+                </form>
+            </tab>
+            <tab id="materialTab" caption="msg://ntkItemEdit.materialTab" margin="true" spacing="true">
+                <form id="formMaterialTab" dataContainer="ntkItemDc" captionPosition="TOP">
+                    <column width="350px">
+                        <pickerField id="componentField" property="component" colspan="2" width="100%"/>
+                        <textField id="quantityField" property="quantity"/>
+                        <textField id="materialRouteField" property="materialRoute"/>
+                        <textField id="materialSizeField" property="materialSize"/>
+                    </column>
+                    <column width="100px">
+                        <textField id="uomField" property="component.uom" editable="false"/>
+                    </column>
+                </form>
+            </tab>
+            <tab id="addTab" caption="msg://ntkItemEdit.addTab" margin="true" spacing="true">
+                <form id="formAddTab" dataContainer="ntkItemDc" captionPosition="TOP">
+                    <column width="350px">
+                        <textField id="createdByField" property="createdBy" editable="false"/>
+                        <textField id="createTsField" property="createTs" editable="false"/>
+                        <textField id="updatedByField" property="updatedBy" editable="false"/>
+                        <textField id="updateTsField" property="updateTs" editable="false"/>
+                    </column>
+                </form>
+            </tab>
+        </tabSheet>
         <groupBox id="componentsBox"
                   expand="componentsTable"
-                  stylename="light"
-                  caption="msg://ntkItemEdit.components">
-            <table id="componentsTable" dataContainer="componentsDc" width="100%">
+                  stylename="light" outerMargin="true,true,true,true"
+                  caption="msg://ntkItemEdit.components" showAsPanel="false">
+            <table id="componentsTable" dataContainer="componentsDc" width="100%"
+                   emptyStateMessage="Вспомогательные материалы отсутствуют"
+                   presentations="true">
                 <actions>
                     <action id="create" type="create"/>
                     <action id="edit" type="edit"/>
