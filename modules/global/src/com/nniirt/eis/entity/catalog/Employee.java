@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Table(name = "EIS_EMPLOYEE")
 @Entity(name = "eis_Employee")
-@NamePattern("%s|firstname")
+@NamePattern("%s %s %s|surname, firstname, patronymic")
 public class Employee extends StandardEntity {
     private static final long serialVersionUID = -2856083837598796405L;
 

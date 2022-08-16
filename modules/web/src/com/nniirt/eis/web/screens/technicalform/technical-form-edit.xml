@@ -9,8 +9,17 @@
             <view extends="_local">
                 <property name="component" view="_minimal"/>
                 <property name="product" view="_minimal"/>
+                <property name="commission" view="_local">
+                    <property name="member" view="_local">
+                        <property name="jobTitle" view="_local"/>
+                    </property>
+                </property>
+                <property name="defectDivision" view="_minimal"/>
+                <property name="conclusion" view="_local"/>
             </view>
             <loader/>
+            <collection id="commissionDc" property="commission"/>
+            <collection id="conclusionDc" property="conclusion"/>
         </instance>
     </data>
     <dialogMode height="600"
@@ -18,6 +27,7 @@
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="technicalFormDc" captionPosition="TOP">
             <column width="500px">
+                <pickerField id="defectDivisionField" property="defectDivision" colspan="2"/>
                 <textField id="documentNumField" property="documentNum"/>
                 <pickerField id="componentField" property="component"/>
                 <textField id="quantityField" property="quantity" colspan="2"/>
@@ -25,9 +35,9 @@
                 <textField id="masterComponentDefinitionField" property="masterComponentDefinition"/>
                 <textArea rows="2" id="manufacturerField" property="manufacturer"/>
                 <textField id="assemblyNumField" property="assemblyNum"/>
-                <dateField id="warrantyStartDateField" property="warrantyStartDate"  />
-                <textField id="warrantyPeriodField" property="warrantyPeriod"  colspan="2"/>
-                <dateField id="defectDateField" property="defectDate"  colspan="2"/>
+                <dateField id="warrantyStartDateField" property="warrantyStartDate"/>
+                <textField id="warrantyPeriodField" property="warrantyPeriod" colspan="2"/>
+                <dateField id="defectDateField" property="defectDate" colspan="2"/>
                 <textArea rows="5" id="defectConditionsField" property="defectConditions"/>
                 <textArea rows="5" id="defectCauseField" property="defectCause"/>
             </column>
@@ -43,6 +53,46 @@
                 <textArea rows="5" id="inspectionResultsField" property="inspectionResults"/>
             </column>
         </form>
+        <groupBox id="conclusionBox" caption="msg://com.nniirt.eis.entity.qs/TechnicalForm.conclusion">
+            <table id="conclusionTable" dataContainer="conclusionDc" width="100%" height="200px">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="definition"/>
+                    <column id="finaldate"/>
+                    <column id="address"/>
+                    <column id="recipient"/>
+                    <column id="fax"/>
+                    <column id="phone"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="conclusionTable.create"/>
+                    <button action="conclusionTable.edit"/>
+                    <button action="conclusionTable.remove" stylename="danger"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <groupBox id="commissionBox" caption="msg://com.nniirt.eis.entity.qs/TechnicalForm.commission">
+            <table id="commissionTable" dataContainer="commissionDc" width="100%" height="200px">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="member"/>
+                    <column id="member.jobTitle"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="commissionTable.create"/>
+                    <button action="commissionTable.edit"/>
+                    <button action="commissionTable.remove" stylename="danger"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>

@@ -4,13 +4,16 @@
         <item screen="eis_NtkBOMItem.browse" caption="mainMsg://menu_config.eis_NtkBOMItem.browse"/>
         <item screen="eis_NtkItem.browse" caption="mainMsg://menu_config.eis_NtkItem.browse"/>
         <item screen="eis_TechnicalForm.browse" caption="mainMsg://menu_config.eis_TechnicalForm.browse"/>
+        <item screen="eis_DivisionIndex.browse" caption="mainMsg://menu_config.eis_DivisionIndex.browse"/>
         <separator></separator>
         <menu id="application-eis-catalogs" caption="mainMsg://menu_config.application-eis-catalogs">
             <item screen="eis_NomenclatureItem.browse" caption="mainMsg://menu_config.eis_NomenclatureItem.browse"/>
             <item screen="eis_UnitOfMeasure.browse" caption="mainMsg://menu_config.eis_UnitOfMeasure.browse"/>
             <item screen="eis_Product.browse" caption="mainMsg://menu_config.eis_Product.browse"/>
             <item screen="eis_JobTitle.browse" caption="mainMsg://menu_config.eis_JobTitle.browse"/>
+            <item screen="eis_Employee.browse" caption="mainMsg://menu_config.eis_Employee.browse"/>
         </menu>
-        <item screen="eis_Employee.browse" caption="mainMsg://menu_config.eis_Employee.browse"/>
+        <item screen="eis_TechnicalFormConclusion.browse"
+              caption="mainMsg://menu_config.eis_TechnicalFormConclusion.browse"/>
     </menu>
 </menu-config>

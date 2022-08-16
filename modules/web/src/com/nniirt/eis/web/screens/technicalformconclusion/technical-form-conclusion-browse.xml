@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://technicalFormConclusionBrowse.caption"
+        focusComponent="technicalFormConclusionsTable"
+        messagesPack="com.nniirt.eis.web.screens.technicalformconclusion">
+    <data readOnly="true">
+        <collection id="technicalFormConclusionsDc"
+                    class="com.nniirt.eis.entity.qs.TechnicalFormConclusion">
+            <view extends="_local">
+                <property name="accountable" view="_minimal">
+                    <property name="nickname"/>
+                    <property name="index"/>
+                </property>
+            </view>
+            <loader id="technicalFormConclusionsDl">
+                <query>
+                    <![CDATA[select e from eis_TechnicalFormConclusion e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="technicalFormConclusionsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="technicalFormConclusionsTable"
+                dataLoader="technicalFormConclusionsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="technicalFormConclusionsTable"
+                    width="100%"
+                    dataContainer="technicalFormConclusionsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="definition"/>
+                <column id="accountable"/>
+                <column id="finaldate"/>
+                <column id="address"/>
+                <column id="recipient"/>
+                <column id="fax"/>
+                <column id="phone"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="technicalFormConclusionsTable.create"/>
+                <button id="editBtn" action="technicalFormConclusionsTable.edit"/>
+                <button id="removeBtn" action="technicalFormConclusionsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

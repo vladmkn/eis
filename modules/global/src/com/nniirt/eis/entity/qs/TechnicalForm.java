@@ -1,12 +1,16 @@
 package com.nniirt.eis.entity.qs;
 
+import com.haulmont.chile.core.annotations.Composition;
 import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.cuba.core.entity.annotation.OnDelete;
+import com.haulmont.cuba.core.global.DeletePolicy;
 import com.nniirt.eis.entity.NomenclatureItem;
 import com.nniirt.eis.entity.catalog.Product;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "EIS_TECHNICAL_FORM")
 @Entity(name = "eis_TechnicalForm")
@@ -65,6 +69,10 @@ public class TechnicalForm extends StandardEntity {
     @Column(name = "WARRANTY_PERIOD", length = 455)
     private String warrantyPeriod;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DEFECT_DIVISION_ID")
+    private DivisionIndex defectDivision;
+
     @Temporal(TemporalType.DATE)
     @Column(name = "DEFECT_DATE")
     private Date defectDate;
@@ -84,6 +92,40 @@ public class TechnicalForm extends StandardEntity {
     @Lob
     @Column(name = "INSPECTION_RESULTS")
     private String inspectionResults;
+
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "technicalForm")
+    private List<TechnicalFormConclusion> conclusion;
+
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "technicalForm")
+    private List<TechnicalFormCommission> commission;
+
+    public List<TechnicalFormConclusion> getConclusion() {
+        return conclusion;
+    }
+
+    public void setConclusion(List<TechnicalFormConclusion> conclusion) {
+        this.conclusion = conclusion;
+    }
+
+    public DivisionIndex getDefectDivision() {
+        return defectDivision;
+    }
+
+    public void setDefectDivision(DivisionIndex defectDivision) {
+        this.defectDivision = defectDivision;
+    }
+
+    public List<TechnicalFormCommission> getCommission() {
+        return commission;
+    }
+
+    public void setCommission(List<TechnicalFormCommission> commission) {
+        this.commission = commission;
+    }
 
     public String getProvider() {
         return provider;

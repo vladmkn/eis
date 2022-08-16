@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://technicalFormCommissionBrowse.caption"
+        focusComponent="technicalFormCommissionsTable"
+        messagesPack="com.nniirt.eis.web.screens.technicalformcommission">
+    <data readOnly="true">
+        <collection id="technicalFormCommissionsDc"
+                    class="com.nniirt.eis.entity.qs.TechnicalFormCommission">
+            <view extends="_local">
+                <property name="member" view="_minimal">
+                    <property name="firstname"/>
+                    <property name="patronymic"/>
+                    <property name="jobTitle" view="_minimal"/>
+                </property>
+            </view>
+            <loader id="technicalFormCommissionsDl">
+                <query>
+                    <![CDATA[select e from eis_TechnicalFormCommission e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="technicalFormCommissionsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="technicalFormCommissionsTable"
+                dataLoader="technicalFormCommissionsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="technicalFormCommissionsTable"
+                    width="100%"
+                    dataContainer="technicalFormCommissionsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="member"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="technicalFormCommissionsTable.create"/>
+                <button id="editBtn" action="technicalFormCommissionsTable.edit"/>
+                <button id="removeBtn" action="technicalFormCommissionsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

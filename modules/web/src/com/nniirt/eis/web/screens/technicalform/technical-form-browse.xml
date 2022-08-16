@@ -10,6 +10,7 @@
             <view extends="_local">
                 <property name="component" view="_minimal"/>
                 <property name="product" view="_minimal"/>
+                <property name="defectDivision" view="_minimal"/>
             </view>
             <loader id="technicalFormsDl">
                 <query>
@@ -43,6 +44,7 @@
                 <column id="componentNumber"/>
                 <column id="quantity"/>
                 <column id="defectDate"/>
+                <column id="defectDivision"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

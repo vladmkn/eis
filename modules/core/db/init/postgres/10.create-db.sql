@@ -126,6 +126,7 @@ create table EIS_TECHNICAL_FORM (
     MASTER_COMPONENT_NUMBER varchar(300),
     WARRANTY_START_DATE date,
     WARRANTY_PERIOD varchar(455),
+    DEFECT_DIVISION_ID uuid,
     DEFECT_DATE date,
     DEFECT_CONDITIONS text,
     DEFECT_DEFINITION text,
@@ -188,3 +189,62 @@ create table EIS_EMPLOYEE (
     primary key (ID)
 )^
 -- end EIS_EMPLOYEE
+-- begin EIS_TECHNICAL_FORM_COMMISSION
+create table EIS_TECHNICAL_FORM_COMMISSION (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    MEMBER_ID uuid,
+    TECHNICAL_FORM_ID uuid not null,
+    --
+    primary key (ID)
+)^
+-- end EIS_TECHNICAL_FORM_COMMISSION
+-- begin EIS_DIVISION_INDEX
+create table EIS_DIVISION_INDEX (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    NAME varchar(455),
+    MASTER_ID uuid,
+    NICKNAME varchar(255),
+    INDEX_ varchar(100),
+    --
+    primary key (ID)
+)^
+-- end EIS_DIVISION_INDEX
+-- begin EIS_TECHNICAL_FORM_CONCLUSION
+create table EIS_TECHNICAL_FORM_CONCLUSION (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    DEFINITION_ text,
+    ACCOUNTABLE_ID uuid,
+    FINALDATE date,
+    ADDRESS varchar(300),
+    RECIPIENT varchar(300),
+    FAX varchar(300),
+    PHONE varchar(300),
+    TECHNICAL_FORM_ID uuid not null,
+    --
+    primary key (ID)
+)^
+-- end EIS_TECHNICAL_FORM_CONCLUSION
