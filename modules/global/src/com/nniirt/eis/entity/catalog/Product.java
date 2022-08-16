@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Table(name = "EIS_PRODUCT")
 @Entity(name = "eis_Product")
-@NamePattern("%s|name")
+@NamePattern("%s %s|name, series")
 public class Product extends StandardEntity {
     private static final long serialVersionUID = -6750963016886989134L;
 
