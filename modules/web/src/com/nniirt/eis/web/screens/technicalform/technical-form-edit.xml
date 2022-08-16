@@ -74,30 +74,30 @@
             <tab id="mainTabInspectionResults" caption="msg://technicalFormEdit.mainTabInspectionResults" margin="true" spacing="true">
                 <richTextArea id="inspectionResultsField" property="inspectionResults" width="100%"/>
             </tab>
+            <tab id="mainTabConclusionTable" caption="msg://technicalFormEdit.mainTabConclusionTable" margin="true" spacing="true">
+                <table id="conclusionTable" dataContainer="conclusionDc" width="100%" height="200px">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="definition"/>
+                        <column id="accountable"/>
+                        <column id="finaldate"/>
+                        <column id="address"/>
+                        <column id="recipient"/>
+                        <column id="fax"/>
+                        <column id="phone"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="conclusionTable.create"/>
+                        <button action="conclusionTable.edit"/>
+                        <button action="conclusionTable.remove" stylename="danger"/>
+                    </buttonsPanel>
+                </table>
+            </tab>
         </tabSheet>
-        <groupBox id="conclusionBox" caption="msg://com.nniirt.eis.entity.qs/TechnicalForm.conclusion">
-            <table id="conclusionTable" dataContainer="conclusionDc" width="100%" height="200px">
-                <actions>
-                    <action id="create" type="create"/>
-                    <action id="edit" type="edit"/>
-                    <action id="remove" type="remove"/>
-                </actions>
-                <columns>
-                    <column id="definition"/>
-                    <column id="accountable"/>
-                    <column id="finaldate"/>
-                    <column id="address"/>
-                    <column id="recipient"/>
-                    <column id="fax"/>
-                    <column id="phone"/>
-                </columns>
-                <buttonsPanel>
-                    <button action="conclusionTable.create"/>
-                    <button action="conclusionTable.edit"/>
-                    <button action="conclusionTable.remove" stylename="danger"/>
-                </buttonsPanel>
-            </table>
-        </groupBox>
         </tab>
         <tab id="materialTab" caption="msg://technicalFormEdit.commissionTab" margin="true" spacing="true">
             <table id="commissionTable" dataContainer="commissionDc" width="100%" height="200px">
