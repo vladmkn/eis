@@ -46,8 +46,8 @@
                 <dateField id="warrantyStartDateField" property="warrantyStartDate" colspan="2"/>
                 <textField id="warrantyPeriodField" property="warrantyPeriod" colspan="2"/>
                 <dateField id="defectDateField" property="defectDate" colspan="2"/>
-                <richTextArea id="defectConditionsField" property="defectConditions"/>
-                <richTextArea id="defectCauseField" property="defectCause"/>
+
+
             </column>
             <column width="500px">
                 <checkBox id="externalDocumentField" property="externalDocument"/>
@@ -57,10 +57,24 @@
                 <textField id="masterComponentNumberField" property="masterComponentNumber"/>
                 <textArea rows="2" id="contractField" property="contract"/>
                 <textArea rows="2" id="providerField" property="provider"/>
-                <richTextArea id="defectDefinitionField" property="defectDefinition"/>
-                <richTextArea id="inspectionResultsField" property="inspectionResults"/>
+
+
             </column>
         </form>
+        <tabSheet stylename="padded-tabbar">
+            <tab id="mainTabDefectConditions" caption="msg://technicalFormEdit.mainTabDefectConditions" margin="true" spacing="true">
+                <richTextArea id="defectConditionsField" property="defectConditions" width="100%"/>
+            </tab>
+            <tab id="mainTabDefectCause" caption="msg://technicalFormEdit.mainTabDefectCause" margin="true" spacing="true">
+                <richTextArea id="defectCauseField" property="defectCause" width="100%"/>
+            </tab>
+            <tab id="mainTabDefectDefinition" caption="msg://technicalFormEdit.mainTabDefectDefinition" margin="true" spacing="true">
+                <richTextArea id="defectDefinitionField" property="defectDefinition" width="100%"/>
+            </tab>
+            <tab id="mainTabInspectionResults" caption="msg://technicalFormEdit.mainTabInspectionResults" margin="true" spacing="true">
+                <richTextArea id="inspectionResultsField" property="inspectionResults" width="100%"/>
+            </tab>
+        </tabSheet>
         <groupBox id="conclusionBox" caption="msg://com.nniirt.eis.entity.qs/TechnicalForm.conclusion">
             <table id="conclusionTable" dataContainer="conclusionDc" width="100%" height="200px">
                 <actions>
