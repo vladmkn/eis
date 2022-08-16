@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
     <menu id="application-eis" insertBefore="administration" caption="mainMsg://menu_config.application-eis">
-        <item screen="eis_NtkBOMItem.browse" caption="mainMsg://menu_config.eis_NtkBOMItem.browse"/>
-        <item screen="eis_NtkItem.browse" caption="mainMsg://menu_config.eis_NtkItem.browse"/>
-        <item screen="eis_TechnicalForm.browse" caption="mainMsg://menu_config.eis_TechnicalForm.browse"/>
-        <item screen="eis_DivisionIndex.browse" caption="mainMsg://menu_config.eis_DivisionIndex.browse"/>
+        <menu id="application-eis-tech" caption="Технология">
+            <item screen="eis_NtkItem.browse" caption="mainMsg://menu_config.eis_NtkItem.browse"/>
+        </menu>
+        <menu id="application-eis-qs" caption="Служба качества">
+            <item screen="eis_TechnicalForm.browse" caption="mainMsg://menu_config.eis_TechnicalForm.browse"/>
+            <item screen="eis_DivisionIndex.browse" caption="mainMsg://menu_config.eis_DivisionIndex.browse"/>
+        </menu>
         <separator></separator>
         <menu id="application-eis-catalogs" caption="mainMsg://menu_config.application-eis-catalogs">
             <item screen="eis_NomenclatureItem.browse" caption="mainMsg://menu_config.eis_NomenclatureItem.browse"/>
@@ -13,7 +16,5 @@
             <item screen="eis_JobTitle.browse" caption="mainMsg://menu_config.eis_JobTitle.browse"/>
             <item screen="eis_Employee.browse" caption="mainMsg://menu_config.eis_Employee.browse"/>
         </menu>
-        <item screen="eis_TechnicalFormConclusion.browse"
-              caption="mainMsg://menu_config.eis_TechnicalFormConclusion.browse"/>
     </menu>
 </menu-config>
