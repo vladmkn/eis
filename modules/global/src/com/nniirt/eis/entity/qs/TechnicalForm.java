@@ -1,6 +1,7 @@
 package com.nniirt.eis.entity.qs;
 
 import com.haulmont.chile.core.annotations.Composition;
+import com.haulmont.cuba.core.entity.FileDescriptor;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
 import com.haulmont.cuba.core.global.DeletePolicy;
@@ -102,6 +103,20 @@ public class TechnicalForm extends StandardEntity {
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "technicalForm")
     private List<TechnicalFormCommission> commission;
+
+    @JoinTable(name = "EIS_TECHNICAL_FORM_FILE_DESCRIPTOR_LINK",
+            joinColumns = @JoinColumn(name = "TECHNICAL_FORM_ID"),
+            inverseJoinColumns = @JoinColumn(name = "FILE_DESCRIPTOR_ID"))
+    @ManyToMany
+    private List<FileDescriptor> files;
+
+    public List<FileDescriptor> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<FileDescriptor> files) {
+        this.files = files;
+    }
 
     public List<TechnicalFormConclusion> getConclusion() {
         return conclusion;
