@@ -63,16 +63,16 @@
         </form>
         <tabSheet stylename="padded-tabbar">
             <tab id="mainTabDefectConditions" caption="msg://technicalFormEdit.mainTabDefectConditions" margin="true" spacing="true">
-                <richTextArea id="defectConditionsField" property="defectConditions" width="100%"/>
-            </tab>
-            <tab id="mainTabDefectCause" caption="msg://technicalFormEdit.mainTabDefectCause" margin="true" spacing="true">
-                <richTextArea id="defectCauseField" property="defectCause" width="100%"/>
+                <richTextArea id="defectConditionsField" property="defectConditions" width="100%" dataContainer="technicalFormDc"/>
             </tab>
             <tab id="mainTabDefectDefinition" caption="msg://technicalFormEdit.mainTabDefectDefinition" margin="true" spacing="true">
-                <richTextArea id="defectDefinitionField" property="defectDefinition" width="100%"/>
+                <richTextArea id="defectDefinitionField" property="defectDefinition" width="100%" dataContainer="technicalFormDc"/>
+            </tab>
+            <tab id="mainTabDefectCause" caption="msg://technicalFormEdit.mainTabDefectCause" margin="true" spacing="true">
+                <richTextArea id="defectCauseField" property="defectCause" width="100%" dataContainer="technicalFormDc"/>
             </tab>
             <tab id="mainTabInspectionResults" caption="msg://technicalFormEdit.mainTabInspectionResults" margin="true" spacing="true">
-                <richTextArea id="inspectionResultsField" property="inspectionResults" width="100%"/>
+                <richTextArea id="inspectionResultsField" property="inspectionResults" width="100%" dataContainer="technicalFormDc"/>
             </tab>
             <tab id="mainTabConclusionTable" caption="msg://technicalFormEdit.mainTabConclusionTable" margin="true" spacing="true">
                 <table id="conclusionTable" dataContainer="conclusionDc" width="100%" height="200px">
