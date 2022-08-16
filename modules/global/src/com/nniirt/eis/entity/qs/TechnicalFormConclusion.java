@@ -33,6 +33,7 @@ public class TechnicalFormConclusion extends StandardEntity {
 
     @Column(name = "PHONE", length = 300)
     private String phone;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "TECHNICAL_FORM_ID")
     private TechnicalForm technicalForm;

@@ -15,7 +15,11 @@
                     </property>
                 </property>
                 <property name="defectDivision" view="_minimal"/>
-                <property name="conclusion" view="_local"/>
+                <property name="conclusion" view="_local">
+                    <property name="accountable" view="_local">
+                        <property name="name" />
+                    </property>
+                </property>
                 <property name="files" view="_local"/>
             </view>
             <loader/>
@@ -27,6 +31,8 @@
     <dialogMode height="600"
                 width="800"/>
     <layout expand="editActions" spacing="true">
+        <tabSheet stylename="padded-tabbar">
+        <tab id="mainTab" caption="msg://technicalFormEdit.mainTab" margin="true" spacing="true">
         <form id="form" dataContainer="technicalFormDc">
             <column width="500px">
                 <pickerField id="defectDivisionField" property="defectDivision"/>
@@ -64,6 +70,7 @@
                 </actions>
                 <columns>
                     <column id="definition"/>
+                    <column id="accountable"/>
                     <column id="finaldate"/>
                     <column id="address"/>
                     <column id="recipient"/>
@@ -77,7 +84,8 @@
                 </buttonsPanel>
             </table>
         </groupBox>
-        <groupBox id="commissionBox" caption="msg://com.nniirt.eis.entity.qs/TechnicalForm.commission">
+        </tab>
+        <tab id="materialTab" caption="msg://technicalFormEdit.commissionTab" margin="true" spacing="true">
             <table id="commissionTable" dataContainer="commissionDc" width="100%" height="200px">
                 <actions>
                     <action id="create" type="create"/>
@@ -94,8 +102,8 @@
                     <button action="commissionTable.remove" stylename="danger"/>
                 </buttonsPanel>
             </table>
-        </groupBox>
-        <groupBox id="filesBox" caption="msg://com.nniirt.eis.entity.qs/TechnicalForm.files">
+        </tab>
+        <tab id="addTab" caption="msg://technicalFormEdit.filesTab" margin="true" spacing="true">
             <buttonsPanel>
                 <upload id="upload"
                         dropZone="contentHBox"
@@ -118,11 +126,10 @@
                     <action id="download" trackSelection="true" icon="DOWNLOAD"/>
                 </actions>
                 <columns>
-                    <column id="name"/>
+                    <column id="name" width="350px"/>
                     <column id="extension"/>
                     <column id="size"/>
                     <column id="createDate"/>
-                    <column id="sysTenantId"/>
                 </columns>
             </table>
                 <hbox id="filesTableWrapperLayout"
@@ -131,7 +138,8 @@
                       spacing="true">
                 </hbox>
             </hbox>
-        </groupBox>
+        </tab>
+        </tabSheet>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>
