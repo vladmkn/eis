@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://technicalFormEdit.caption"
+        focusComponent="form"
+        messagesPack="com.nniirt.eis.web.screens.technicalform">
+    <data>
+        <instance id="technicalFormDc"
+                  class="com.nniirt.eis.entity.qs.TechnicalForm">
+            <view extends="_local">
+                <property name="component" view="_minimal"/>
+                <property name="product" view="_minimal"/>
+            </view>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="technicalFormDc" captionPosition="TOP">
+            <column width="500px">
+                <textField id="documentNumField" property="documentNum"/>
+                <pickerField id="componentField" property="component"/>
+                <textField id="quantityField" property="quantity" colspan="2"/>
+                <pickerField id="productField" property="product"/>
+                <textField id="masterComponentDefinitionField" property="masterComponentDefinition"/>
+                <textArea rows="2" id="manufacturerField" property="manufacturer"/>
+                <textField id="assemblyNumField" property="assemblyNum"/>
+                <dateField id="warrantyStartDateField" property="warrantyStartDate"  />
+                <textField id="warrantyPeriodField" property="warrantyPeriod"  colspan="2"/>
+                <dateField id="defectDateField" property="defectDate"  colspan="2"/>
+                <textArea rows="5" id="defectConditionsField" property="defectConditions"/>
+                <textArea rows="5" id="defectCauseField" property="defectCause"/>
+            </column>
+            <column width="500px">
+                <dateField id="documentDateField" property="documentDate"/>
+                <textField id="componentNumberField" property="componentNumber"/>
+                <textField id="productNumberField" property="productNumber"/>
+                <textField id="masterComponentNumberField" property="masterComponentNumber"/>
+                <textArea rows="2" id="contractField" property="contract"/>
+                <textArea rows="2" id="providerField" property="provider"/>
+                <checkBox id="externalDocumentField" property="externalDocument"/>
+                <textArea rows="5" id="defectDefinitionField" property="defectDefinition"/>
+                <textArea rows="5" id="inspectionResultsField" property="inspectionResults"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

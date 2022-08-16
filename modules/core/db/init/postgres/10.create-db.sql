@@ -99,3 +99,92 @@ create table EIS_NTK_BOM_ITEM (
     primary key (ID)
 )^
 -- end EIS_NTK_BOM_ITEM
+-- begin EIS_TECHNICAL_FORM
+create table EIS_TECHNICAL_FORM (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    DOCUMENT_NUM varchar(255),
+    DOCUMENT_DATE date,
+    EXTERNAL_DOCUMENT boolean,
+    COMPONENT_ID uuid,
+    COMPONENT_NUMBER varchar(300),
+    QUANTITY decimal(28, 8),
+    PRODUCT_ID uuid,
+    PRODUCT_NUMBER varchar(300),
+    MANUFACTURER varchar(300),
+    CONTRACT varchar(300),
+    PROVIDER varchar(300),
+    ASSEMBLY_NUM varchar(255),
+    MASTER_COMPONENT_DEFINITION varchar(300),
+    MASTER_COMPONENT_NUMBER varchar(300),
+    WARRANTY_START_DATE date,
+    WARRANTY_PERIOD varchar(455),
+    DEFECT_DATE date,
+    DEFECT_CONDITIONS text,
+    DEFECT_DEFINITION text,
+    DEFECT_CAUSE text,
+    INSPECTION_RESULTS text,
+    --
+    primary key (ID)
+)^
+-- end EIS_TECHNICAL_FORM
+-- begin EIS_PRODUCT
+create table EIS_PRODUCT (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    NAME varchar(255),
+    SERIES varchar(100),
+    ASSEMBLY_MASK varchar(255),
+    --
+    primary key (ID)
+)^
+-- end EIS_PRODUCT
+-- begin EIS_JOB_TITLE
+create table EIS_JOB_TITLE (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    NAME varchar(255),
+    --
+    primary key (ID)
+)^
+-- end EIS_JOB_TITLE
+-- begin EIS_EMPLOYEE
+create table EIS_EMPLOYEE (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    FIRSTNAME varchar(255),
+    SURNAME varchar(255),
+    PATRONYMIC varchar(255),
+    JOB_TITLE_ID uuid,
+    --
+    primary key (ID)
+)^
+-- end EIS_EMPLOYEE

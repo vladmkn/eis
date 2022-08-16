@@ -1,0 +1,2 @@
+alter table EIS_EMPLOYEE add constraint FK_EIS_EMPLOYEE_ON_JOB_TITLE foreign key (JOB_TITLE_ID) references EIS_JOB_TITLE(ID);
+create index IDX_EIS_EMPLOYEE_ON_JOB_TITLE on EIS_EMPLOYEE (JOB_TITLE_ID);

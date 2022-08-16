@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://technicalFormBrowse.caption"
+        focusComponent="technicalFormsTable"
+        messagesPack="com.nniirt.eis.web.screens.technicalform">
+    <data readOnly="true">
+        <collection id="technicalFormsDc"
+                    class="com.nniirt.eis.entity.qs.TechnicalForm">
+            <view extends="_local">
+                <property name="component" view="_minimal"/>
+                <property name="product" view="_minimal"/>
+            </view>
+            <loader id="technicalFormsDl">
+                <query>
+                    <![CDATA[select e from eis_TechnicalForm e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="technicalFormsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="technicalFormsTable"
+                dataLoader="technicalFormsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="technicalFormsTable"
+                    width="100%"
+                    dataContainer="technicalFormsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="assemblyNum"/>
+                <column id="documentNum"/>
+                <column id="documentDate"/>
+                <column id="component"/>
+                <column id="componentNumber"/>
+                <column id="quantity"/>
+                <column id="defectDate"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="technicalFormsTable.create"/>
+                <button id="editBtn" action="technicalFormsTable.edit"/>
+                <button id="removeBtn" action="technicalFormsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

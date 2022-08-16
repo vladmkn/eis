@@ -6,5 +6,9 @@
         <class>com.nniirt.eis.entity.NomenclatureItem</class>
         <class>com.nniirt.eis.entity.NtkItem</class>
         <class>com.nniirt.eis.entity.NtkBOMItem</class>
+        <class>com.nniirt.eis.entity.qs.TechnicalForm</class>
+        <class>com.nniirt.eis.entity.catalog.Product</class>
+        <class>com.nniirt.eis.entity.catalog.JobTitle</class>
+        <class>com.nniirt.eis.entity.catalog.Employee</class>
     </persistence-unit>
 </persistence>

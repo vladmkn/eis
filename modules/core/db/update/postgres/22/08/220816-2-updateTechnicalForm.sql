@@ -1,0 +1,13 @@
+alter table EIS_TECHNICAL_FORM add column DEFECT_CAUSE text ;
+alter table EIS_TECHNICAL_FORM add column COMPONENT_ID uuid ;
+alter table EIS_TECHNICAL_FORM add column WARRANTY_PERIOD varchar(455) ;
+alter table EIS_TECHNICAL_FORM add column COMPONENT_NUMBER varchar(300) ;
+alter table EIS_TECHNICAL_FORM add column DEFECT_CONDITIONS text ;
+alter table EIS_TECHNICAL_FORM add column WARRANTY_START_DATE date ;
+alter table EIS_TECHNICAL_FORM add column DOCUMENT_NUM varchar(255) ;
+alter table EIS_TECHNICAL_FORM add column DOCUMENT_DATE date ;
+alter table EIS_TECHNICAL_FORM add column DEFECT_DATE date ;
+alter table EIS_TECHNICAL_FORM add column EXTERNAL_DOCUMENT boolean ;
+alter table EIS_TECHNICAL_FORM add column INSPECTION_RESULTS text ;
+alter table EIS_TECHNICAL_FORM add column DEFECT_DEFINITION text ;
+alter table EIS_TECHNICAL_FORM add column QUANTITY decimal(28, 8) ;
