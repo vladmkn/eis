@@ -94,6 +94,14 @@ public class TechnicalForm extends StandardEntity {
     private String defectCause;
 
     @Lob
+    @Column(name = "DEFECT_MUST_BE")
+    private String defectMustBe;
+
+    @Lob
+    @Column(name = "DEFECT_AS_IS")
+    private String defectAsIs;
+
+    @Lob
     @Column(name = "INSPECTION_RESULTS")
     private String inspectionResults;
 
@@ -122,6 +130,22 @@ public class TechnicalForm extends StandardEntity {
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "technicalForm")
     private List<TechnicalFormComponent> components;
+
+    public String getDefectAsIs() {
+        return defectAsIs;
+    }
+
+    public void setDefectAsIs(String defectAsIs) {
+        this.defectAsIs = defectAsIs;
+    }
+
+    public String getDefectMustBe() {
+        return defectMustBe;
+    }
+
+    public void setDefectMustBe(String defectMustBe) {
+        this.defectMustBe = defectMustBe;
+    }
 
     public String getDefectDivisionDef() {
         return defectDivisionDef;

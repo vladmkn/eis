@@ -132,6 +132,8 @@ create table EIS_TECHNICAL_FORM (
     DEFECT_CONDITIONS text,
     DEFECT_DEFINITION text,
     DEFECT_CAUSE text,
+    DEFECT_MUST_BE text,
+    DEFECT_AS_IS text,
     INSPECTION_RESULTS text,
     --
     primary key (ID)

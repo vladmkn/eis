@@ -110,6 +110,16 @@
                         <textArea rows="5" id="defectCauseField" property="defectCause" width="100%"
                                   dataContainer="technicalFormDc"/>
                     </tab>
+                    <tab id="mainTabDefectMustBe" caption="msg://technicalFormEdit.mainTabDefectMustBe" margin="true"
+                         spacing="true">
+                        <textArea rows="5" id="defectMustBeField" property="defectMustBe" width="100%"
+                                  dataContainer="technicalFormDc"/>
+                    </tab>
+                    <tab id="mainTabDefectAsIs" caption="msg://technicalFormEdit.mainTabDefectAsIs" margin="true"
+                         spacing="true">
+                        <textArea rows="5" id="defectAsIsField" property="defectAsIs" width="100%"
+                                  dataContainer="technicalFormDc"/>
+                    </tab>
                     <tab id="mainTabInspectionResults" caption="msg://technicalFormEdit.mainTabInspectionResults"
                          margin="true" spacing="true">
                         <textArea rows="5" id="inspectionResultsField" property="inspectionResults" width="100%"
