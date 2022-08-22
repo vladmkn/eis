@@ -74,6 +74,9 @@ public class TechnicalForm extends StandardEntity {
     @JoinColumn(name = "DEFECT_DIVISION_ID")
     private DivisionIndex defectDivision;
 
+    @Column(name = "DEFECT_DIVISION_DEF", length = 300)
+    private String defectDivisionDef;
+
     @Temporal(TemporalType.DATE)
     @Column(name = "DEFECT_DATE")
     private Date defectDate;
@@ -119,6 +122,14 @@ public class TechnicalForm extends StandardEntity {
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "technicalForm")
     private List<TechnicalFormComponent> components;
+
+    public String getDefectDivisionDef() {
+        return defectDivisionDef;
+    }
+
+    public void setDefectDivisionDef(String defectDivisionDef) {
+        this.defectDivisionDef = defectDivisionDef;
+    }
 
     public List<TechnicalFormApprovingPerson> getApprovingPerson() {
         return approvingPerson;

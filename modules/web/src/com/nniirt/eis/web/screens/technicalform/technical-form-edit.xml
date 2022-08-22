@@ -50,6 +50,7 @@
                 <form id="form" dataContainer="technicalFormDc">
                     <column width="450px">
                         <pickerField id="defectDivisionField" property="defectDivision"/>
+                        <textField id="defectDivisionDefField" property="defectDivisionDef" colspan="2" width="100%"/>
                         <textField id="documentNumField" property="documentNum"/>
                         <!--                        <pickerField id="componentField" property="component"/>-->
                         <groupBox id="componentsBox" caption="msg://com.nniirt.eis.entity.qs/TechnicalForm.components"
@@ -79,10 +80,8 @@
                         <textField id="masterComponentDefinitionField" property="masterComponentDefinition"/>
                         <textArea rows="2" id="manufacturerField" property="manufacturer"/>
                         <textArea rows="2" id="contractField" property="contract"/>
-                        <textArea rows="2" id="providerField" property="provider" colspan="2"/>
-                        <dateField id="warrantyStartDateField" property="warrantyStartDate" colspan="2"/>
-                        <textField id="warrantyPeriodField" property="warrantyPeriod" colspan="2"/>
-                        <dateField id="defectDateField" property="defectDate" colspan="2"/>
+                        <textArea rows="2" id="providerField" property="provider"/>
+                        <textField id="warrantyPeriodField" property="warrantyPeriod"/>
                     </column>
                     <column width="200px">
                         <checkBox id="externalDocumentField" property="externalDocument"/>
@@ -91,28 +90,30 @@
                         <textField id="productNumberField" property="productNumber"/>
                         <textField id="masterComponentNumberField" property="masterComponentNumber"/>
                         <textField id="assemblyNumField" property="assemblyNum"/>
+                        <dateField id="warrantyStartDateField" property="warrantyStartDate"/>
+                        <dateField id="defectDateField" property="defectDate"/>
                     </column>
                 </form>
-                <tabSheet stylename="padded-tabbar">
+                <tabSheet stylename="padded-tabbar" width="1200px">
                     <tab id="mainTabDefectConditions" caption="msg://technicalFormEdit.mainTabDefectConditions"
                          margin="true" spacing="true">
                         <textArea rows="5" id="defectConditionsField" property="defectConditions" width="100%"
-                                      dataContainer="technicalFormDc"/>
+                                  dataContainer="technicalFormDc"/>
                     </tab>
                     <tab id="mainTabDefectDefinition" caption="msg://technicalFormEdit.mainTabDefectDefinition"
                          margin="true" spacing="true">
                         <textArea rows="5" id="defectDefinitionField" property="defectDefinition" width="100%"
-                                      dataContainer="technicalFormDc"/>
+                                  dataContainer="technicalFormDc"/>
                     </tab>
                     <tab id="mainTabDefectCause" caption="msg://technicalFormEdit.mainTabDefectCause" margin="true"
                          spacing="true">
                         <textArea rows="5" id="defectCauseField" property="defectCause" width="100%"
-                                      dataContainer="technicalFormDc"/>
+                                  dataContainer="technicalFormDc"/>
                     </tab>
                     <tab id="mainTabInspectionResults" caption="msg://technicalFormEdit.mainTabInspectionResults"
                          margin="true" spacing="true">
                         <textArea rows="5" id="inspectionResultsField" property="inspectionResults" width="100%"
-                                      dataContainer="technicalFormDc"/>
+                                  dataContainer="technicalFormDc"/>
                     </tab>
                     <tab id="mainTabConclusionTable" caption="msg://technicalFormEdit.mainTabConclusionTable"
                          margin="true" spacing="true">
@@ -142,26 +143,8 @@
             </tab>
             <tab id="materialTab" caption="msg://technicalFormEdit.commissionTab" margin="true" spacing="true">
                 <split width="950px" height="600px" orientation="vertical" pos="50"
-                       maxSplitPosition="400px" minSplitPosition="150px" >
-                <table id="commissionTable" dataContainer="commissionDc" width="100%"> <!-- height="300px" -->
-                    <actions>
-                        <action id="create" type="create"/>
-                        <action id="edit" type="edit"/>
-                        <action id="remove" type="remove"/>
-                    </actions>
-                    <columns>
-                        <column id="member"/>
-                        <column id="member.jobTitle"/>
-                    </columns>
-                    <buttonsPanel>
-                        <button action="commissionTable.create"/>
-                        <button action="commissionTable.edit"/>
-                        <button action="commissionTable.remove" stylename="danger"/>
-                    </buttonsPanel>
-                </table>
-                <groupBox id="approvingPersonBox" caption="msg://com.nniirt.eis.entity.qs/TechnicalForm.approvingPerson"
-                stylename="light">
-                    <table id="approvingPersonTable" dataContainer="approvingPersonDc" width="100%">
+                       maxSplitPosition="400px" minSplitPosition="150px">
+                    <table id="commissionTable" dataContainer="commissionDc" width="100%"> <!-- height="300px" -->
                         <actions>
                             <action id="create" type="create"/>
                             <action id="edit" type="edit"/>
@@ -172,12 +155,31 @@
                             <column id="member.jobTitle"/>
                         </columns>
                         <buttonsPanel>
-                            <button action="approvingPersonTable.create"/>
-                            <button action="approvingPersonTable.edit"/>
-                            <button action="approvingPersonTable.remove" stylename="danger"/>
+                            <button action="commissionTable.create"/>
+                            <button action="commissionTable.edit"/>
+                            <button action="commissionTable.remove" stylename="danger"/>
                         </buttonsPanel>
                     </table>
-                </groupBox>
+                    <groupBox id="approvingPersonBox"
+                              caption="msg://com.nniirt.eis.entity.qs/TechnicalForm.approvingPerson"
+                              stylename="light">
+                        <table id="approvingPersonTable" dataContainer="approvingPersonDc" width="100%">
+                            <actions>
+                                <action id="create" type="create"/>
+                                <action id="edit" type="edit"/>
+                                <action id="remove" type="remove"/>
+                            </actions>
+                            <columns>
+                                <column id="member"/>
+                                <column id="member.jobTitle"/>
+                            </columns>
+                            <buttonsPanel>
+                                <button action="approvingPersonTable.create"/>
+                                <button action="approvingPersonTable.edit"/>
+                                <button action="approvingPersonTable.remove" stylename="danger"/>
+                            </buttonsPanel>
+                        </table>
+                    </groupBox>
                 </split>
             </tab>
             <tab id="addTab" caption="msg://technicalFormEdit.filesTab" margin="true" spacing="true">
@@ -209,11 +211,11 @@
                             <column id="createDate"/>
                         </columns>
                     </table>
-<!--                    <hbox id="filesTableWrapperLayout"-->
-<!--                          height="100%"-->
-<!--                          width="100%"-->
-<!--                          spacing="true">-->
-<!--                    </hbox>-->
+                    <!--                    <hbox id="filesTableWrapperLayout"-->
+                    <!--                          height="100%"-->
+                    <!--                          width="100%"-->
+                    <!--                          spacing="true">-->
+                    <!--                    </hbox>-->
                 </hbox>
             </tab>
             <tab id="reportTab" caption="msg://technicalFormEdit.reportTab" margin="true" spacing="true"

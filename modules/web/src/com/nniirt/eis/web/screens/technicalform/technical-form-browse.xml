@@ -41,11 +41,12 @@
                 <column id="assemblyNum"/>
                 <column id="documentNum"/>
                 <column id="documentDate"/>
-<!--                <column id="component"/>-->
-<!--                <column id="componentNumber"/>-->
-<!--                <column id="quantity"/>-->
+                <!--                <column id="component"/>-->
+                <!--                <column id="componentNumber"/>-->
+                <!--                <column id="quantity"/>-->
                 <column id="defectDate"/>
                 <column id="defectDivision"/>
+                <column id="defectDivisionDef"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
