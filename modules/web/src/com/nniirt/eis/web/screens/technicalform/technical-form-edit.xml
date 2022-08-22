@@ -153,10 +153,16 @@
                 </hbox>
             </hbox>
         </tab>
+            <tab id="reportTab" caption="msg://technicalFormEdit.reportTab" margin="true" spacing="true" visible="false">
+                <browserFrame id="browserFrame" width="100%" height="500px">
+                    <url url="http://srv-sp.nniirt.local"/>
+                </browserFrame>
+            </tab>
         </tabSheet>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>
+            <button id="printBtn" caption="Запустить отчеты" icon="font-icon:PRINT"/>
         </hbox>
     </layout>
 </window>
