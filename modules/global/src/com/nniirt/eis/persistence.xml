@@ -14,5 +14,6 @@
         <class>com.nniirt.eis.entity.qs.DivisionIndex</class>
         <class>com.nniirt.eis.entity.qs.TechnicalFormConclusion</class>
         <class>com.nniirt.eis.entity.qs.TechnicalFormComponent</class>
+        <class>com.nniirt.eis.entity.qs.TechnicalFormApprovingPerson</class>
     </persistence-unit>
 </persistence>

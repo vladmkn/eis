@@ -52,7 +52,7 @@
                           alwaysVisible="true">
                 <button id="createBtn" action="technicalFormsTable.create"/>
                 <button id="editBtn" action="technicalFormsTable.edit"/>
-                <button id="removeBtn" action="technicalFormsTable.remove"/>
+                <button id="removeBtn" action="technicalFormsTable.remove" stylename="danger"/>
                 <button id="runBtn" action="technicalFormsTable.run"/>
             </buttonsPanel>
         </groupTable>

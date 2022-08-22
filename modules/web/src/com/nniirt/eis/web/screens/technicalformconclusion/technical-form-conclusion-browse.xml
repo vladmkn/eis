@@ -51,7 +51,7 @@
                           alwaysVisible="true">
                 <button id="createBtn" action="technicalFormConclusionsTable.create"/>
                 <button id="editBtn" action="technicalFormConclusionsTable.edit"/>
-                <button id="removeBtn" action="technicalFormConclusionsTable.remove"/>
+                <button id="removeBtn" action="technicalFormConclusionsTable.remove" stylename="danger"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

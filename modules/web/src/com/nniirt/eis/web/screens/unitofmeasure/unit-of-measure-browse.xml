@@ -50,7 +50,7 @@
                           alwaysVisible="true">
                 <button id="createBtn" action="unitOfMeasuresTable.create"/>
                 <button id="editBtn" action="unitOfMeasuresTable.edit"/>
-                <button id="removeBtn" action="unitOfMeasuresTable.remove"/>
+                <button id="removeBtn" action="unitOfMeasuresTable.remove" stylename="danger"/>
                 <button id="reloadDataBtn" action="reloadData" caption="Обновить" icon="icons/refresh.png"/>
             </buttonsPanel>
         </groupTable>

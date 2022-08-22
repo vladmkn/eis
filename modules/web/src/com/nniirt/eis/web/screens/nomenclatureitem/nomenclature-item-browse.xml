@@ -55,7 +55,7 @@
                           alwaysVisible="true">
                 <button id="createBtn" action="nomenclatureItemsTable.create"/>
                 <button id="editBtn" action="nomenclatureItemsTable.edit"/>
-                <button id="removeBtn" action="nomenclatureItemsTable.remove"/>
+                <button id="removeBtn" action="nomenclatureItemsTable.remove" stylename="danger"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

@@ -97,6 +97,11 @@ public class TechnicalForm extends StandardEntity {
     @Composition
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "technicalForm")
+    private List<TechnicalFormApprovingPerson> approvingPerson;
+
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "technicalForm")
     private List<TechnicalFormConclusion> conclusion;
 
     @Composition
@@ -114,6 +119,14 @@ public class TechnicalForm extends StandardEntity {
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "technicalForm")
     private List<TechnicalFormComponent> components;
+
+    public List<TechnicalFormApprovingPerson> getApprovingPerson() {
+        return approvingPerson;
+    }
+
+    public void setApprovingPerson(List<TechnicalFormApprovingPerson> approvingPerson) {
+        this.approvingPerson = approvingPerson;
+    }
 
     public List<TechnicalFormComponent> getComponents() {
         return components;

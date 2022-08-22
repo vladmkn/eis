@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
-        caption="msg://technicalFormCommissionBrowse.caption"
-        focusComponent="technicalFormCommissionsTable"
-        messagesPack="com.nniirt.eis.web.screens.technicalformcommission">
+        caption="msg://technicalFormApprovingPersonBrowse.caption"
+        focusComponent="technicalFormApprovingPersonsTable"
+        messagesPack="com.nniirt.eis.web.screens.technicalformapprovingperson">
     <data readOnly="true">
-        <collection id="technicalFormCommissionsDc"
-                    class="com.nniirt.eis.entity.qs.TechnicalFormCommission">
+        <collection id="technicalFormApprovingPersonsDc"
+                    class="com.nniirt.eis.entity.qs.TechnicalFormApprovingPerson">
             <view extends="_local">
                 <property name="member" view="_minimal">
                     <property name="firstname"/>
@@ -14,25 +14,25 @@
                     <property name="jobTitle" view="_minimal"/>
                 </property>
             </view>
-            <loader id="technicalFormCommissionsDl">
+            <loader id="technicalFormApprovingPersonsDl">
                 <query>
-                    <![CDATA[select e from eis_TechnicalFormCommission e]]>
+                    <![CDATA[select e from eis_TechnicalFormApprovingPerson e]]>
                 </query>
             </loader>
         </collection>
     </data>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="technicalFormCommissionsTable"
+    <layout expand="technicalFormApprovingPersonsTable"
             spacing="true">
         <filter id="filter"
-                applyTo="technicalFormCommissionsTable"
-                dataLoader="technicalFormCommissionsDl">
+                applyTo="technicalFormApprovingPersonsTable"
+                dataLoader="technicalFormApprovingPersonsDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="technicalFormCommissionsTable"
+        <groupTable id="technicalFormApprovingPersonsTable"
                     width="100%"
-                    dataContainer="technicalFormCommissionsDc">
+                    dataContainer="technicalFormApprovingPersonsDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
@@ -44,9 +44,9 @@
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="technicalFormCommissionsTable.create"/>
-                <button id="editBtn" action="technicalFormCommissionsTable.edit"/>
-                <button id="removeBtn" action="technicalFormCommissionsTable.remove" stylename="danger"/>
+                <button id="createBtn" action="technicalFormApprovingPersonsTable.create"/>
+                <button id="editBtn" action="technicalFormApprovingPersonsTable.edit"/>
+                <button id="removeBtn" action="technicalFormApprovingPersonsTable.remove" stylename="danger"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

@@ -45,7 +45,7 @@
                           alwaysVisible="true">
                 <button id="createBtn" action="employeesTable.create"/>
                 <button id="editBtn" action="employeesTable.edit"/>
-                <button id="removeBtn" action="employeesTable.remove"/>
+                <button id="removeBtn" action="employeesTable.remove" stylename="danger"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

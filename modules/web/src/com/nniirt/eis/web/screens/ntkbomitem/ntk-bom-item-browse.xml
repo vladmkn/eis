@@ -59,7 +59,7 @@
                           alwaysVisible="true">
                 <button id="createBtn" action="ntkBOMItemsTable.create"/>
                 <button id="editBtn" action="ntkBOMItemsTable.edit"/>
-                <button id="removeBtn" action="ntkBOMItemsTable.remove"/>
+                <button id="removeBtn" action="ntkBOMItemsTable.remove" stylename="danger"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

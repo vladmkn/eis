@@ -48,7 +48,7 @@
                           alwaysVisible="true">
                 <button id="createBtn" action="divisionIndexesTable.create"/>
                 <button id="editBtn" action="divisionIndexesTable.edit"/>
-                <button id="removeBtn" action="divisionIndexesTable.remove"/>
+                <button id="removeBtn" action="divisionIndexesTable.remove" stylename="danger"/>
             </buttonsPanel>
         </treeTable>
         <hbox id="lookupActions" spacing="true" visible="false">
