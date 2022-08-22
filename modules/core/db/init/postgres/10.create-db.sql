@@ -255,3 +255,22 @@ create table EIS_TECHNICAL_FORM_FILE_DESCRIPTOR_LINK (
     primary key (TECHNICAL_FORM_ID, FILE_DESCRIPTOR_ID)
 )^
 -- end EIS_TECHNICAL_FORM_FILE_DESCRIPTOR_LINK
+-- begin EIS_TECHNICAL_FORM_COMPONENT
+create table EIS_TECHNICAL_FORM_COMPONENT (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    COMPONENT_ID uuid,
+    COMPONENT_NUMBER varchar(255),
+    QUANTITY decimal(28, 8),
+    TECHNICAL_FORM_ID uuid not null,
+    --
+    primary key (ID)
+)^
+-- end EIS_TECHNICAL_FORM_COMPONENT

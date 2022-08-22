@@ -110,6 +110,19 @@ public class TechnicalForm extends StandardEntity {
     @ManyToMany
     private List<FileDescriptor> files;
 
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "technicalForm")
+    private List<TechnicalFormComponent> components;
+
+    public List<TechnicalFormComponent> getComponents() {
+        return components;
+    }
+
+    public void setComponents(List<TechnicalFormComponent> components) {
+        this.components = components;
+    }
+
     public List<FileDescriptor> getFiles() {
         return files;
     }

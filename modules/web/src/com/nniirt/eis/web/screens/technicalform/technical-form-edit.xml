@@ -17,143 +17,179 @@
                 <property name="defectDivision" view="_minimal"/>
                 <property name="conclusion" view="_local">
                     <property name="accountable" view="_local">
-                        <property name="name" />
+                        <property name="name"/>
                     </property>
                 </property>
                 <property name="files" view="_local"/>
+                <property name="components" view="_local">
+                    <property name="component" view="_minimal">
+                        <property name="uom" view="_minimal"/>
+                    </property>
+                    <property name="componentNumber" />
+                    <property name="quantity" />
+                </property>
             </view>
             <loader/>
             <collection id="commissionDc" property="commission"/>
             <collection id="conclusionDc" property="conclusion"/>
             <collection id="filesDc" property="files"/>
+            <collection id="componentsDc" property="components"/>
         </instance>
     </data>
     <dialogMode height="600"
                 width="800"/>
     <layout expand="editActions" spacing="true">
         <tabSheet stylename="padded-tabbar">
-        <tab id="mainTab" caption="msg://technicalFormEdit.mainTab" margin="true" spacing="true">
-        <form id="form" dataContainer="technicalFormDc">
-            <column width="500px">
-                <pickerField id="defectDivisionField" property="defectDivision"/>
-                <textField id="documentNumField" property="documentNum"/>
-                <pickerField id="componentField" property="component"/>
-                <textField id="quantityField" property="quantity" colspan="2"/>
-                <pickerField id="productField" property="product"/>
-                <textField id="masterComponentDefinitionField" property="masterComponentDefinition"/>
-                <textArea rows="2" id="manufacturerField" property="manufacturer"/>
-                <textField id="assemblyNumField" property="assemblyNum"/>
-                <dateField id="warrantyStartDateField" property="warrantyStartDate" colspan="2"/>
-                <textField id="warrantyPeriodField" property="warrantyPeriod" colspan="2"/>
-                <dateField id="defectDateField" property="defectDate" colspan="2"/>
-
-
-            </column>
-            <column width="500px">
-                <checkBox id="externalDocumentField" property="externalDocument"/>
-                <dateField id="documentDateField" property="documentDate"/>
-                <textField id="componentNumberField" property="componentNumber"/>
-                <textField id="productNumberField" property="productNumber"/>
-                <textField id="masterComponentNumberField" property="masterComponentNumber"/>
-                <textArea rows="2" id="contractField" property="contract"/>
-                <textArea rows="2" id="providerField" property="provider"/>
-
-
-            </column>
-        </form>
-        <tabSheet stylename="padded-tabbar">
-            <tab id="mainTabDefectConditions" caption="msg://technicalFormEdit.mainTabDefectConditions" margin="true" spacing="true">
-                <richTextArea id="defectConditionsField" property="defectConditions" width="100%" dataContainer="technicalFormDc"/>
+            <tab id="mainTab" caption="msg://technicalFormEdit.mainTab" margin="true" spacing="true">
+                <form id="form" dataContainer="technicalFormDc">
+                    <column width="500px">
+                        <pickerField id="defectDivisionField" property="defectDivision"/>
+                        <textField id="documentNumField" property="documentNum"/>
+<!--                        <pickerField id="componentField" property="component"/>-->
+                        <groupBox id="componentsBox" caption="msg://com.nniirt.eis.entity.qs/TechnicalForm.components"
+                                  colspan="2" width="100%" stylename="light">
+                            <table id="componentsTable" dataContainer="componentsDc" width="100%" height="200px">
+                                <actions>
+                                    <action id="create" type="create"/>
+                                    <action id="edit" type="edit"/>
+                                    <action id="remove" type="remove"/>
+                                </actions>
+                                <columns>
+                                    <column id="component" />
+                                    <column id="componentNumber"/>
+                                    <column id="quantity"/>
+                                    <column id="component.uom.nickname"
+                                            caption="msg://com.nniirt.eis.entity.qs/TechnicalForm.uom"/>
+                                </columns>
+                                <buttonsPanel>
+                                    <button action="componentsTable.create"/>
+                                    <button action="componentsTable.edit"/>
+                                    <button action="componentsTable.remove"/>
+                                </buttonsPanel>
+                            </table>
+                        </groupBox>
+<!--                        <textField id="quantityField" property="quantity" colspan="2"/>-->
+                        <pickerField id="productField" property="product"/>
+                        <textField id="masterComponentDefinitionField" property="masterComponentDefinition"/>
+                        <textArea rows="2" id="manufacturerField" property="manufacturer"/>
+                        <textField id="assemblyNumField" property="assemblyNum"/>
+                        <dateField id="warrantyStartDateField" property="warrantyStartDate" colspan="2"/>
+                        <textField id="warrantyPeriodField" property="warrantyPeriod" colspan="2"/>
+                        <dateField id="defectDateField" property="defectDate" colspan="2"/>
+                    </column>
+                    <column width="500px">
+                        <checkBox id="externalDocumentField" property="externalDocument"/>
+                        <dateField id="documentDateField" property="documentDate"/>
+<!--                        <textField id="componentNumberField" property="componentNumber"/>-->
+                        <textField id="productNumberField" property="productNumber"/>
+                        <textField id="masterComponentNumberField" property="masterComponentNumber"/>
+                        <textArea rows="2" id="contractField" property="contract"/>
+                        <textArea rows="2" id="providerField" property="provider"/>
+                    </column>
+                </form>
+                <tabSheet stylename="padded-tabbar">
+                    <tab id="mainTabDefectConditions" caption="msg://technicalFormEdit.mainTabDefectConditions"
+                         margin="true" spacing="true">
+                        <richTextArea id="defectConditionsField" property="defectConditions" width="100%"
+                                      dataContainer="technicalFormDc"/>
+                    </tab>
+                    <tab id="mainTabDefectDefinition" caption="msg://technicalFormEdit.mainTabDefectDefinition"
+                         margin="true" spacing="true">
+                        <richTextArea id="defectDefinitionField" property="defectDefinition" width="100%"
+                                      dataContainer="technicalFormDc"/>
+                    </tab>
+                    <tab id="mainTabDefectCause" caption="msg://technicalFormEdit.mainTabDefectCause" margin="true"
+                         spacing="true">
+                        <richTextArea id="defectCauseField" property="defectCause" width="100%"
+                                      dataContainer="technicalFormDc"/>
+                    </tab>
+                    <tab id="mainTabInspectionResults" caption="msg://technicalFormEdit.mainTabInspectionResults"
+                         margin="true" spacing="true">
+                        <richTextArea id="inspectionResultsField" property="inspectionResults" width="100%"
+                                      dataContainer="technicalFormDc"/>
+                    </tab>
+                    <tab id="mainTabConclusionTable" caption="msg://technicalFormEdit.mainTabConclusionTable"
+                         margin="true" spacing="true">
+                        <table id="conclusionTable" dataContainer="conclusionDc" width="100%" height="200px">
+                            <actions>
+                                <action id="create" type="create"/>
+                                <action id="edit" type="edit"/>
+                                <action id="remove" type="remove"/>
+                            </actions>
+                            <columns>
+                                <column id="definition"/>
+                                <column id="accountable"/>
+                                <column id="finaldate"/>
+                                <column id="address"/>
+                                <column id="recipient"/>
+                                <column id="fax"/>
+                                <column id="phone"/>
+                            </columns>
+                            <buttonsPanel>
+                                <button action="conclusionTable.create"/>
+                                <button action="conclusionTable.edit"/>
+                                <button action="conclusionTable.remove" stylename="danger"/>
+                            </buttonsPanel>
+                        </table>
+                    </tab>
+                </tabSheet>
             </tab>
-            <tab id="mainTabDefectDefinition" caption="msg://technicalFormEdit.mainTabDefectDefinition" margin="true" spacing="true">
-                <richTextArea id="defectDefinitionField" property="defectDefinition" width="100%" dataContainer="technicalFormDc"/>
-            </tab>
-            <tab id="mainTabDefectCause" caption="msg://technicalFormEdit.mainTabDefectCause" margin="true" spacing="true">
-                <richTextArea id="defectCauseField" property="defectCause" width="100%" dataContainer="technicalFormDc"/>
-            </tab>
-            <tab id="mainTabInspectionResults" caption="msg://technicalFormEdit.mainTabInspectionResults" margin="true" spacing="true">
-                <richTextArea id="inspectionResultsField" property="inspectionResults" width="100%" dataContainer="technicalFormDc"/>
-            </tab>
-            <tab id="mainTabConclusionTable" caption="msg://technicalFormEdit.mainTabConclusionTable" margin="true" spacing="true">
-                <table id="conclusionTable" dataContainer="conclusionDc" width="100%" height="200px">
+            <tab id="materialTab" caption="msg://technicalFormEdit.commissionTab" margin="true" spacing="true">
+                <table id="commissionTable" dataContainer="commissionDc" width="100%" height="200px">
                     <actions>
                         <action id="create" type="create"/>
                         <action id="edit" type="edit"/>
                         <action id="remove" type="remove"/>
                     </actions>
                     <columns>
-                        <column id="definition"/>
-                        <column id="accountable"/>
-                        <column id="finaldate"/>
-                        <column id="address"/>
-                        <column id="recipient"/>
-                        <column id="fax"/>
-                        <column id="phone"/>
+                        <column id="member"/>
+                        <column id="member.jobTitle"/>
                     </columns>
                     <buttonsPanel>
-                        <button action="conclusionTable.create"/>
-                        <button action="conclusionTable.edit"/>
-                        <button action="conclusionTable.remove" stylename="danger"/>
+                        <button action="commissionTable.create"/>
+                        <button action="commissionTable.edit"/>
+                        <button action="commissionTable.remove" stylename="danger"/>
                     </buttonsPanel>
                 </table>
             </tab>
-        </tabSheet>
-        </tab>
-        <tab id="materialTab" caption="msg://technicalFormEdit.commissionTab" margin="true" spacing="true">
-            <table id="commissionTable" dataContainer="commissionDc" width="100%" height="200px">
-                <actions>
-                    <action id="create" type="create"/>
-                    <action id="edit" type="edit"/>
-                    <action id="remove" type="remove"/>
-                </actions>
-                <columns>
-                    <column id="member"/>
-                    <column id="member.jobTitle"/>
-                </columns>
+            <tab id="addTab" caption="msg://technicalFormEdit.filesTab" margin="true" spacing="true">
                 <buttonsPanel>
-                    <button action="commissionTable.create"/>
-                    <button action="commissionTable.edit"/>
-                    <button action="commissionTable.remove" stylename="danger"/>
+                    <upload id="upload"
+                            dropZone="contentHBox"
+                            showClearButton="false"
+                            uploadButtonIcon="UPLOAD"
+                            uploadButtonCaption=""
+                            fileStoragePutMode="MANUAL"
+                            permittedExtensions=".png,.jpg,.pdf,.doc,.docx"
+                            showFileName="false"/>
+                    <button action="filesTable.download"/>
+                    <button action="filesTable.remove"/>
                 </buttonsPanel>
-            </table>
-        </tab>
-        <tab id="addTab" caption="msg://technicalFormEdit.filesTab" margin="true" spacing="true">
-            <buttonsPanel>
-                <upload id="upload"
-                        dropZone="contentHBox"
-                        showClearButton="false"
-                        uploadButtonIcon="UPLOAD"
-                        uploadButtonCaption=""
-                        fileStoragePutMode="MANUAL"
-                        permittedExtensions=".png,.jpg,.pdf,.doc,.docx"
-                        showFileName="false"/>
-                <button action="filesTable.download"/>
-                <button action="filesTable.remove"/>
-            </buttonsPanel>
-            <hbox id="contentHBox" spacing="true" width="100%">
-            <table id="filesTable" dataContainer="filesDc" width="100%" height="200px">
-                <actions>
-                    <action id="add" type="add"/>
-                    <action id="remove" type="remove"/>
-                    <action id="edit" type="edit"/>
-                    <action id="exclude" type="exclude"/>
-                    <action id="download" trackSelection="true" icon="DOWNLOAD"/>
-                </actions>
-                <columns>
-                    <column id="name" width="350px"/>
-                    <column id="extension"/>
-                    <column id="size"/>
-                    <column id="createDate"/>
-                </columns>
-            </table>
-                <hbox id="filesTableWrapperLayout"
-                      height="100%"
-                      width="100%"
-                      spacing="true">
+                <hbox id="contentHBox" spacing="true" width="100%">
+                    <table id="filesTable" dataContainer="filesDc" width="100%" height="200px">
+                        <actions>
+                            <action id="add" type="add"/>
+                            <action id="remove" type="remove"/>
+                            <action id="edit" type="edit"/>
+                            <action id="exclude" type="exclude"/>
+                            <action id="download" trackSelection="true" icon="DOWNLOAD"/>
+                        </actions>
+                        <columns>
+                            <column id="name" width="350px"/>
+                            <column id="extension"/>
+                            <column id="size"/>
+                            <column id="createDate"/>
+                        </columns>
+                    </table>
+                    <hbox id="filesTableWrapperLayout"
+                          height="100%"
+                          width="100%"
+                          spacing="true">
+                    </hbox>
                 </hbox>
-            </hbox>
-        </tab>
-            <tab id="reportTab" caption="msg://technicalFormEdit.reportTab" margin="true" spacing="true" visible="false">
+            </tab>
+            <tab id="reportTab" caption="msg://technicalFormEdit.reportTab" margin="true" spacing="true"
+                 visible="false">
                 <browserFrame id="browserFrame" width="100%" height="500px">
                     <url url="http://srv-sp.nniirt.local"/>
                 </browserFrame>

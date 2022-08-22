@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://technicalFormComponentEdit.caption"
+        focusComponent="form"
+        messagesPack="com.nniirt.eis.web.screens.technicalformcomponent">
+    <data>
+        <instance id="technicalFormComponentDc"
+                  class="com.nniirt.eis.entity.qs.TechnicalFormComponent">
+            <view extends="_local">
+                <property name="component" view="_minimal">
+                    <property name="blueprintname"/>
+                    <property name="displayname"/>
+                    <property name="uom" view="_minimal"/>
+                </property>
+            </view>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="technicalFormComponentDc">
+            <column width="450px">
+                <pickerField id="componentField" property="component">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <textField id="componentNumberField" property="componentNumber"/>
+                <textField id="quantityField" property="quantity"/>
+                <textField id="quantityUom" property="component.uom.nickname" enable="false"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
