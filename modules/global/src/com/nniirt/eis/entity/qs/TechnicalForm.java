@@ -105,6 +105,18 @@ public class TechnicalForm extends StandardEntity {
     @Column(name = "INSPECTION_RESULTS")
     private String inspectionResults;
 
+    @Column(name = "ADDRESS", length = 300)
+    private String address;
+
+    @Column(name = "RECIPIENT", length = 300)
+    private String recipient;
+
+    @Column(name = "FAX", length = 300)
+    private String fax;
+
+    @Column(name = "PHONE", length = 300)
+    private String phone;
+
     @Composition
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "technicalForm")
@@ -369,5 +381,37 @@ public class TechnicalForm extends StandardEntity {
 
     public void setAssemblyNum(String assemblyNum) {
         this.assemblyNum = assemblyNum;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getRecipient() {
+        return recipient;
+    }
+
+    public void setRecipient(String recipient) {
+        this.recipient = recipient;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

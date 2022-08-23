@@ -41,10 +41,6 @@
                 <column id="definition"/>
                 <column id="accountable"/>
                 <column id="finaldate"/>
-                <column id="address"/>
-                <column id="recipient"/>
-                <column id="fax"/>
-                <column id="phone"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

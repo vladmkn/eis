@@ -27,11 +27,7 @@
                         <action id="clear" type="picker_clear"/>
                     </actions>
                 </pickerField>
-                <dateField id="finaldateField" property="finaldate"/>
-                <textField id="addressField" property="address"/>
-                <textField id="recipientField" property="recipient"/>
-                <textField id="faxField" property="fax"/>
-                <textField id="phoneField" property="phone"/>
+                <textField id="finaldateField" property="finaldate"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

@@ -135,6 +135,10 @@ create table EIS_TECHNICAL_FORM (
     DEFECT_MUST_BE text,
     DEFECT_AS_IS text,
     INSPECTION_RESULTS text,
+    ADDRESS varchar(300),
+    RECIPIENT varchar(300),
+    FAX varchar(300),
+    PHONE varchar(300),
     --
     primary key (ID)
 )^
@@ -241,11 +245,7 @@ create table EIS_TECHNICAL_FORM_CONCLUSION (
     --
     DEFINITION_ text,
     ACCOUNTABLE_ID uuid,
-    FINALDATE date,
-    ADDRESS varchar(300),
-    RECIPIENT varchar(300),
-    FAX varchar(300),
-    PHONE varchar(300),
+    FINALDATE varchar(300),
     TECHNICAL_FORM_ID uuid not null,
     --
     primary key (ID)
