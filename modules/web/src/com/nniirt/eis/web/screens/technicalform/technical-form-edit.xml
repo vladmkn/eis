@@ -78,10 +78,10 @@
                         <!--                        <textField id="quantityField" property="quantity" colspan="2"/>-->
                         <pickerField id="productField" property="product"/>
                         <textField id="masterComponentDefinitionField" property="masterComponentDefinition"/>
+                        <textField id="warrantyPeriodField" property="warrantyPeriod"/>
+                        <textArea rows="2" id="providerField" property="provider"/>
                         <textArea rows="2" id="manufacturerField" property="manufacturer"/>
                         <textArea rows="2" id="contractField" property="contract"/>
-                        <textArea rows="2" id="providerField" property="provider"/>
-                        <textField id="warrantyPeriodField" property="warrantyPeriod"/>
                     </column>
                     <column width="200px">
                         <checkBox id="externalDocumentField" property="externalDocument"/>
@@ -94,7 +94,7 @@
                         <dateField id="defectDateField" property="defectDate"/>
                     </column>
                 </form>
-                <tabSheet stylename="padded-tabbar" width="1200px">
+                <tabSheet id="mainTabDefect" stylename="padded-tabbar" width="1200px">
                     <tab id="mainTabDefectConditions" caption="msg://technicalFormEdit.mainTabDefectConditions"
                          margin="true" spacing="true">
                         <textArea rows="5" id="defectConditionsField" property="defectConditions" width="100%"

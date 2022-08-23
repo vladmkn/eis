@@ -60,6 +60,18 @@ public class TechnicalFormEdit extends StandardEditor<TechnicalForm> {
     private FileStorageService fileStorageService;
     private List<FileDescriptor> newImageDescriptors = new ArrayList<>();
 
+    @Inject
+    protected CheckBox externalDocumentField;
+
+    @Inject
+    protected TextArea manufacturerField;
+
+    @Inject
+    protected TextArea contractField;
+
+    @Inject
+    protected TabSheet mainTabDefect;
+
     @Subscribe("filesTable.download")
     protected void onFilesTableDownload(Action.ActionPerformedEvent event) {
         downloadFile(filesTable.getSingleSelected());
@@ -93,7 +105,30 @@ public class TechnicalFormEdit extends StandardEditor<TechnicalForm> {
 
     @Subscribe
     public void onInit(InitEvent event) {
+        switchComponentGroups(externalDocumentField.getValue());
+
+        externalDocumentField.addValueChangeListener(valueChangeEvent -> switchComponentGroups(valueChangeEvent.getValue()));
+
         printBtn.setAction(new EditorPrintFormAction(this, null));
+    }
+
+    private void switchComponentGroups(Boolean externalDocument)
+    {
+        if (Boolean.TRUE.equals(externalDocument)) {
+            mainTabDefect.getTab("mainTabDefectCause").setVisible(true);
+            mainTabDefect.getTab("mainTabDefectAsIs").setVisible(false);
+            mainTabDefect.getTab("mainTabDefectMustBe").setVisible(false);
+            mainTabDefect.getTab("mainTabInspectionResults").setVisible(false);
+            manufacturerField.setVisible(true);
+            contractField.setVisible(true);
+        } else {
+            mainTabDefect.getTab("mainTabDefectCause").setVisible(false);
+            mainTabDefect.getTab("mainTabDefectAsIs").setVisible(true);
+            mainTabDefect.getTab("mainTabDefectMustBe").setVisible(true);
+            mainTabDefect.getTab("mainTabInspectionResults").setVisible(true);
+            manufacturerField.setVisible(false);
+            contractField.setVisible(false);
+        }
     }
 
     @Subscribe
