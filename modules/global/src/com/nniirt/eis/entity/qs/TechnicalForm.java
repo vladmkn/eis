@@ -108,8 +108,15 @@ public class TechnicalForm extends StandardEntity {
     @Column(name = "ADDRESS", length = 300)
     private String address;
 
+    @Temporal(TemporalType.DATE)
+    @Column(name = "DATE_OF_REQUIRED_ARRIVAL")
+    private Date dateOfRequiredArrival;
+
     @Column(name = "RECIPIENT", length = 300)
     private String recipient;
+
+    @Column(name = "ANALYSIS_SUBJECT")
+    private String analysisSubject;
 
     @Column(name = "FAX", length = 300)
     private String fax;
@@ -117,10 +124,30 @@ public class TechnicalForm extends StandardEntity {
     @Column(name = "PHONE", length = 300)
     private String phone;
 
+    @Column(name = "EMAIL")
+    private String email;
+
     @Composition
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "technicalForm")
     private List<TechnicalFormApprovingPerson> approvingPerson;
+
+    @Lob
+    @Column(name = "TEXT_S2")
+    private String textS2;
+
+    @Column(name = "CHAIRMAN_S2", length = 300)
+    private String chairmanS2;
+
+    @Column(name = "COMMISSION_S2", length = 300)
+    private String commissionS2;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "EXECUTOR_S2_ID")
+    private DivisionIndex executorS2;
+
+    @Column(name = "FINALDATE_S2", length = 300)
+    private String finaldateS2;
 
     @Composition
     @OnDelete(DeletePolicy.CASCADE)
@@ -142,6 +169,70 @@ public class TechnicalForm extends StandardEntity {
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "technicalForm")
     private List<TechnicalFormComponent> components;
+
+    public String getFinaldateS2() {
+        return finaldateS2;
+    }
+
+    public void setFinaldateS2(String finaldateS2) {
+        this.finaldateS2 = finaldateS2;
+    }
+
+    public DivisionIndex getExecutorS2() {
+        return executorS2;
+    }
+
+    public void setExecutorS2(DivisionIndex executorS2) {
+        this.executorS2 = executorS2;
+    }
+
+    public String getCommissionS2() {
+        return commissionS2;
+    }
+
+    public void setCommissionS2(String commissionS2) {
+        this.commissionS2 = commissionS2;
+    }
+
+    public String getChairmanS2() {
+        return chairmanS2;
+    }
+
+    public void setChairmanS2(String chairmanS2) {
+        this.chairmanS2 = chairmanS2;
+    }
+
+    public String getTextS2() {
+        return textS2;
+    }
+
+    public void setTextS2(String textS2) {
+        this.textS2 = textS2;
+    }
+
+    public String getAnalysisSubject() {
+        return analysisSubject;
+    }
+
+    public void setAnalysisSubject(String analysisSubject) {
+        this.analysisSubject = analysisSubject;
+    }
+
+    public Date getDateOfRequiredArrival() {
+        return dateOfRequiredArrival;
+    }
+
+    public void setDateOfRequiredArrival(Date dateOfRequiredArrival) {
+        this.dateOfRequiredArrival = dateOfRequiredArrival;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getDefectAsIs() {
         return defectAsIs;

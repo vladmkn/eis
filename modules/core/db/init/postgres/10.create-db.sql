@@ -136,9 +136,17 @@ create table EIS_TECHNICAL_FORM (
     DEFECT_AS_IS text,
     INSPECTION_RESULTS text,
     ADDRESS varchar(300),
+    DATE_OF_REQUIRED_ARRIVAL date,
     RECIPIENT varchar(300),
+    ANALYSIS_SUBJECT varchar(255),
     FAX varchar(300),
     PHONE varchar(300),
+    EMAIL varchar(255),
+    TEXT_S2 text,
+    CHAIRMAN_S2 varchar(300),
+    COMMISSION_S2 varchar(300),
+    EXECUTOR_S2_ID uuid,
+    FINALDATE_S2 varchar(300),
     --
     primary key (ID)
 )^

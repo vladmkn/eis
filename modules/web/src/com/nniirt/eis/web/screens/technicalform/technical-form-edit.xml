@@ -33,6 +33,7 @@
                         <property name="jobTitle" view="_local"/>
                     </property>
                 </property>
+                <property name="executorS2" view="_local"/>
             </view>
             <loader/>
             <collection id="commissionDc" property="commission"/>
@@ -82,10 +83,6 @@
                         <textArea rows="2" id="providerField" property="provider"/>
                         <textArea rows="2" id="manufacturerField" property="manufacturer"/>
                         <textArea rows="2" id="contractField" property="contract"/>
-                        <textField id="addressField" property="address"/>
-                        <textField id="recipientField" property="recipient"/>
-                        <textField id="faxField" property="fax"/>
-                        <textField id="phoneField" property="phone"/>
                     </column>
                     <column width="200px">
                         <checkBox id="externalDocumentField" property="externalDocument"/>
@@ -129,27 +126,48 @@
                         <textArea rows="5" id="inspectionResultsField" property="inspectionResults" width="100%"
                                   dataContainer="technicalFormDc"/>
                     </tab>
-                    <tab id="mainTabConclusionTable" caption="msg://technicalFormEdit.mainTabConclusionTable"
-                         margin="true" spacing="true">
-                        <table id="conclusionTable" dataContainer="conclusionDc" width="100%" height="200px">
-                            <actions>
-                                <action id="create" type="create"/>
-                                <action id="edit" type="edit"/>
-                                <action id="remove" type="remove"/>
-                            </actions>
-                            <columns>
-                                <column id="definition"/>
-                                <column id="accountable"/>
-                                <column id="finaldate"/>
-                            </columns>
-                            <buttonsPanel>
-                                <button action="conclusionTable.create"/>
-                                <button action="conclusionTable.edit"/>
-                                <button action="conclusionTable.remove" stylename="danger"/>
-                            </buttonsPanel>
-                        </table>
-                    </tab>
                 </tabSheet>
+                <form id="formS123" dataContainer="technicalFormDc" width="1200px">
+                    <column>
+                        <label value="Решение:" colspan="2" stylename="bold"/>
+                        <dateField id="dateOfRequiredArrivalField" property="dateOfRequiredArrival" colspan="2"/>
+                        <textField id="analysisSubjectField" property="analysisSubject" width="100%" colspan="2"/>
+                        <textField id="recipientField" property="recipient" width="100%" colspan="2"/>
+                        <textField id="addressField" property="address" width="100%" colspan="2"/>
+                        <textField id="faxField" property="fax" colspan="2"/>
+                        <textField id="phoneField" property="phone" colspan="2"/>
+                        <textField id="emailField" property="email" colspan="2"/>
+                        <label value="2."  colspan="2"/>
+                        <textArea rows="5" id="textS2Field" property="textS2" width="100%" colspan="2"/>
+                        <textField id="chairmanS2Field" property="chairmanS2" width="100%" colspan="2"/>
+                        <textField id="commissionS2Field" property="commissionS2" width="100%" colspan="2"/>
+                        <pickerField id="executorS2Field" property="executorS2"/>
+                        <label value="3."  colspan="2"/>
+                    </column>
+                    <column>
+                        <textField id="finaldateS2Field" property="finaldateS2"/>
+                    </column>
+                </form>
+                <groupBox caption="msg://technicalFormEdit.conclusionTable"
+                          colspan="2" width="1200px" stylename="light">
+                    <table id="conclusionTable" dataContainer="conclusionDc" width="100%" height="200px">
+                        <actions>
+                            <action id="create" type="create"/>
+                            <action id="edit" type="edit"/>
+                            <action id="remove" type="remove"/>
+                        </actions>
+                        <columns>
+                            <column id="definition"/>
+                            <column id="accountable"/>
+                            <column id="finaldate"/>
+                        </columns>
+                        <buttonsPanel>
+                            <button action="conclusionTable.create"/>
+                            <button action="conclusionTable.edit"/>
+                            <button action="conclusionTable.remove" stylename="danger"/>
+                        </buttonsPanel>
+                    </table>
+                </groupBox>
             </tab>
             <tab id="materialTab" caption="msg://technicalFormEdit.commissionTab" margin="true" spacing="true">
                 <split width="950px" height="600px" orientation="vertical" pos="50"

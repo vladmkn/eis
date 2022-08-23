@@ -11,6 +11,7 @@
                 <property name="component" view="_minimal"/>
                 <property name="product" view="_minimal"/>
                 <property name="defectDivision" view="_minimal"/>
+                <property name="executorS2" view="_minimal"/>
             </view>
             <loader id="technicalFormsDl">
                 <query>

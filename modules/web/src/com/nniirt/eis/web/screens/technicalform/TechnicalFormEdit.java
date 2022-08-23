@@ -72,6 +72,9 @@ public class TechnicalFormEdit extends StandardEditor<TechnicalForm> {
     @Inject
     protected TabSheet mainTabDefect;
 
+    @Inject
+    protected Form formS123;
+
     @Subscribe("filesTable.download")
     protected void onFilesTableDownload(Action.ActionPerformedEvent event) {
         downloadFile(filesTable.getSingleSelected());
@@ -121,6 +124,7 @@ public class TechnicalFormEdit extends StandardEditor<TechnicalForm> {
             mainTabDefect.getTab("mainTabInspectionResults").setVisible(false);
             manufacturerField.setVisible(true);
             contractField.setVisible(true);
+            formS123.setVisible(true);
         } else {
             mainTabDefect.getTab("mainTabDefectCause").setVisible(false);
             mainTabDefect.getTab("mainTabDefectAsIs").setVisible(true);
@@ -128,6 +132,7 @@ public class TechnicalFormEdit extends StandardEditor<TechnicalForm> {
             mainTabDefect.getTab("mainTabInspectionResults").setVisible(true);
             manufacturerField.setVisible(false);
             contractField.setVisible(false);
+            formS123.setVisible(false);
         }
     }
 
