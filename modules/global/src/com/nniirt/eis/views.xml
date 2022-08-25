@@ -6,4 +6,36 @@
             <property name="idgal"/>
         </property>
     </view>
+
+    <view class="com.nniirt.eis.entity.qs.TechnicalForm"
+          name="technicalform-for-report"
+          extends="_local">
+        <property name="component" view="_minimal"/>
+        <property name="product" view="_minimal"/>
+        <property name="commission" view="_local">
+            <property name="member" view="_local">
+                <property name="jobTitle" view="_local"/>
+            </property>
+        </property>
+        <property name="defectDivision" view="_minimal"/>
+        <property name="conclusion" view="_local">
+            <property name="accountable" view="_local">
+                <property name="name"/>
+            </property>
+        </property>
+        <property name="files" view="_local"/>
+        <property name="components" view="_local">
+            <property name="component" view="_minimal">
+                <property name="uom" view="_minimal"/>
+            </property>
+            <property name="componentNumber"/>
+            <property name="quantity"/>
+        </property>
+        <property name="approvingPerson" view="_local">
+            <property name="member" view="_local">
+                <property name="jobTitle" view="_local"/>
+            </property>
+        </property>
+        <property name="executorS2" view="_local"/>
+    </view>
 </views>

@@ -11,7 +11,7 @@ import java.util.UUID;
         @Index(name = "IDX_EIS_NOMENCLATURE_ITEM_IDGAL", columnList = "IDGAL")
 })
 @Entity(name = "eis_NomenclatureItem")
-@NamePattern("%s|name")
+@NamePattern("%s|displayname")
 public class NomenclatureItem extends StandardEntity {
     private static final long serialVersionUID = -6645312842549283419L;
 

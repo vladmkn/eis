@@ -129,23 +129,21 @@
                 </tabSheet>
                 <form id="formS123" dataContainer="technicalFormDc" width="1200px">
                     <column>
-                        <label value="Решение:" colspan="2" stylename="bold"/>
-                        <dateField id="dateOfRequiredArrivalField" property="dateOfRequiredArrival" colspan="2"/>
-                        <textField id="analysisSubjectField" property="analysisSubject" width="100%" colspan="2"/>
-                        <textField id="recipientField" property="recipient" width="100%" colspan="2"/>
-                        <textField id="addressField" property="address" width="100%" colspan="2"/>
-                        <textField id="faxField" property="fax" colspan="2"/>
-                        <textField id="phoneField" property="phone" colspan="2"/>
-                        <textField id="emailField" property="email" colspan="2"/>
-                        <label value="2."  colspan="2"/>
-                        <textArea rows="5" id="textS2Field" property="textS2" width="100%" colspan="2"/>
-                        <textField id="chairmanS2Field" property="chairmanS2" width="100%" colspan="2"/>
-                        <textField id="commissionS2Field" property="commissionS2" width="100%" colspan="2"/>
-                        <pickerField id="executorS2Field" property="executorS2"/>
-                        <label value="3."  colspan="2"/>
-                    </column>
-                    <column>
+                        <label value="Решение:" stylename="bold"/>
+                        <dateField id="dateOfRequiredArrivalField" property="dateOfRequiredArrival"/>
+                        <textField id="analysisSubjectField" property="analysisSubject" width="100%"/>
+                        <textField id="recipientField" property="recipient" width="100%"/>
+                        <textField id="addressField" property="address" width="100%"/>
+                        <textField id="faxField" property="fax"/>
+                        <textField id="phoneField" property="phone"/>
+                        <textField id="emailField" property="email"/>
+                        <label value="2." />
+                        <textArea rows="5" id="textS2Field" property="textS2" width="100%"/>
+                        <textField id="chairmanS2Field" property="chairmanS2" width="100%"/>
+                        <textField id="commissionS2Field" property="commissionS2" width="100%"/>
+                        <pickerField id="executorS2Field" property="executorS2" width="100%"/>
                         <textField id="finaldateS2Field" property="finaldateS2"/>
+                        <label value="3."/>
                     </column>
                 </form>
                 <groupBox caption="msg://technicalFormEdit.conclusionTable"
