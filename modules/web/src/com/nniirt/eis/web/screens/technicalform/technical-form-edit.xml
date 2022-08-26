@@ -56,7 +56,9 @@
                         <!--                        <pickerField id="componentField" property="component"/>-->
                         <groupBox id="componentsBox" caption="msg://com.nniirt.eis.entity.qs/TechnicalForm.components"
                                   colspan="2" width="100%" stylename="light">
-                            <table id="componentsTable" dataContainer="componentsDc" width="100%" height="200px">
+                            <table id="componentsTable" dataContainer="componentsDc" width="100%"
+                                   emptyStateMessage="Вам необходимо указать компоненты с дефектом или отказом."
+                                   height="200px">
                                 <actions>
                                     <action id="create" type="create"/>
                                     <action id="edit" type="edit"/>
@@ -148,7 +150,8 @@
                 </form>
                 <groupBox caption="msg://technicalFormEdit.conclusionTable"
                           colspan="2" width="1200px" stylename="light">
-                    <table id="conclusionTable" dataContainer="conclusionDc" width="100%" height="200px">
+                    <table id="conclusionTable" emptyStateMessage="Даннные по заключениям отсутствуют"
+                           dataContainer="conclusionDc" width="100%" height="200px">
                         <actions>
                             <action id="create" type="create"/>
                             <action id="edit" type="edit"/>
@@ -168,9 +171,10 @@
                 </groupBox>
             </tab>
             <tab id="materialTab" caption="msg://technicalFormEdit.commissionTab" margin="true" spacing="true">
-                <split width="950px" height="600px" orientation="vertical" pos="50"
+                <split width="950px" height="650px" orientation="vertical" pos="50"
                        maxSplitPosition="400px" minSplitPosition="150px">
-                    <table id="commissionTable" dataContainer="commissionDc" width="100%"> <!-- height="300px" -->
+                    <table id="commissionTable" dataContainer="commissionDc" width="100%" height="100%"
+                           emptyStateMessage="Необходимо добавить членов комиссии"> <!-- height="300px" -->
                         <actions>
                             <action id="create" type="create"/>
                             <action id="edit" type="edit"/>
@@ -188,8 +192,9 @@
                     </table>
                     <groupBox id="approvingPersonBox"
                               caption="msg://com.nniirt.eis.entity.qs/TechnicalForm.approvingPerson"
-                              stylename="light">
-                        <table id="approvingPersonTable" dataContainer="approvingPersonDc" width="100%">
+                              stylename="light" spacing="false">
+                        <table id="approvingPersonTable" emptyStateMessage="Укажите согласующих должностных лиц"
+                               dataContainer="approvingPersonDc" width="100%" height="200px">
                             <actions>
                                 <action id="create" type="create"/>
                                 <action id="edit" type="edit"/>
@@ -222,7 +227,9 @@
                     <button action="filesTable.remove" stylename="danger"/>
                 </buttonsPanel>
                 <hbox id="contentHBox" spacing="true" width="950px">
-                    <table id="filesTable" dataContainer="filesDc" width="100%" height="100%">
+                    <table id="filesTable" dataContainer="filesDc"
+                           emptyStateMessage="Прикрепить файлы к документу можно с использованием метода Drag’n’Drop"
+                           width="100%" height="200px">
                         <actions>
                             <action id="add" type="add"/>
                             <action id="remove" type="remove"/>
