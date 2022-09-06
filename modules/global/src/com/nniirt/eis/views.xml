@@ -36,6 +36,7 @@
                 <property name="jobTitle" view="_local"/>
             </property>
         </property>
+        <property name="executorS1" view="_local"/>
         <property name="executorS2" view="_local"/>
     </view>
 </views>

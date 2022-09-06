@@ -146,7 +146,9 @@ create table EIS_TECHNICAL_FORM (
     CHAIRMAN_S2 varchar(300),
     COMMISSION_S2 varchar(300),
     EXECUTOR_S2_ID uuid,
+    EXECUTOR_S1_ID uuid,
     FINALDATE_S2 varchar(300),
+    FINALDATE_S1 varchar(300),
     --
     primary key (ID)
 )^
@@ -302,3 +304,22 @@ create table EIS_TECHNICAL_FORM_APPROVING_PERSON (
     primary key (ID)
 )^
 -- end EIS_TECHNICAL_FORM_APPROVING_PERSON
+-- begin EIS_TECHNICAL_FORM_CONCLUSION2
+create table EIS_TECHNICAL_FORM_CONCLUSION2 (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    DEFINITION_ text,
+    ACCOUNTABLE_ID uuid,
+    FINALDATE varchar(300),
+    TECHNICAL_FORM_ID uuid not null,
+    --
+    primary key (ID)
+)^
+-- end EIS_TECHNICAL_FORM_CONCLUSION2

@@ -122,7 +122,7 @@ public class TechnicalFormEdit extends StandardEditor<TechnicalForm> {
             mainTabDefect.getTab("mainTabDefectAsIs").setVisible(false);
             mainTabDefect.getTab("mainTabDefectMustBe").setVisible(false);
             mainTabDefect.getTab("mainTabInspectionResults").setVisible(false);
-            manufacturerField.setVisible(true);
+            manufacturerField.setVisible(false);
             contractField.setVisible(true);
             formS123.setVisible(true);
         } else {
@@ -130,7 +130,7 @@ public class TechnicalFormEdit extends StandardEditor<TechnicalForm> {
             mainTabDefect.getTab("mainTabDefectAsIs").setVisible(true);
             mainTabDefect.getTab("mainTabDefectMustBe").setVisible(true);
             mainTabDefect.getTab("mainTabInspectionResults").setVisible(true);
-            manufacturerField.setVisible(false);
+            manufacturerField.setVisible(true);
             contractField.setVisible(false);
             formS123.setVisible(false);
         }

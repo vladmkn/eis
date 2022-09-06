@@ -15,5 +15,6 @@
         <class>com.nniirt.eis.entity.qs.TechnicalFormConclusion</class>
         <class>com.nniirt.eis.entity.qs.TechnicalFormComponent</class>
         <class>com.nniirt.eis.entity.qs.TechnicalFormApprovingPerson</class>
+        <class>com.nniirt.eis.entity.qs.TechnicalFormConclusion2</class>
     </persistence-unit>
 </persistence>

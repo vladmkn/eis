@@ -146,13 +146,25 @@ public class TechnicalForm extends StandardEntity {
     @JoinColumn(name = "EXECUTOR_S2_ID")
     private DivisionIndex executorS2;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "EXECUTOR_S1_ID")
+    private DivisionIndex executorS1;
+
     @Column(name = "FINALDATE_S2", length = 300)
     private String finaldateS2;
+
+    @Column(name = "FINALDATE_S1", length = 300)
+    private String finaldateS1;
 
     @Composition
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "technicalForm")
     private List<TechnicalFormConclusion> conclusion;
+
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "technicalForm")
+    private List<TechnicalFormConclusion2> conclusion2;
 
     @Composition
     @OnDelete(DeletePolicy.CASCADE)
@@ -169,6 +181,30 @@ public class TechnicalForm extends StandardEntity {
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "technicalForm")
     private List<TechnicalFormComponent> components;
+
+    public List<TechnicalFormConclusion2> getConclusion2() {
+        return conclusion2;
+    }
+
+    public void setConclusion2(List<TechnicalFormConclusion2> conclusion2) {
+        this.conclusion2 = conclusion2;
+    }
+
+    public String getFinaldateS1() {
+        return finaldateS1;
+    }
+
+    public void setFinaldateS1(String finaldateS1) {
+        this.finaldateS1 = finaldateS1;
+    }
+
+    public DivisionIndex getExecutorS1() {
+        return executorS1;
+    }
+
+    public void setExecutorS1(DivisionIndex executorS1) {
+        this.executorS1 = executorS1;
+    }
 
     public String getFinaldateS2() {
         return finaldateS2;
