@@ -40,7 +40,9 @@
                 </property>
                 <property name="executorS2" view="_local"/>
                 <property name="executorS1" view="_minimal"/>
-                <property name="commissionListS2" view="_local"/>
+                <property name="commissionListS2" view="_local">
+                    <property name="division" view="_local"/>
+                </property>
             </view>
             <loader/>
             <collection id="commissionDc" property="commission"/>
