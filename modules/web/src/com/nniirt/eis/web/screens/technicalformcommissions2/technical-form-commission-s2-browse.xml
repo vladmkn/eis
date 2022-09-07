@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://technicalFormCommissionS2Browse.caption"
+        focusComponent="technicalFormCommissionS2sTable"
+        messagesPack="com.nniirt.eis.web.screens.technicalformcommissions2">
+    <data readOnly="true">
+        <collection id="technicalFormCommissionS2sDc"
+                    class="com.nniirt.eis.entity.qs.TechnicalFormCommissionS2">
+            <view extends="_local">
+                <property name="division" view="_minimal">
+                    <property name="name"/>
+                    <property name="master" view="_minimal">
+                        <property name="name"/>
+                    </property>
+                </property>
+            </view>
+            <loader id="technicalFormCommissionS2sDl">
+                <query>
+                    <![CDATA[select e from eis_TechnicalFormCommissionS2 e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="technicalFormCommissionS2sTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="technicalFormCommissionS2sTable"
+                dataLoader="technicalFormCommissionS2sDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="technicalFormCommissionS2sTable"
+                    width="100%"
+                    dataContainer="technicalFormCommissionS2sDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="division"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="technicalFormCommissionS2sTable.create"/>
+                <button id="editBtn" action="technicalFormCommissionS2sTable.edit"/>
+                <button id="removeBtn" action="technicalFormCommissionS2sTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

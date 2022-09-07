@@ -40,6 +40,7 @@
                 </property>
                 <property name="executorS2" view="_local"/>
                 <property name="executorS1" view="_minimal"/>
+                <property name="commissionListS2" view="_local"/>
             </view>
             <loader/>
             <collection id="commissionDc" property="commission"/>
@@ -48,6 +49,7 @@
             <collection id="filesDc" property="files"/>
             <collection id="componentsDc" property="components"/>
             <collection id="approvingPersonDc" property="approvingPerson"/>
+            <collection id="commissionListS2Dc" property="commissionListS2"/>
         </instance>
     </data>
     <dialogMode height="600"
@@ -152,11 +154,28 @@
                         <textArea rows="5" id="textS2Field" property="textS2" width="100%"/>
                         <textField id="chairmanS2Field" property="chairmanS2" width="100%"/>
                         <textField id="commissionS2Field" property="commissionS2" width="100%"/>
+                        <table id="commissionListS2Table" dataContainer="commissionListS2Dc" width="100%"
+                               height="200px">
+                            <actions>
+                                <action id="create" type="create"/>
+                                <action id="edit" type="edit"/>
+                                <action id="remove" type="remove"/>
+                            </actions>
+                            <columns>
+                                <column id="division"/>
+                            </columns>
+                            <buttonsPanel>
+                                <button action="commissionListS2Table.create"/>
+                                <button action="commissionListS2Table.edit"/>
+                                <button action="commissionListS2Table.remove"/>
+                            </buttonsPanel>
+                        </table>
                         <pickerField id="executorS2Field" property="executorS2" width="100%"/>
                         <textField id="finaldateS2Field" property="finaldateS2"/>
+                        <label value="3."/>
                     </column>
                 </form>
-                <groupBox caption="3."
+                <groupBox caption=""
                           colspan="2" width="1200px" stylename="light">
                     <table id="conclusionTable" emptyStateMessage="Даннные по заключениям отсутствуют"
                            dataContainer="conclusionDc" width="100%" height="200px">
@@ -177,8 +196,8 @@
                         </buttonsPanel>
                     </table>
                 </groupBox>
-                <groupBox caption="4."
-                          colspan="2" width="1200px" stylename="light">
+                <groupBox caption=""
+                          colspan="2" width="1200px" stylename="light" visible="false">
                     <table id="conclusionTable2" emptyStateMessage="Даннные по заключениям отсутствуют"
                            dataContainer="conclusionDc2" width="100%" height="200px">
                         <actions>

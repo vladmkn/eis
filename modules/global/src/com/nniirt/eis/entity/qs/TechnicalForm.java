@@ -142,6 +142,11 @@ public class TechnicalForm extends StandardEntity {
     @Column(name = "COMMISSION_S2", length = 300)
     private String commissionS2;
 
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "technicalForm")
+    private List<TechnicalFormCommissionS2> commissionListS2;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "EXECUTOR_S2_ID")
     private DivisionIndex executorS2;
@@ -181,6 +186,14 @@ public class TechnicalForm extends StandardEntity {
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "technicalForm")
     private List<TechnicalFormComponent> components;
+
+    public List<TechnicalFormCommissionS2> getCommissionListS2() {
+        return commissionListS2;
+    }
+
+    public void setCommissionListS2(List<TechnicalFormCommissionS2> commissionListS2) {
+        this.commissionListS2 = commissionListS2;
+    }
 
     public List<TechnicalFormConclusion2> getConclusion2() {
         return conclusion2;

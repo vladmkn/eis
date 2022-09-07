@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Table(name = "EIS_DIVISION_INDEX")
 @Entity(name = "eis_DivisionIndex")
-@NamePattern("%s|name")
+@NamePattern("%s|nickname")
 public class DivisionIndex extends StandardEntity {
     private static final long serialVersionUID = -6533640834500731829L;
 

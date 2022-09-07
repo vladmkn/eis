@@ -16,5 +16,7 @@
             <item screen="eis_JobTitle.browse" caption="mainMsg://menu_config.eis_JobTitle.browse"/>
             <item screen="eis_Employee.browse" caption="mainMsg://menu_config.eis_Employee.browse"/>
         </menu>
+        <item screen="eis_TechnicalFormCommissionS2.browse"
+              caption="mainMsg://menu_config.eis_TechnicalFormCommissionS2.browse"/>
     </menu>
 </menu-config>
