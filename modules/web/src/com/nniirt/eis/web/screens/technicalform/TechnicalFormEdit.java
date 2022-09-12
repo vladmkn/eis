@@ -64,16 +64,28 @@ public class TechnicalFormEdit extends StandardEditor<TechnicalForm> {
     protected CheckBox externalDocumentField;
 
     @Inject
+    protected TextArea providerField;
+
+    @Inject
     protected TextArea manufacturerField;
 
     @Inject
     protected TextArea contractField;
 
     @Inject
+    protected TextField warrantyPeriodField;
+
+    @Inject
+    protected DateField warrantyStartDateField;
+
+    @Inject
     protected TabSheet mainTabDefect;
 
     @Inject
     protected Form formS123;
+
+    @Inject
+    protected Label labelConclusionTable;
 
     @Subscribe("filesTable.download")
     protected void onFilesTableDownload(Action.ActionPerformedEvent event) {
@@ -117,23 +129,20 @@ public class TechnicalFormEdit extends StandardEditor<TechnicalForm> {
 
     private void switchComponentGroups(Boolean externalDocument)
     {
-        if (Boolean.TRUE.equals(externalDocument)) {
-            mainTabDefect.getTab("mainTabDefectCause").setVisible(true);
-            mainTabDefect.getTab("mainTabDefectAsIs").setVisible(false);
-            mainTabDefect.getTab("mainTabDefectMustBe").setVisible(false);
-            mainTabDefect.getTab("mainTabInspectionResults").setVisible(false);
-            manufacturerField.setVisible(false);
-            contractField.setVisible(true);
-            formS123.setVisible(true);
-        } else {
-            mainTabDefect.getTab("mainTabDefectCause").setVisible(false);
-            mainTabDefect.getTab("mainTabDefectAsIs").setVisible(true);
-            mainTabDefect.getTab("mainTabDefectMustBe").setVisible(true);
-            mainTabDefect.getTab("mainTabInspectionResults").setVisible(true);
-            manufacturerField.setVisible(true);
-            contractField.setVisible(false);
-            formS123.setVisible(false);
-        }
+        boolean extDoc = Boolean.TRUE.equals(externalDocument);
+
+        mainTabDefect.getTab("mainTabDefectCause").setVisible(extDoc);
+        mainTabDefect.getTab("mainTabDefectAsIs").setVisible(!extDoc);
+        mainTabDefect.getTab("mainTabDefectMustBe").setVisible(!extDoc);
+        mainTabDefect.getTab("mainTabInspectionResults").setVisible(!extDoc);
+        labelConclusionTable.setVisible(!extDoc);
+        warrantyPeriodField.setVisible(extDoc);
+        warrantyStartDateField.setVisible(extDoc);
+        contractField.setVisible(extDoc);
+        providerField.setVisible(extDoc);
+        formS123.setVisible(extDoc);
+
+        manufacturerField.setVisible(false);
     }
 
     @Subscribe

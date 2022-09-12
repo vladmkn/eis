@@ -53,6 +53,20 @@
             <collection id="approvingPersonDc" property="approvingPerson"/>
             <collection id="commissionListS2Dc" property="commissionListS2"/>
         </instance>
+        <collection id="productsDc" class="com.nniirt.eis.entity.catalog.Product" view="_minimal">
+            <loader id="productsDl">
+                <query>
+                    <![CDATA[select e from eis_Product e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="divisionDc" class="com.nniirt.eis.entity.qs.DivisionIndex" view="_minimal">
+            <loader id="divisionDl">
+                <query>
+                    <![CDATA[select e from eis_DivisionIndex e]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <dialogMode height="600"
                 width="800"/>
@@ -61,7 +75,7 @@
             <tab id="mainTab" caption="msg://technicalFormEdit.mainTab" margin="true" spacing="true">
                 <form id="form" dataContainer="technicalFormDc">
                     <column width="450px">
-                        <pickerField id="defectDivisionField" property="defectDivision"/>
+                        <lookupPickerField id="defectDivisionField" property="defectDivision" optionsContainer="divisionDc"/>
                         <textField id="defectDivisionDefField" property="defectDivisionDef" colspan="2" width="100%"/>
                         <textField id="documentNumField" property="documentNum"/>
                         <!--                        <pickerField id="componentField" property="component"/>-->
@@ -90,12 +104,12 @@
                             </table>
                         </groupBox>
                         <!--                        <textField id="quantityField" property="quantity" colspan="2"/>-->
-                        <pickerField id="productField" property="product"/>
+                        <lookupPickerField id="productField" property="product" optionsContainer="productsDc"/>
                         <textField id="masterComponentDefinitionField" property="masterComponentDefinition"/>
                         <textField id="warrantyPeriodField" property="warrantyPeriod"/>
                         <textArea rows="2" id="providerField" property="provider"/>
-                        <textArea rows="2" id="manufacturerField" property="manufacturer"/>
                         <textArea rows="2" id="contractField" property="contract"/>
+                        <textArea rows="1" id="manufacturerField" property="manufacturer"/>
                     </column>
                     <column width="200px">
                         <checkBox id="externalDocumentField" property="externalDocument"/>
@@ -150,10 +164,11 @@
                         <textField id="faxField" property="fax"/>
                         <textField id="phoneField" property="phone"/>
                         <textField id="emailField" property="email"/>
-                        <pickerField id="executorS1Field" property="executorS1" width="100%"/>
+                        <lookupPickerField id="executorS1Field" property="executorS1" optionsContainer="divisionDc" width="100%"/>
                         <textField id="finaldateS1Field" property="finaldateS1"/>
                         <label value="2."/>
-                        <textArea rows="5" id="textS2Field" property="textS2" width="100%"/>
+                        <textArea rows="5" id="textS2Field" property="textS2"
+                                  inputPrompt="Собрать комиссию в составе (с оформлением реклам.акта)" width="100%"/>
                         <textField id="chairmanS2Field" property="chairmanS2" width="100%"/>
                         <textField id="commissionS2Field" property="commissionS2" width="100%"/>
                         <table id="commissionListS2Table" dataContainer="commissionListS2Dc" width="100%"
@@ -172,11 +187,12 @@
                                 <button action="commissionListS2Table.remove"/>
                             </buttonsPanel>
                         </table>
-                        <pickerField id="executorS2Field" property="executorS2" width="100%"/>
+                        <lookupPickerField id="executorS2Field" property="executorS2" optionsContainer="divisionDc"/>
                         <textField id="finaldateS2Field" property="finaldateS2"/>
                         <label value="3."/>
                     </column>
                 </form>
+                <label id="labelConclusionTable" value="Заключение:"/>
                 <groupBox caption=""
                           colspan="2" width="1200px" stylename="light">
                     <table id="conclusionTable" emptyStateMessage="Даннные по заключениям отсутствуют"

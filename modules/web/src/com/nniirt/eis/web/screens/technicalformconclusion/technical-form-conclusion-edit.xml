@@ -14,6 +14,13 @@
             </view>
             <loader/>
         </instance>
+        <collection id="divisionDc" class="com.nniirt.eis.entity.qs.DivisionIndex" view="_minimal">
+            <loader id="divisionDl">
+                <query>
+                    <![CDATA[select e from eis_DivisionIndex e]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <dialogMode height="600"
                 width="800"/>
@@ -21,12 +28,12 @@
         <form id="form" dataContainer="technicalFormConclusionDc">
             <column width="350px">
                 <textArea id="definitionField" property="definition" rows="5"/>
-                <pickerField id="accountableField" property="accountable">
+                <lookupPickerField id="accountableField" property="accountable" optionsContainer="divisionDc">
                     <actions>
                         <action id="lookup" type="picker_lookup"/>
                         <action id="clear" type="picker_clear"/>
                     </actions>
-                </pickerField>
+                </lookupPickerField>
                 <textField id="finaldateField" property="finaldate"/>
             </column>
         </form>

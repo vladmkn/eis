@@ -11,6 +11,13 @@
             </view>
             <loader/>
         </instance>
+        <collection id="jobTitleDc" class="com.nniirt.eis.entity.catalog.JobTitle" view="_minimal">
+            <loader id="jobTitleDl">
+                <query>
+                    <![CDATA[select e from eis_JobTitle e]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <dialogMode height="600"
                 width="800"/>
@@ -20,7 +27,7 @@
                 <textField id="firstnameField" property="firstname"/>
                 <textField id="surnameField" property="surname"/>
                 <textField id="patronymicField" property="patronymic"/>
-                <pickerField id="jobTitleField" property="jobTitle"/>
+                <lookupPickerField id="jobTitleField" property="jobTitle" optionsContainer="jobTitleDc"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">
