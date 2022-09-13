@@ -45,8 +45,9 @@ public class TechnicalForm extends StandardEntity {
     @Column(name = "PRODUCT_NUMBER", length = 300)
     private String productNumber;
 
-    @Column(name = "MANUFACTURER", length = 300)
-    private String manufacturer;
+    @JoinColumn(name = "MANUFACTURER_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private DivisionIndex manufacturer;
 
     @Column(name = "CONTRACT", length = 300)
     private String contract;
@@ -186,6 +187,14 @@ public class TechnicalForm extends StandardEntity {
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "technicalForm")
     private List<TechnicalFormComponent> components;
+
+    public void setManufacturer(DivisionIndex manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public DivisionIndex getManufacturer() {
+        return manufacturer;
+    }
 
     public List<TechnicalFormCommissionS2> getCommissionListS2() {
         return commissionListS2;
@@ -369,14 +378,6 @@ public class TechnicalForm extends StandardEntity {
 
     public void setContract(String contract) {
         this.contract = contract;
-    }
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
     }
 
     public String getMasterComponentNumber() {

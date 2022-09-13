@@ -43,6 +43,7 @@
                 <property name="commissionListS2" view="_local">
                     <property name="division" view="_local"/>
                 </property>
+                <property name="manufacturer" view="_minimal"/>
             </view>
             <loader/>
             <collection id="commissionDc" property="commission"/>
@@ -106,10 +107,10 @@
                         <!--                        <textField id="quantityField" property="quantity" colspan="2"/>-->
                         <lookupPickerField id="productField" property="product" optionsContainer="productsDc"/>
                         <textField id="masterComponentDefinitionField" property="masterComponentDefinition"/>
+                        <lookupPickerField id="manufacturerField" property="manufacturer" optionsContainer="divisionDc" width="100%"/>
                         <textField id="warrantyPeriodField" property="warrantyPeriod"/>
                         <textArea rows="2" id="providerField" property="provider"/>
                         <textArea rows="2" id="contractField" property="contract"/>
-                        <textArea rows="1" id="manufacturerField" property="manufacturer"/>
                     </column>
                     <column width="200px">
                         <checkBox id="externalDocumentField" property="externalDocument"/>

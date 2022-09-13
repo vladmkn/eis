@@ -118,7 +118,7 @@ create table EIS_TECHNICAL_FORM (
     QUANTITY decimal(28, 8),
     PRODUCT_ID uuid,
     PRODUCT_NUMBER varchar(300),
-    MANUFACTURER varchar(300),
+    MANUFACTURER_ID uuid,
     CONTRACT varchar(300),
     PROVIDER varchar(300),
     ASSEMBLY_NUM varchar(255),

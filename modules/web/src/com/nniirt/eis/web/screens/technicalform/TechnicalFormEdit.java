@@ -67,7 +67,7 @@ public class TechnicalFormEdit extends StandardEditor<TechnicalForm> {
     protected TextArea providerField;
 
     @Inject
-    protected TextArea manufacturerField;
+    protected LookupPickerField manufacturerField;
 
     @Inject
     protected TextArea contractField;
@@ -135,14 +135,13 @@ public class TechnicalFormEdit extends StandardEditor<TechnicalForm> {
         mainTabDefect.getTab("mainTabDefectAsIs").setVisible(!extDoc);
         mainTabDefect.getTab("mainTabDefectMustBe").setVisible(!extDoc);
         mainTabDefect.getTab("mainTabInspectionResults").setVisible(!extDoc);
+        manufacturerField.setVisible(!extDoc);
         labelConclusionTable.setVisible(!extDoc);
         warrantyPeriodField.setVisible(extDoc);
         warrantyStartDateField.setVisible(extDoc);
         contractField.setVisible(extDoc);
         providerField.setVisible(extDoc);
         formS123.setVisible(extDoc);
-
-        manufacturerField.setVisible(false);
     }
 
     @Subscribe
