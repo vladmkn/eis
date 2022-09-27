@@ -1,3 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <permission-config xmlns="http://schemas.haulmont.com/cuba/permissions.xsd">
+    <specific>
+        <category id="app">
+            <permission id="app.ntk.ogt"/>
+            <permission id="app.ntk.hts"/>
+            <permission id="app.ntk.ome"/>
+            <permission id="app.ntk.bmn"/>
+        </category>
+    </specific>
 </permission-config>

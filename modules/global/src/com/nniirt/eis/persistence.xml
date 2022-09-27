@@ -17,5 +17,6 @@
         <class>com.nniirt.eis.entity.qs.TechnicalFormApprovingPerson</class>
         <class>com.nniirt.eis.entity.qs.TechnicalFormConclusion2</class>
         <class>com.nniirt.eis.entity.qs.TechnicalFormCommissionS2</class>
+        <class>com.nniirt.eis.entity.ntk.NtkRemarkItem</class>
     </persistence-unit>
 </persistence>

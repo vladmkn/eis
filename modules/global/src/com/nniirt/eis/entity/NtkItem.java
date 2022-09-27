@@ -1,7 +1,11 @@
 package com.nniirt.eis.entity;
 
+import com.haulmont.chile.core.annotations.Composition;
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.cuba.core.entity.annotation.OnDelete;
+import com.haulmont.cuba.core.global.DeletePolicy;
+import com.nniirt.eis.entity.ntk.NtkRemarkItem;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -50,8 +54,65 @@ public class NtkItem extends StandardEntity {
     @OneToMany(mappedBy = "ntkItem")
     private List<NtkBOMItem> components;
 
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "ntkItem")
+    private List<NtkRemarkItem> remarks;
+
     @Column(name = "STATUS")
     private Integer status;
+
+    @Column(name = "OGT")
+    private Boolean ogt;
+
+    @Column(name = "HTS")
+    private Boolean hts;
+
+    @Column(name = "OME")
+    private Boolean ome;
+
+    @Column(name = "BMN")
+    private Boolean bmn;
+
+    public List<NtkRemarkItem> getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(List<NtkRemarkItem> remarks) {
+        this.remarks = remarks;
+    }
+
+    public Boolean getBmn() {
+        return bmn;
+    }
+
+    public void setBmn(Boolean bmn) {
+        this.bmn = bmn;
+    }
+
+    public Boolean getOme() {
+        return ome;
+    }
+
+    public void setOme(Boolean ome) {
+        this.ome = ome;
+    }
+
+    public Boolean getHts() {
+        return hts;
+    }
+
+    public void setHts(Boolean hts) {
+        this.hts = hts;
+    }
+
+    public Boolean getOgt() {
+        return ogt;
+    }
+
+    public void setOgt(Boolean ogt) {
+        this.ogt = ogt;
+    }
 
     public void setWeight(BigDecimal weight) {
         this.weight = weight;

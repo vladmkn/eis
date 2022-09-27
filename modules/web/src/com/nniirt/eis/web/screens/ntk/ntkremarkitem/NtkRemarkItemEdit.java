@@ -1,22 +1,17 @@
-package com.nniirt.eis.web.screens.ntkbomitem;
+package com.nniirt.eis.web.screens.ntk.ntkremarkitem;
 
 import com.haulmont.cuba.core.global.Security;
-import com.haulmont.cuba.gui.components.Button;
-import com.haulmont.cuba.gui.components.CheckBox;
-import com.haulmont.cuba.gui.components.Form;
-import com.haulmont.cuba.gui.components.PickerField;
+import com.haulmont.cuba.gui.components.*;
 import com.haulmont.cuba.gui.screen.*;
-import com.nniirt.eis.entity.NtkBOMItem;
+import com.nniirt.eis.entity.ntk.NtkRemarkItem;
 
 import javax.inject.Inject;
 
-@UiController("eis_NtkBOMItem.edit")
-@UiDescriptor("ntk-bom-item-edit.xml")
-@EditedEntityContainer("ntkBOMItemDc")
+@UiController("eis_NtkRemarkItem.edit")
+@UiDescriptor("ntk-remark-item-edit.xml")
+@EditedEntityContainer("ntkRemarkItemDc")
 @LoadDataBeforeShow
-public class NtkBOMItemEdit extends StandardEditor<NtkBOMItem> {
-    @Inject
-    protected PickerField componentField;
+public class NtkRemarkItemEdit extends StandardEditor<NtkRemarkItem> {
     @Inject
     protected CheckBox ogtField;
     @Inject
@@ -25,6 +20,8 @@ public class NtkBOMItemEdit extends StandardEditor<NtkBOMItem> {
     protected CheckBox omeField;
     @Inject
     protected CheckBox bmnField;
+    @Inject
+    protected TextArea textField;
     @Inject
     private Security security;
     @Inject
@@ -35,7 +32,7 @@ public class NtkBOMItemEdit extends StandardEditor<NtkBOMItem> {
     @Subscribe
     protected void onAfterShow(AfterShowEvent event) {
 
-        if(componentField.getValue() == null) {
+        if(textField.getRawValue().length() == 0) {
             if (security.isSpecificPermitted("app.ntk.ogt")) ogtField.setValue(Boolean.TRUE); else
             if (security.isSpecificPermitted("app.ntk.hts")) htsField.setValue(Boolean.TRUE); else
             if (security.isSpecificPermitted("app.ntk.ome")) omeField.setValue(Boolean.TRUE); else
@@ -51,4 +48,7 @@ public class NtkBOMItemEdit extends StandardEditor<NtkBOMItem> {
         commitAndCloseBtn.setEnabled(check);
         commitAndCloseBtn.setVisible(check);
     }
+
+
+
 }

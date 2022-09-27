@@ -68,6 +68,10 @@ create table EIS_NTK_ITEM (
     MATERIAL_ROUTE varchar(255),
     MATERIAL_SIZE varchar(255),
     STATUS integer,
+    OGT boolean,
+    HTS boolean,
+    OME boolean,
+    BMN boolean,
     --
     primary key (ID)
 )^
@@ -95,6 +99,10 @@ create table EIS_NTK_BOM_ITEM (
     RATIO decimal(28, 8),
     REMARK text,
     NTK_ITEM_ID uuid,
+    OGT boolean,
+    HTS boolean,
+    OME boolean,
+    BMN boolean,
     --
     primary key (ID)
 )^
@@ -340,3 +348,24 @@ create table EIS_TECHNICAL_FORM_COMMISSION_S2 (
     primary key (ID)
 )^
 -- end EIS_TECHNICAL_FORM_COMMISSION_S2
+-- begin EIS_NTK_REMARK_ITEM
+create table EIS_NTK_REMARK_ITEM (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    TEXT text,
+    OGT boolean,
+    HTS boolean,
+    OME boolean,
+    BMN boolean,
+    NTK_ITEM_ID uuid not null,
+    --
+    primary key (ID)
+)^
+-- end EIS_NTK_REMARK_ITEM

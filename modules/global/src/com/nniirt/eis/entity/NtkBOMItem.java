@@ -49,6 +49,50 @@ public class NtkBOMItem extends StandardEntity {
     @JoinColumn(name = "NTK_ITEM_ID")
     private NtkItem ntkItem;
 
+    @Column(name = "OGT")
+    private Boolean ogt;
+
+    @Column(name = "HTS")
+    private Boolean hts;
+
+    @Column(name = "OME")
+    private Boolean ome;
+
+    @Column(name = "BMN")
+    private Boolean bmn;
+
+    public Boolean getBmn() {
+        return bmn;
+    }
+
+    public void setBmn(Boolean bmn) {
+        this.bmn = bmn;
+    }
+
+    public Boolean getOme() {
+        return ome;
+    }
+
+    public void setOme(Boolean ome) {
+        this.ome = ome;
+    }
+
+    public Boolean getHts() {
+        return hts;
+    }
+
+    public void setHts(Boolean hts) {
+        this.hts = hts;
+    }
+
+    public Boolean getOgt() {
+        return ogt;
+    }
+
+    public void setOgt(Boolean ogt) {
+        this.ogt = ogt;
+    }
+
     public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }

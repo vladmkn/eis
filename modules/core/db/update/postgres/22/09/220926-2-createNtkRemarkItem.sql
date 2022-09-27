@@ -1,0 +1,2 @@
+alter table EIS_NTK_REMARK_ITEM add constraint FK_EIS_NTK_REMARK_ITEM_ON_NTK_ITEM foreign key (NTK_ITEM_ID) references EIS_NTK_ITEM(ID);
+create index IDX_EIS_NTK_REMARK_ITEM_ON_NTK_ITEM on EIS_NTK_REMARK_ITEM (NTK_ITEM_ID);
