@@ -2,12 +2,18 @@ package com.nniirt.eis.web.screens.ntkitem;
 
 import com.haulmont.cuba.core.global.Security;
 import com.haulmont.cuba.gui.Dialogs;
+import com.haulmont.cuba.gui.actions.list.CreateAction;
+import com.haulmont.cuba.gui.actions.list.EditAction;
 import com.haulmont.cuba.gui.actions.list.RefreshAction;
+import com.haulmont.cuba.gui.actions.list.RemoveAction;
 import com.haulmont.cuba.gui.components.Action;
 import com.haulmont.cuba.gui.components.DialogAction;
 import com.haulmont.cuba.gui.components.GroupTable;
+import com.haulmont.cuba.gui.components.Table;
 import com.haulmont.cuba.gui.screen.*;
+import com.nniirt.eis.entity.DocumentStatuses;
 import com.nniirt.eis.entity.NtkItem;
+import com.nniirt.eis.entity.ntk.NtkRemarkItem;
 import com.nniirt.eis.service.NtkService;
 
 import javax.inject.Inject;
@@ -35,6 +41,9 @@ public class NtkItemBrowse extends StandardLookup<NtkItem> {
     @Inject
     private Security security;
 
+    @Named("ntkItemsTable.remove")
+    private RemoveAction ntkItemsTableRemove;
+
     @Subscribe
     public void onInit(InitEvent event) {
         cloneNtk.setVisible(security.isSpecificPermitted("app.ntk.ogt"));
@@ -52,5 +61,16 @@ public class NtkItemBrowse extends StandardLookup<NtkItem> {
                         new DialogAction(DialogAction.Type.NO)
                 )
                 .show();
+    }
+
+    @Subscribe("ntkItemsTable")
+    protected void onNtkItemsTableSelection(Table.SelectionEvent<NtkItem> event) {
+        boolean check = true;
+        for(NtkItem item : event.getSelected()){
+
+            if(item.getStatus() != null && item.getStatus() == DocumentStatuses.COMPLETED) check = false;
+        }
+
+        ntkItemsTableRemove.setEnabled(check);
     }
 }

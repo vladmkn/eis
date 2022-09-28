@@ -74,7 +74,7 @@
 <!--                <column id="materialRoute"/>-->
 <!--                <column id="materialSize"/>-->
 <!--                <column id="geometry"/>-->
-                <column id="route"/>
+<!--                <column id="route"/>-->
                 <column id="status"/>
                 <column id="ogt" width="70px"/>
                 <column id="hts" width="70px"/>

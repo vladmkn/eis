@@ -2,11 +2,14 @@ package com.nniirt.eis.web.screens.ntkitem;
 
 import com.haulmont.cuba.core.global.Security;
 import com.haulmont.cuba.gui.Dialogs;
+import com.haulmont.cuba.gui.actions.list.CreateAction;
+import com.haulmont.cuba.gui.actions.list.EditAction;
 import com.haulmont.cuba.gui.actions.list.RemoveAction;
 import com.haulmont.cuba.gui.components.*;
 //import com.haulmont.cuba.gui.components.actions.RemoveAction;
 import com.haulmont.cuba.gui.screen.*;
 import com.haulmont.reports.gui.actions.EditorPrintFormAction;
+import com.nniirt.eis.entity.DocumentStatuses;
 import com.nniirt.eis.entity.NtkBOMItem;
 import com.nniirt.eis.entity.NtkItem;
 import com.nniirt.eis.entity.ntk.NtkRemarkItem;
@@ -62,11 +65,29 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
     @Named("componentsTable.remove")
     private RemoveAction componentsTableRemove;
 
+    @Named("remarksTable.create")
+    private CreateAction remarksTableCreate;
+
+    @Named("componentsTable.create")
+    private CreateAction componentsTableCreate;
+
+    @Named("remarksTable.edit")
+    private EditAction remarksTableEdit;
+
+    @Named("componentsTable.edit")
+    private EditAction componentsTableEdit;
+
     @Inject
     private Form formMainTab;
 
     @Inject
     private Form formMaterialTab;
+
+    @Inject
+    private Table componentsTable;
+
+    @Inject
+    private Table remarksTable;
 
     @Subscribe
     public void onInit(InitEvent event) {
@@ -78,20 +99,61 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
 
     @Subscribe
     protected void onAfterShow(AfterShowEvent event) {
-        ogtField.setEditable (security.isSpecificPermitted("app.ntk.ogt"));
-        htsField.setEditable (security.isSpecificPermitted("app.ntk.hts"));
-        omeField.setEditable (security.isSpecificPermitted("app.ntk.ome"));
-        bmnField.setEditable (security.isSpecificPermitted("app.ntk.bmn"));
-
-        formMainTab.setEditable(security.isSpecificPermitted("app.ntk.ogt"));
-
-        if(componentField.getValue() != null && ogtmaterialField.getValue() && !htsmaterialField.getValue())
-            formMaterialTab.setEditable(security.isSpecificPermitted("app.ntk.ogt"));
-        if(componentField.getValue() != null && htsmaterialField.getValue() && !ogtmaterialField.getValue())
-            formMaterialTab.setEditable(security.isSpecificPermitted("app.ntk.hts"));
-
-        if(!security.isSpecificPermitted("app.ntk.hts") && !security.isSpecificPermitted("app.ntk.ogt"))
+        if(getEditedEntity().getStatus() != null && getEditedEntity().getStatus() == DocumentStatuses.COMPLETED){
+            formMainTab.setEditable(false);
             formMaterialTab.setEditable(false);
+            componentsTable.setEditable(false);
+            remarksTable.setEditable(false);
+            remarksTableRemove.setVisible(false);
+            componentsTableRemove.setVisible(false);
+            remarksTableCreate.setVisible(false);
+            componentsTableCreate.setVisible(false);
+            remarksTableEdit.setVisible(false);
+            componentsTableEdit.setVisible(false);
+            ogtField.setEditable(false);
+            htsField.setEditable(false);
+            omeField.setEditable(false);
+            bmnField.setEditable(false);
+        }else{
+            ogtField.setEditable (security.isSpecificPermitted("app.ntk.ogt"));
+            htsField.setEditable (security.isSpecificPermitted("app.ntk.hts"));
+            omeField.setEditable (security.isSpecificPermitted("app.ntk.ome"));
+            bmnField.setEditable (security.isSpecificPermitted("app.ntk.bmn"));
+
+            formMainTab.setEditable(security.isSpecificPermitted("app.ntk.ogt"));
+
+            if(componentField.getValue() != null && ogtmaterialField.getValue() && !htsmaterialField.getValue())
+                formMaterialTab.setEditable(security.isSpecificPermitted("app.ntk.ogt"));
+            if(componentField.getValue() != null && htsmaterialField.getValue() && !ogtmaterialField.getValue())
+                formMaterialTab.setEditable(security.isSpecificPermitted("app.ntk.hts"));
+
+            if(!security.isSpecificPermitted("app.ntk.hts") && !security.isSpecificPermitted("app.ntk.ogt"))
+                formMaterialTab.setEditable(false);
+        }
+    }
+
+    @Subscribe
+    public void onBeforeCommitChanges(BeforeCommitChangesEvent event) {
+        if (getEditedEntity().getBmn() != null && getEditedEntity().getBmn() &&
+                getEditedEntity().getHts() != null && getEditedEntity().getHts() &&
+                getEditedEntity().getOme() != null && getEditedEntity().getOme() &&
+                getEditedEntity().getOgt() != null && getEditedEntity().getOgt() &&
+                (getEditedEntity().getStatus() == null || getEditedEntity().getStatus() != DocumentStatuses.COMPLETED)) {
+                    dialogs.createOptionDialog()
+                    .withCaption("Внимание!")
+                    .withMessage("Все подразделения подтвердили обработку НТК? Переводим статус в состояние 'Утвержден'")
+                    .withActions(
+                            new DialogAction(DialogAction.Type.OK).withHandler(e -> {
+                                getEditedEntity().setStatus(DocumentStatuses.COMPLETED);
+
+                                event.resume(commitChanges());
+                            }),
+                            new DialogAction(DialogAction.Type.CANCEL)
+                    )
+                    .show();
+
+            event.preventCommit();
+        }
     }
 
     @Subscribe("remarksTable")

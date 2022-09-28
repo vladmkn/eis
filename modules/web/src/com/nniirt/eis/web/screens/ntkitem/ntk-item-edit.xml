@@ -61,7 +61,7 @@
                             <textField id="weightField" property="weight"/>
                         </column>
                     </form>
-                    <groupBox caption="Выполнено">
+                    <groupBox caption="Выполнено" id="checkGroupBox">
                         <checkBox id="ogtField" property="ogt" dataContainer="ntkItemDc" caption="ОГТ"/>
                         <checkBox id="htsField" property="hts" dataContainer="ntkItemDc" caption="ХТС"/>
                         <checkBox id="omeField" property="ome" dataContainer="ntkItemDc" caption="ОМЭ"/>

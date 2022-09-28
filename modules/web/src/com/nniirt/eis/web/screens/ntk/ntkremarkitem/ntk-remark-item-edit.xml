@@ -6,7 +6,12 @@
     <data>
         <instance id="ntkRemarkItemDc"
                   class="com.nniirt.eis.entity.ntk.NtkRemarkItem">
-            <view extends="_local"/>
+            <view extends="_local">
+                <property name="ntkItem" view="_minimal">
+                    <property name="blueprint"/>
+                    <property name="status"/>
+                </property>
+            </view>
             <loader/>
         </instance>
     </data>

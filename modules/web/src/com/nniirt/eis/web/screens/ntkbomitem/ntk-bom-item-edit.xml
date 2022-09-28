@@ -12,6 +12,7 @@
                 </property>
                 <property name="ntkItem" view="_minimal">
                     <property name="blueprint"/>
+                    <property name="status"/>
                 </property>
                 <property name="createdBy"/>
                 <property name="createTs"/>

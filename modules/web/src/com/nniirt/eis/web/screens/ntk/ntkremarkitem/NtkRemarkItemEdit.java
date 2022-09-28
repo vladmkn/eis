@@ -3,6 +3,7 @@ package com.nniirt.eis.web.screens.ntk.ntkremarkitem;
 import com.haulmont.cuba.core.global.Security;
 import com.haulmont.cuba.gui.components.*;
 import com.haulmont.cuba.gui.screen.*;
+import com.nniirt.eis.entity.DocumentStatuses;
 import com.nniirt.eis.entity.ntk.NtkRemarkItem;
 
 import javax.inject.Inject;
@@ -39,10 +40,12 @@ public class NtkRemarkItemEdit extends StandardEditor<NtkRemarkItem> {
             if (security.isSpecificPermitted("app.ntk.bmn")) bmnField.setValue(Boolean.TRUE);
         }
 
-        boolean check =  (security.isSpecificPermitted("app.ntk.ogt") && ogtField.getValue()) ||
+        boolean check =  ((security.isSpecificPermitted("app.ntk.ogt") && ogtField.getValue()) ||
                 (security.isSpecificPermitted("app.ntk.hts") && htsField.getValue()) ||
                 (security.isSpecificPermitted("app.ntk.ome") && omeField.getValue()) ||
-                (security.isSpecificPermitted("app.ntk.bmn") && bmnField.getValue());
+                (security.isSpecificPermitted("app.ntk.bmn") && bmnField.getValue())) &&
+                !(getEditedEntity().getNtkItem().getStatus() != null &&
+                        getEditedEntity().getNtkItem().getStatus() == DocumentStatuses.COMPLETED);
 
         form.setEditable(check);
         commitAndCloseBtn.setEnabled(check);

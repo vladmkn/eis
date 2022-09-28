@@ -6,6 +6,7 @@ import com.haulmont.cuba.gui.components.CheckBox;
 import com.haulmont.cuba.gui.components.Form;
 import com.haulmont.cuba.gui.components.PickerField;
 import com.haulmont.cuba.gui.screen.*;
+import com.nniirt.eis.entity.DocumentStatuses;
 import com.nniirt.eis.entity.NtkBOMItem;
 
 import javax.inject.Inject;
@@ -42,13 +43,16 @@ public class NtkBOMItemEdit extends StandardEditor<NtkBOMItem> {
             if (security.isSpecificPermitted("app.ntk.bmn")) bmnField.setValue(Boolean.TRUE);
         }
 
-        boolean check =  (security.isSpecificPermitted("app.ntk.ogt") && ogtField.getValue()) ||
+        boolean check =  ((security.isSpecificPermitted("app.ntk.ogt") && ogtField.getValue()) ||
                 (security.isSpecificPermitted("app.ntk.hts") && htsField.getValue()) ||
                 (security.isSpecificPermitted("app.ntk.ome") && omeField.getValue()) ||
-                (security.isSpecificPermitted("app.ntk.bmn") && bmnField.getValue());
+                (security.isSpecificPermitted("app.ntk.bmn") && bmnField.getValue())) &&
+                !(getEditedEntity().getNtkItem().getStatus() != null &&
+                        getEditedEntity().getNtkItem().getStatus() == DocumentStatuses.COMPLETED);
 
         form.setEditable(check);
         commitAndCloseBtn.setEnabled(check);
         commitAndCloseBtn.setVisible(check);
+
     }
 }
