@@ -120,6 +120,14 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
             omeField.setEditable (security.isSpecificPermitted("app.ntk.ome"));
             bmnField.setEditable (security.isSpecificPermitted("app.ntk.bmn"));
 
+            boolean check = security.isSpecificPermitted("app.ntk.ogt") ||
+                    security.isSpecificPermitted("app.ntk.hts") ||
+                    security.isSpecificPermitted("app.ntk.ome") ||
+                    security.isSpecificPermitted("app.ntk.bmn");
+
+            remarksTableCreate.setVisible(check);
+            componentsTableCreate.setVisible(check);
+
             formMainTab.setEditable(security.isSpecificPermitted("app.ntk.ogt"));
 
             if(componentField.getValue() != null && ogtmaterialField.getValue() && !htsmaterialField.getValue())
