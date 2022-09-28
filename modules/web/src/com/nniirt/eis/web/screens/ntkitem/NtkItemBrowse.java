@@ -1,5 +1,6 @@
 package com.nniirt.eis.web.screens.ntkitem;
 
+import com.haulmont.cuba.core.global.Security;
 import com.haulmont.cuba.gui.Dialogs;
 import com.haulmont.cuba.gui.actions.list.RefreshAction;
 import com.haulmont.cuba.gui.components.Action;
@@ -27,6 +28,17 @@ public class NtkItemBrowse extends StandardLookup<NtkItem> {
 
     @Named("ntkItemsTable.refresh")
     private RefreshAction ntkItemsTableRefresh;
+
+    @Named("cloneNtk")
+    private Action cloneNtk;
+
+    @Inject
+    private Security security;
+
+    @Subscribe
+    public void onInit(InitEvent event) {
+        cloneNtk.setVisible(security.isSpecificPermitted("app.ntk.ogt"));
+    }
 
     @Subscribe("cloneNtk")
     protected void onCloneNtkActionPerformed(Action.ActionPerformedEvent event) {

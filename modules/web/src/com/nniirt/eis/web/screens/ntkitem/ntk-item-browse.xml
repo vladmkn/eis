@@ -12,6 +12,15 @@
                     <property name="component" view="_minimal">
                         <property name="uom" view="_minimal"/>
                     </property>
+                    <property name="kzap"/>
+                    <property name="ratio"/>
+                    <property name="remark"/>
+                    <property name="route"/>
+                    <property name="saktiv"/>
+                    <property name="sdrag"/>
+                    <property name="shim"/>
+                    <property name="slkm"/>
+                    <property name="smet"/>
                     <property name="quantity"/>
                 </property>
                 <property name="component" view="_minimal">
@@ -19,6 +28,11 @@
                 </property>
                 <property name="createdBy"/>
                 <property name="createTs"/>
+                <property name="updateTs"/>
+                <property name="updatedBy"/>
+                <property name="remarks">
+                    <property name="text"/>
+                </property>
             </view>
             <loader id="ntkItemsDl">
                 <query>
@@ -52,16 +66,23 @@
                 <column id="blueprint"/>
                 <column id="ntkVersion"/>
                 <column id="name"/>
-                <column id="weight"/>
+<!--                <column id="weight"/>-->
                 <column id="productId"/>
-                <column id="component"/>
-                <column id="component.uom"/>
-                <column id="quantity"/>
-                <column id="materialRoute"/>
-                <column id="materialSize"/>
-                <column id="geometry"/>
+<!--                <column id="component"/>-->
+<!--                <column id="component.uom"/>-->
+<!--                <column id="quantity"/>-->
+<!--                <column id="materialRoute"/>-->
+<!--                <column id="materialSize"/>-->
+<!--                <column id="geometry"/>-->
                 <column id="route"/>
                 <column id="status"/>
+                <column id="ogt" width="70px"/>
+                <column id="hts" width="70px"/>
+                <column id="ome" width="70px"/>
+                <column id="bmn" width="70px"/>
+                <column id="createdBy" width="150px"/>
+                <column id="updatedBy" width="150px"/>
+                <column id="updateTs" width="150px"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

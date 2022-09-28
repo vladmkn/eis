@@ -3,6 +3,7 @@ package com.nniirt.eis.entity;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Table(name = "EIS_NTK_BOM_ITEM")
@@ -10,8 +11,9 @@ import java.math.BigDecimal;
 public class NtkBOMItem extends StandardEntity {
     private static final long serialVersionUID = -7979183356712261856L;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "COMPONENT_ID")
+    @NotNull
     private NomenclatureItem component;
 
     @Column(name = "QUANTITY", precision = 28, scale = 8)

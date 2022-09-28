@@ -4,6 +4,7 @@ import com.haulmont.cuba.core.entity.StandardEntity;
 import com.nniirt.eis.entity.NtkItem;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Table(name = "EIS_NTK_REMARK_ITEM")
 @Entity(name = "eis_NtkRemarkItem")
@@ -11,7 +12,8 @@ public class NtkRemarkItem extends StandardEntity {
     private static final long serialVersionUID = -9020249789398434246L;
 
     @Lob
-    @Column(name = "TEXT")
+    @Column(name = "TEXT", nullable = false)
+    @NotNull
     private String text;
 
     @Column(name = "OGT")

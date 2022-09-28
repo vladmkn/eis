@@ -43,23 +43,35 @@
     <layout expand="editActions" spacing="true">
         <tabSheet stylename="padded-tabbar">
             <tab id="mainTab" caption="msg://ntkItemEdit.mainTab" margin="true" spacing="true">
-                <form id="formMainTab" dataContainer="ntkItemDc" captionPosition="TOP">
-                    <column width="350px">
-                        <textField id="blueprintField" property="blueprint"/>
-                        <textField id="nameField" colspan="3" property="name" width="100%"/>
-                        <textField id="routeField" property="route"/>
-                        <textField id="geometryField" property="geometry"/>
-                    </column>
-                    <column width="150px">
-                        <textField id="ntkVersionField" property="ntkVersion"/>
-                        <textField id="productIdField" property="productId"/>
-                        <!--                <button id="cloneBtn" action="cloneNtk" caption="Клонировать" icon="COPY"/>-->
-                    </column>
-                    <column width="150px">
-                        <lookupField id="statusField" property="status"/>
-                        <textField id="weightField" property="weight"/>
-                    </column>
-                </form>
+                <hbox spacing="true" margin="true">
+                    <form id="formMainTab" dataContainer="ntkItemDc" captionPosition="TOP">
+                        <column width="350px">
+                            <textField id="blueprintField" property="blueprint"/>
+                            <textField id="nameField" colspan="3" property="name" width="100%"/>
+                            <textField id="routeField" property="route"/>
+                            <textField id="geometryField" property="geometry"/>
+                        </column>
+                        <column width="150px">
+                            <textField id="ntkVersionField" property="ntkVersion"/>
+                            <textField id="productIdField" property="productId"/>
+                            <!--                <button id="cloneBtn" action="cloneNtk" caption="Клонировать" icon="COPY"/>-->
+                        </column>
+                        <column width="150px">
+                            <lookupField id="statusField" property="status"/>
+                            <textField id="weightField" property="weight"/>
+                        </column>
+                    </form>
+                    <groupBox caption="Выполнено">
+                        <checkBox id="ogtField" property="ogt" dataContainer="ntkItemDc" caption="ОГТ"/>
+                        <checkBox id="htsField" property="hts" dataContainer="ntkItemDc" caption="ХТС"/>
+                        <checkBox id="omeField" property="ome" dataContainer="ntkItemDc" caption="ОМЭ"/>
+                        <checkBox id="bmnField" property="bmn" dataContainer="ntkItemDc" caption="БМН"/>
+                        <checkBox id="ogtmaterialField" property="ogtmaterial" dataContainer="ntkItemDc"
+                                  visible="false"/>
+                        <checkBox id="htsmaterialField" property="htsmaterial" dataContainer="ntkItemDc"
+                                  visible="false"/>
+                    </groupBox>
+                </hbox>
             </tab>
             <tab id="materialTab" caption="msg://ntkItemEdit.materialTab" margin="true" spacing="true">
                 <form id="formMaterialTab" dataContainer="ntkItemDc" captionPosition="TOP">
@@ -85,11 +97,9 @@
                 </form>
             </tab>
         </tabSheet>
-        <groupBox id="componentsBox"
-                  expand="componentsTable"
-                  stylename="light" outerMargin="true,true,true,true"
-                  caption="msg://ntkItemEdit.components" showAsPanel="false">
-            <table id="componentsTable" dataContainer="componentsDc" width="100%"
+        <tabSheet stylename="padded-tabbar">
+        <tab id="componentTab" caption="Компоненты НТК" margin="true" spacing="true">
+            <table id="componentsTable" dataContainer="componentsDc" width="100%" height="300px"
                    emptyStateMessage="Вспомогательные материалы отсутствуют"
                    presentations="true">
                 <actions>
@@ -116,9 +126,10 @@
                     <button action="componentsTable.remove" stylename="danger"/>
                 </buttonsPanel>
             </table>
-        </groupBox>
-        <groupBox id="remarksBox" stylename="light" caption="msg://com.nniirt.eis.entity/NtkItem.remarks">
-            <table id="remarksTable" dataContainer="remarksDc" width="100%" height="200px" columnControlVisible="false">
+        </tab>
+        <tab id="remarkTab" caption="Примечания" margin="true" spacing="true">
+            <table id="remarksTable" dataContainer="remarksDc" width="100%" height="300px" columnControlVisible="false"
+                   emptyStateMessage="Даннные по примечаниям отсутствуют">
                 <actions>
                     <action id="create" type="create"/>
                     <action id="edit" type="edit"/>
@@ -140,7 +151,8 @@
                     <button action="remarksTable.remove" stylename="danger"/>
                 </buttonsPanel>
             </table>
-        </groupBox>
+        </tab>
+        </tabSheet>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>

@@ -8,6 +8,7 @@ import com.haulmont.cuba.core.global.DeletePolicy;
 import com.nniirt.eis.entity.ntk.NtkRemarkItem;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -17,7 +18,8 @@ import java.util.List;
 public class NtkItem extends StandardEntity {
     private static final long serialVersionUID = 2230486159174544746L;
 
-    @Column(name = "BLUEPRINT")
+    @Column(name = "BLUEPRINT", nullable = false)
+    @NotNull
     private String blueprint;
 
     @Column(name = "NTK_VERSION")
@@ -26,7 +28,8 @@ public class NtkItem extends StandardEntity {
     @Column(name = "ROUTE")
     private String route;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", nullable = false)
+    @NotNull
     private String name;
 
     @Column(name = "GEOMETRY")
@@ -65,6 +68,12 @@ public class NtkItem extends StandardEntity {
     @Column(name = "OGT")
     private Boolean ogt;
 
+    @Column(name = "OGTMATERIAL")
+    private Boolean ogtmaterial;
+
+    @Column(name = "HTSMATERIAL")
+    private Boolean htsmaterial;
+
     @Column(name = "HTS")
     private Boolean hts;
 
@@ -73,6 +82,22 @@ public class NtkItem extends StandardEntity {
 
     @Column(name = "BMN")
     private Boolean bmn;
+
+    public Boolean getHtsmaterial() {
+        return htsmaterial;
+    }
+
+    public void setHtsmaterial(Boolean htsmaterial) {
+        this.htsmaterial = htsmaterial;
+    }
+
+    public Boolean getOgtmaterial() {
+        return ogtmaterial;
+    }
+
+    public void setOgtmaterial(Boolean ogtmaterial) {
+        this.ogtmaterial = ogtmaterial;
+    }
 
     public List<NtkRemarkItem> getRemarks() {
         return remarks;
