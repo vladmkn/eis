@@ -49,7 +49,13 @@
                             <textField id="blueprintField" property="blueprint"/>
                             <textField id="nameField" colspan="3" property="name" width="100%"/>
                             <textField id="routeField" property="route"/>
-                            <textField id="geometryField" property="geometry"/>
+                            <groupBox caption="Габариты ДСЕ, мм" stylename="well" orientation="horizontal"
+                                      colspan="2" width="100%" align="MIDDLE_CENTER" id="grpGeometry" >
+                                <textField id="gbLengthField" property="gbLength" caption="длина" width="100px" dataContainer="ntkItemDc"/>
+                                <textField id="gbWidthField" property="gbWidth" caption="ширина" width="100px" dataContainer="ntkItemDc"/>
+                                <textField id="gbHeightField" property="gbHeight" caption="высота" width="100px" dataContainer="ntkItemDc"/>
+                                <textField id="gbDiameterField" property="gbDiameter" caption="диаметр" width="100px" dataContainer="ntkItemDc"/>
+                            </groupBox>
                         </column>
                         <column width="150px">
                             <textField id="ntkVersionField" property="ntkVersion"/>
@@ -79,7 +85,13 @@
                         <pickerField id="componentField" property="component" colspan="2" width="100%"/>
                         <textField id="quantityField" property="quantity"/>
                         <textField id="materialRouteField" property="materialRoute"/>
-                        <textField id="materialSizeField" property="materialSize"/>
+                        <groupBox caption="Размер заготовки, мм" stylename="well" orientation="horizontal"
+                                  width="100%" align="MIDDLE_CENTER" colspan="2" id="grpMaterialSize" >
+                            <textField id="gmLengthField" property="gmLength" caption="длина" width="100px" dataContainer="ntkItemDc"/>
+                            <textField id="gmWidthField" property="gmWidth" caption="ширина" width="100px" dataContainer="ntkItemDc"/>
+                            <textField id="gmHeightField" property="gmHeight" caption="высота" width="100px" dataContainer="ntkItemDc"/>
+                            <textField id="gmDiameterField" property="gmDiameter" caption="диаметр" width="100px" dataContainer="ntkItemDc"/>
+                        </groupBox>
                     </column>
                     <column width="100px">
                         <textField id="uomField" property="component.uom" editable="false"/>
@@ -98,60 +110,61 @@
             </tab>
         </tabSheet>
         <tabSheet stylename="padded-tabbar">
-        <tab id="componentTab" caption="Компоненты НТК" margin="true" spacing="true">
-            <table id="componentsTable" dataContainer="componentsDc" width="100%" height="300px"
-                   emptyStateMessage="Вспомогательные материалы отсутствуют"
-                   presentations="true">
-                <actions>
-                    <action id="create" type="create"/>
-                    <action id="edit" type="edit"/>
-                    <action id="remove" type="remove"/>
-                </actions>
-                <columns>
-                    <column id="component"/>
-                    <column id="component.uom"/>
-                    <column id="quantity"/>
-                    <column id="route"/>
-                    <column id="ogt" width="70px"/>
-                    <column id="hts" width="70px"/>
-                    <column id="ome" width="70px"/>
-                    <column id="bmn" width="70px"/>
-                    <column id="createdBy" width="150px"/>
-                    <column id="updatedBy" width="150px"/>
-                    <column id="updateTs" width="150px"/>
-                </columns>
-                <buttonsPanel>
-                    <button action="componentsTable.create"/>
-                    <button action="componentsTable.edit"/>
-                    <button action="componentsTable.remove" stylename="danger"/>
-                </buttonsPanel>
-            </table>
-        </tab>
-        <tab id="remarkTab" caption="Примечания" margin="true" spacing="true">
-            <table id="remarksTable" dataContainer="remarksDc" width="100%" height="300px" columnControlVisible="false"
-                   emptyStateMessage="Даннные по примечаниям отсутствуют">
-                <actions>
-                    <action id="create" type="create"/>
-                    <action id="edit" type="edit"/>
-                    <action id="remove" type="remove"/>
-                </actions>
-                <columns>
-                    <column id="text"/>
-                    <column id="ogt" width="70px"/>
-                    <column id="hts" width="70px"/>
-                    <column id="ome" width="70px"/>
-                    <column id="bmn" width="70px"/>
-                    <column id="createdBy" width="150px"/>
-                    <column id="updatedBy" width="150px"/>
-                    <column id="updateTs" width="150px"/>
-                </columns>
-                <buttonsPanel>
-                    <button action="remarksTable.create"/>
-                    <button action="remarksTable.edit"/>
-                    <button action="remarksTable.remove" stylename="danger"/>
-                </buttonsPanel>
-            </table>
-        </tab>
+            <tab id="componentTab" caption="Компоненты НТК" margin="true" spacing="true">
+                <table id="componentsTable" dataContainer="componentsDc" width="100%" height="300px"
+                       emptyStateMessage="Вспомогательные материалы отсутствуют"
+                       presentations="true">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="component"/>
+                        <column id="component.uom"/>
+                        <column id="quantity"/>
+                        <column id="route"/>
+                        <column id="ogt" width="70px"/>
+                        <column id="hts" width="70px"/>
+                        <column id="ome" width="70px"/>
+                        <column id="bmn" width="70px"/>
+                        <column id="createdBy" width="150px"/>
+                        <column id="updatedBy" width="150px"/>
+                        <column id="updateTs" width="150px"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="componentsTable.create"/>
+                        <button action="componentsTable.edit"/>
+                        <button action="componentsTable.remove" stylename="danger"/>
+                    </buttonsPanel>
+                </table>
+            </tab>
+            <tab id="remarkTab" caption="Примечания" margin="true" spacing="true">
+                <table id="remarksTable" dataContainer="remarksDc" width="100%" height="300px"
+                       columnControlVisible="false"
+                       emptyStateMessage="Даннные по примечаниям отсутствуют">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="text"/>
+                        <column id="ogt" width="70px"/>
+                        <column id="hts" width="70px"/>
+                        <column id="ome" width="70px"/>
+                        <column id="bmn" width="70px"/>
+                        <column id="createdBy" width="150px"/>
+                        <column id="updatedBy" width="150px"/>
+                        <column id="updateTs" width="150px"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="remarksTable.create"/>
+                        <button action="remarksTable.edit"/>
+                        <button action="remarksTable.remove" stylename="danger"/>
+                    </buttonsPanel>
+                </table>
+            </tab>
         </tabSheet>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>

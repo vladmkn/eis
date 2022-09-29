@@ -10,6 +10,7 @@ import com.haulmont.cuba.gui.components.*;
 import com.haulmont.cuba.gui.screen.*;
 import com.haulmont.reports.gui.actions.EditorPrintFormAction;
 import com.nniirt.eis.entity.DocumentStatuses;
+import com.nniirt.eis.entity.NomenclatureItem;
 import com.nniirt.eis.entity.NtkBOMItem;
 import com.nniirt.eis.entity.NtkItem;
 import com.nniirt.eis.entity.ntk.NtkRemarkItem;
@@ -17,6 +18,7 @@ import com.nniirt.eis.service.NtkService;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.Column;
 
 @UiController("eis_NtkItem.edit")
 @UiDescriptor("ntk-item-edit.xml")
@@ -89,12 +91,58 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
     @Inject
     private Table remarksTable;
 
-    @Subscribe
-    public void onInit(InitEvent event) {
-        componentField.addFieldValueChangeListener(valueChangeEvent -> {
-            ogtmaterialField.setValue(security.isSpecificPermitted("app.ntk.ogt"));
-            htsmaterialField.setValue(security.isSpecificPermitted("app.ntk.hts"));
-        });
+    @Inject
+    private GroupBoxLayout grpGeometry;
+
+    @Inject
+    private GroupBoxLayout grpMaterialSize;
+
+    @Inject
+    private TextField gmLengthField;
+
+    @Inject
+    private TextField gmWidthField;
+
+    @Inject
+    private TextField gmHeightField;
+
+    @Inject
+    private TextField gmDiameterField;
+
+    @Inject
+    private TextField gbLengthField;
+
+    @Inject
+    private TextField gbWidthField;
+
+    @Inject
+    private TextField gbHeightField;
+
+    @Inject
+    private TextField gbDiameterField;
+
+    @Inject
+    private TextField materialRouteField;
+
+    private NomenclatureItem oldComponent;
+    private String oldMaterialRoute;
+    private Integer oldGmLength;
+    private Integer oldGmWidth;
+    private Integer oldGmHeight;
+    private Integer oldGmDiameter;
+
+    private void enableGeometry(boolean check){
+        gbLengthField.setEditable(check);
+        gbWidthField.setEditable(check);
+        gbHeightField.setEditable(check);
+        gbDiameterField.setEditable(check);
+    }
+
+    private void enableMaterialGeometry(boolean check){
+        gmLengthField.setEditable(check);
+        gmWidthField.setEditable(check);
+        gmHeightField.setEditable(check);
+        gmDiameterField.setEditable(check);
     }
 
     @Subscribe
@@ -110,6 +158,8 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
             componentsTableCreate.setVisible(false);
             remarksTableEdit.setVisible(false);
             componentsTableEdit.setVisible(false);
+            enableGeometry(false);
+            enableMaterialGeometry(false);
             ogtField.setEditable(false);
             htsField.setEditable(false);
             omeField.setEditable(false);
@@ -120,6 +170,13 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
             omeField.setEditable (security.isSpecificPermitted("app.ntk.ome"));
             bmnField.setEditable (security.isSpecificPermitted("app.ntk.bmn"));
 
+            oldComponent = getEditedEntity().getComponent();
+            oldMaterialRoute = getEditedEntity().getMaterialRoute();
+            oldGmLength = getEditedEntity().getGmLength();
+            oldGmWidth = getEditedEntity().getGmWidth();
+            oldGmHeight = getEditedEntity().getGmHeight();
+            oldGmDiameter = getEditedEntity().getGmDiameter();
+
             boolean check = security.isSpecificPermitted("app.ntk.ogt") ||
                     security.isSpecificPermitted("app.ntk.hts") ||
                     security.isSpecificPermitted("app.ntk.ome") ||
@@ -129,19 +186,38 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
             componentsTableCreate.setVisible(check);
 
             formMainTab.setEditable(security.isSpecificPermitted("app.ntk.ogt"));
+            enableGeometry(security.isSpecificPermitted("app.ntk.ogt"));
 
-            if(componentField.getValue() != null && ogtmaterialField.getValue() && !htsmaterialField.getValue())
+            if(componentField.getValue() != null && ogtmaterialField.getValue() && !htsmaterialField.getValue()) {
                 formMaterialTab.setEditable(security.isSpecificPermitted("app.ntk.ogt"));
-            if(componentField.getValue() != null && htsmaterialField.getValue() && !ogtmaterialField.getValue())
+                enableMaterialGeometry(security.isSpecificPermitted("app.ntk.ogt"));
+            }
+            if(componentField.getValue() != null && htsmaterialField.getValue() && !ogtmaterialField.getValue()) {
                 formMaterialTab.setEditable(security.isSpecificPermitted("app.ntk.hts"));
+                enableMaterialGeometry(security.isSpecificPermitted("app.ntk.hts"));
+            }
 
-            if(!security.isSpecificPermitted("app.ntk.hts") && !security.isSpecificPermitted("app.ntk.ogt"))
+            if(!security.isSpecificPermitted("app.ntk.hts") && !security.isSpecificPermitted("app.ntk.ogt")) {
                 formMaterialTab.setEditable(false);
+                enableMaterialGeometry(false);
+            }
         }
     }
 
     @Subscribe
     public void onBeforeCommitChanges(BeforeCommitChangesEvent event) {
+
+        if (getEditedEntity().getComponent() != oldComponent ||
+                getEditedEntity().getGmHeight() != oldGmHeight ||
+                getEditedEntity().getGmDiameter() != oldGmDiameter ||
+                getEditedEntity().getGmLength() != oldGmLength ||
+                getEditedEntity().getGmWidth() != oldGmWidth ||
+                getEditedEntity().getMaterialRoute() != oldMaterialRoute)
+        {
+            getEditedEntity().setOgtmaterial(security.isSpecificPermitted("app.ntk.ogt"));
+            getEditedEntity().setHtsmaterial(security.isSpecificPermitted("app.ntk.hts"));
+        }
+
         if (getEditedEntity().getBmn() != null && getEditedEntity().getBmn() &&
                 getEditedEntity().getHts() != null && getEditedEntity().getHts() &&
                 getEditedEntity().getOme() != null && getEditedEntity().getOme() &&

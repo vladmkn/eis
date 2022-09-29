@@ -35,8 +35,32 @@ public class NtkItem extends StandardEntity {
     @Column(name = "GEOMETRY")
     private String geometry;
 
+    @Column(name = "GB_LENGTH")
+    private Integer gbLength;
+
+    @Column(name = "GB_WIDTH")
+    private Integer gbWidth;
+
+    @Column(name = "GB_HEIGHT")
+    private Integer gbHeight;
+
+    @Column(name = "GB_DIAMETER")
+    private Integer gbDiameter;
+
     @Column(name = "WEIGHT", precision = 28, scale = 8)
     private BigDecimal weight;
+
+    @Column(name = "GM_LENGTH")
+    private Integer gmLength;
+
+    @Column(name = "GM_WIDTH")
+    private Integer gmWidth;
+
+    @Column(name = "GM_HEIGHT")
+    private Integer gmHeight;
+
+    @Column(name = "GM_DIAMETER")
+    private Integer gmDiameter;
 
     @Column(name = "PRODUCT_ID")
     private String productId;
@@ -82,6 +106,70 @@ public class NtkItem extends StandardEntity {
 
     @Column(name = "BMN")
     private Boolean bmn;
+
+    public void setGbLength(Integer gbLength) {
+        this.gbLength = gbLength;
+    }
+
+    public Integer getGbLength() {
+        return gbLength;
+    }
+
+    public Integer getGmDiameter() {
+        return gmDiameter;
+    }
+
+    public void setGmDiameter(Integer gmDiameter) {
+        this.gmDiameter = gmDiameter;
+    }
+
+    public Integer getGmHeight() {
+        return gmHeight;
+    }
+
+    public void setGmHeight(Integer gmHeight) {
+        this.gmHeight = gmHeight;
+    }
+
+    public Integer getGmWidth() {
+        return gmWidth;
+    }
+
+    public void setGmWidth(Integer gmWidth) {
+        this.gmWidth = gmWidth;
+    }
+
+    public Integer getGmLength() {
+        return gmLength;
+    }
+
+    public void setGmLength(Integer gmLength) {
+        this.gmLength = gmLength;
+    }
+
+    public Integer getGbDiameter() {
+        return gbDiameter;
+    }
+
+    public void setGbDiameter(Integer gbDiameter) {
+        this.gbDiameter = gbDiameter;
+    }
+
+    public Integer getGbHeight() {
+        return gbHeight;
+    }
+
+    public void setGbHeight(Integer gbHeight) {
+        this.gbHeight = gbHeight;
+    }
+
+    public Integer getGbWidth() {
+        return gbWidth;
+    }
+
+    public void setGbWidth(Integer gbWidth) {
+        this.gbWidth = gbWidth;
+    }
 
     public Boolean getHtsmaterial() {
         return htsmaterial;

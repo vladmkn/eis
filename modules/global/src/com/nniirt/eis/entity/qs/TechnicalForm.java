@@ -188,6 +188,30 @@ public class TechnicalForm extends StandardEntity {
     @OneToMany(mappedBy = "technicalForm")
     private List<TechnicalFormComponent> components;
 
+    @Temporal(TemporalType.DATE)
+    @Column(name = "BEGIN_DATE")
+    private Date beginDate;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "END_DATE")
+    private Date endDate;
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Date getBeginDate() {
+        return beginDate;
+    }
+
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
+    }
+
     public void setManufacturer(DivisionIndex manufacturer) {
         this.manufacturer = manufacturer;
     }

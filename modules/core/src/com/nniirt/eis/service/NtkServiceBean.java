@@ -39,6 +39,14 @@ public class NtkServiceBean implements NtkService {
         newItem.setQuantity(item.getQuantity());
         newItem.setRoute(item.getRoute());
         newItem.setWeight(item.getWeight());
+        newItem.setGbDiameter(item.getGbDiameter());
+        newItem.setGbLength(item.getGbLength());
+        newItem.setGbHeight(item.getGbHeight());
+        newItem.setGbWidth(item.getGbWidth());
+        newItem.setGmDiameter(item.getGmDiameter());
+        newItem.setGmLength(item.getGmLength());
+        newItem.setGmHeight(item.getGmHeight());
+        newItem.setGmWidth(item.getGmWidth());
 
         commitContext.addInstanceToCommit(newItem);
 

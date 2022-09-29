@@ -18,5 +18,6 @@
         <class>com.nniirt.eis.entity.qs.TechnicalFormConclusion2</class>
         <class>com.nniirt.eis.entity.qs.TechnicalFormCommissionS2</class>
         <class>com.nniirt.eis.entity.ntk.NtkRemarkItem</class>
+        <class>com.nniirt.eis.entity.qs.AnalysisForm</class>
     </persistence-unit>
 </persistence>

@@ -61,7 +61,15 @@ create table EIS_NTK_ITEM (
     ROUTE varchar(255),
     NAME varchar(255) not null,
     GEOMETRY varchar(255),
+    GB_LENGTH integer,
+    GB_WIDTH integer,
+    GB_HEIGHT integer,
+    GB_DIAMETER integer,
     WEIGHT decimal(28, 8),
+    GM_LENGTH integer,
+    GM_WIDTH integer,
+    GM_HEIGHT integer,
+    GM_DIAMETER integer,
     PRODUCT_ID varchar(255),
     COMPONENT_ID uuid,
     QUANTITY decimal(28, 8),
@@ -159,6 +167,8 @@ create table EIS_TECHNICAL_FORM (
     EXECUTOR_S1_ID uuid,
     FINALDATE_S2 varchar(300),
     FINALDATE_S1 varchar(300),
+    BEGIN_DATE date,
+    END_DATE date,
     --
     primary key (ID)
 )^
@@ -371,3 +381,50 @@ create table EIS_NTK_REMARK_ITEM (
     primary key (ID)
 )^
 -- end EIS_NTK_REMARK_ITEM
+-- begin EIS_ANALYSIS_FORM
+create table EIS_ANALYSIS_FORM (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    DOCUMENT_NUM varchar(255),
+    DOCUMENT_DATE date,
+    EXTERNAL_DOCUMENT boolean,
+    MILITARY_DOCUMENT boolean,
+    DEFECT_DIVISION_ID uuid,
+    COMPONENT_ID uuid,
+    COMPONENT_NUMBER varchar(300),
+    QUANTITY decimal(28, 8),
+    ASSEMBLY_NUM varchar(255),
+    MANUFACTURER_ID uuid,
+    DEVELOPER_ID uuid,
+    DEFECT_DIVISION_DEF varchar(300),
+    DEFECT_DATE date,
+    DEFECT_CONDITIONS text,
+    DEFECT_DEFINITION text,
+    DEFECT_MUST_BE text,
+    DEFECT_AS_IS text,
+    V_DEFECT_DEFINITION text,
+    V_DEFECT_MUST_BE text,
+    V_DEFECT_AS_IS text,
+    V_DEFECT_CAUSE text,
+    APPENDIX text,
+    FORM_CREATOR varchar(300),
+    FORM_CREATOR_PHONE varchar(50),
+    FORM_INSTANCE_PLACE varchar(50),
+    FORM_CREATOR_DIVISION_ID uuid,
+    INSPECTION_RESULTS text,
+    MANUFACTURE_DATE date,
+    PRODUCT_ID uuid,
+    PRODUCT_NUMBER varchar(300),
+    MASTER_COMPONENT_DEFINITION varchar(300),
+    MASTER_COMPONENT_NUMBER varchar(300),
+    --
+    primary key (ID)
+)^
+-- end EIS_ANALYSIS_FORM

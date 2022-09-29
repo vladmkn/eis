@@ -40,10 +40,10 @@
                 <textField id="ratioField" property="ratio"/>
                 <textField id="slkmField" property="slkm"/>
                 <textArea rows="5" id="remarkField" property="remark"/>
-                <checkBox id="ogtField" property="ogt"/>
-                <checkBox id="htsField" property="hts"/>
-                <checkBox id="omeField" property="ome"/>
-                <checkBox id="bmnField" property="bmn"/>
+                <checkBox id="ogtField" property="ogt" editable="false" visible="false"/>
+                <checkBox id="htsField" property="hts" editable="false" visible="false"/>
+                <checkBox id="omeField" property="ome" editable="false" visible="false"/>
+                <checkBox id="bmnField" property="bmn" editable="false" visible="false"/>
             </column>
             <column width="200px">
                 <textField id="createdByField" property="createdBy" enable="false"/>
