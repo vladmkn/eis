@@ -1,12 +1,20 @@
 package com.nniirt.eis.entity.qs;
 
+import com.haulmont.chile.core.annotations.Composition;
 import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.cuba.core.entity.annotation.OnDelete;
+import com.haulmont.cuba.core.global.DeletePolicy;
 import com.nniirt.eis.entity.NomenclatureItem;
 import com.nniirt.eis.entity.catalog.Product;
+import com.nniirt.eis.entity.qs.catalog.DefectNature;
+import com.nniirt.eis.entity.qs.catalog.DefectType;
+import com.nniirt.eis.entity.qs.catalog.PossibilityCorrectingDefect;
+import com.nniirt.eis.entity.qs.catalog.PossibilityCorrectingDefectECB;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "EIS_ANALYSIS_FORM")
 @Entity(name = "eis_AnalysisForm")
@@ -29,6 +37,16 @@ public class AnalysisForm extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DEFECT_DIVISION_ID")
     private DivisionIndex defectDivision;
+
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "analysisForm")
+    private List<AnalysisFormReplacementTicket> replacementTicket;
+
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "analysisForm")
+    private List<AnalysisFormTF> technicalFormLinks;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "COMPONENT_ID")
@@ -94,6 +112,27 @@ public class AnalysisForm extends StandardEntity {
     @Column(name = "APPENDIX")
     private String appendix;
 
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "analysisForm")
+    private List<AnalysisFormComponent> components;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "POSSIBILITY_CORRECTING_DEFECT_ID")
+    private PossibilityCorrectingDefect possibilityCorrectingDefect;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "POSSIBILITY_CORRECTING_DEFECT_ECB_ID")
+    private PossibilityCorrectingDefectECB possibilityCorrectingDefectECB;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DEFECT_TYPE_ID")
+    private DefectType defectType;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DEFECT_NATURE_ID")
+    private DefectNature defectNature;
+
     @Column(name = "FORM_CREATOR", length = 300)
     private String formCreator;
 
@@ -127,6 +166,62 @@ public class AnalysisForm extends StandardEntity {
 
     @Column(name = "MASTER_COMPONENT_NUMBER", length = 300)
     private String masterComponentNumber;
+
+    public List<AnalysisFormComponent> getComponents() {
+        return components;
+    }
+
+    public void setComponents(List<AnalysisFormComponent> components) {
+        this.components = components;
+    }
+
+    public List<AnalysisFormTF> getTechnicalFormLinks() {
+        return technicalFormLinks;
+    }
+
+    public void setTechnicalFormLinks(List<AnalysisFormTF> technicalFormLinks) {
+        this.technicalFormLinks = technicalFormLinks;
+    }
+
+    public List<AnalysisFormReplacementTicket> getReplacementTicket() {
+        return replacementTicket;
+    }
+
+    public void setReplacementTicket(List<AnalysisFormReplacementTicket> replacementTicket) {
+        this.replacementTicket = replacementTicket;
+    }
+
+    public DefectNature getDefectNature() {
+        return defectNature;
+    }
+
+    public void setDefectNature(DefectNature defectNature) {
+        this.defectNature = defectNature;
+    }
+
+    public DefectType getDefectType() {
+        return defectType;
+    }
+
+    public void setDefectType(DefectType defectType) {
+        this.defectType = defectType;
+    }
+
+    public PossibilityCorrectingDefectECB getPossibilityCorrectingDefectECB() {
+        return possibilityCorrectingDefectECB;
+    }
+
+    public void setPossibilityCorrectingDefectECB(PossibilityCorrectingDefectECB possibilityCorrectingDefectECB) {
+        this.possibilityCorrectingDefectECB = possibilityCorrectingDefectECB;
+    }
+
+    public PossibilityCorrectingDefect getPossibilityCorrectingDefect() {
+        return possibilityCorrectingDefect;
+    }
+
+    public void setPossibilityCorrectingDefect(PossibilityCorrectingDefect possibilityCorrectingDefect) {
+        this.possibilityCorrectingDefect = possibilityCorrectingDefect;
+    }
 
     public Boolean getMilitaryDocument() {
         return militaryDocument;

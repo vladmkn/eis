@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://typePurchasedItemBrowse.caption"
+        focusComponent="typePurchasedItemsTable"
+        messagesPack="com.nniirt.eis.web.screens.qs.catalog.typepurchaseditem">
+    <data readOnly="true">
+        <collection id="typePurchasedItemsDc"
+                    class="com.nniirt.eis.entity.qs.catalog.TypePurchasedItem">
+            <view extends="_local"/>
+            <loader id="typePurchasedItemsDl">
+                <query>
+                    <![CDATA[select e from eis_TypePurchasedItem e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="typePurchasedItemsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="typePurchasedItemsTable"
+                dataLoader="typePurchasedItemsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="typePurchasedItemsTable"
+                    width="100%"
+                    dataContainer="typePurchasedItemsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="code"/>
+                <column id="definition"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="typePurchasedItemsTable.create"/>
+                <button id="editBtn" action="typePurchasedItemsTable.edit"/>
+                <button id="removeBtn" action="typePurchasedItemsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

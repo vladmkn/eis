@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://defectTypeBrowse.caption"
+        focusComponent="defectTypesTable"
+        messagesPack="com.nniirt.eis.web.screens.qs.catalog.defecttype">
+    <data readOnly="true">
+        <collection id="defectTypesDc"
+                    class="com.nniirt.eis.entity.qs.catalog.DefectType">
+            <view extends="_local"/>
+            <loader id="defectTypesDl">
+                <query>
+                    <![CDATA[select e from eis_DefectType e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="defectTypesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="defectTypesTable"
+                dataLoader="defectTypesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="defectTypesTable"
+                    width="100%"
+                    dataContainer="defectTypesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="groupCode"/>
+                <column id="typeCode"/>
+                <column id="code"/>
+                <column id="abbr"/>
+                <column id="definition"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="defectTypesTable.create"/>
+                <button id="editBtn" action="defectTypesTable.edit"/>
+                <button id="removeBtn" action="defectTypesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

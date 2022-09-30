@@ -19,6 +19,7 @@ import com.nniirt.eis.service.NtkService;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.Column;
+import java.math.BigDecimal;
 
 @UiController("eis_NtkItem.edit")
 @UiDescriptor("ntk-item-edit.xml")
@@ -126,10 +127,10 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
 
     private NomenclatureItem oldComponent;
     private String oldMaterialRoute;
-    private Integer oldGmLength;
-    private Integer oldGmWidth;
-    private Integer oldGmHeight;
-    private Integer oldGmDiameter;
+    private BigDecimal oldGmLength;
+    private BigDecimal oldGmWidth;
+    private BigDecimal oldGmHeight;
+    private BigDecimal oldGmDiameter;
 
     private void enableGeometry(boolean check){
         gbLengthField.setEditable(check);

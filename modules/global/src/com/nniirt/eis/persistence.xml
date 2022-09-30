@@ -19,5 +19,14 @@
         <class>com.nniirt.eis.entity.qs.TechnicalFormCommissionS2</class>
         <class>com.nniirt.eis.entity.ntk.NtkRemarkItem</class>
         <class>com.nniirt.eis.entity.qs.AnalysisForm</class>
+        <class>com.nniirt.eis.entity.qs.catalog.DefectType</class>
+        <class>com.nniirt.eis.entity.qs.catalog.PossibilityCorrectingDefect</class>
+        <class>com.nniirt.eis.entity.qs.catalog.PossibilityCorrectingDefectECB</class>
+        <class>com.nniirt.eis.entity.qs.catalog.LifeCycleStage</class>
+        <class>com.nniirt.eis.entity.qs.catalog.DefectNature</class>
+        <class>com.nniirt.eis.entity.qs.catalog.TypePurchasedItem</class>
+        <class>com.nniirt.eis.entity.qs.AnalysisFormReplacementTicket</class>
+        <class>com.nniirt.eis.entity.qs.AnalysisFormTF</class>
+        <class>com.nniirt.eis.entity.qs.AnalysisFormComponent</class>
     </persistence-unit>
 </persistence>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://lifeCycleStageBrowse.caption"
+        focusComponent="lifeCycleStagesTable"
+        messagesPack="com.nniirt.eis.web.screens.qs.catalog.lifecyclestage">
+    <data readOnly="true">
+        <collection id="lifeCycleStagesDc"
+                    class="com.nniirt.eis.entity.qs.catalog.LifeCycleStage">
+            <view extends="_local"/>
+            <loader id="lifeCycleStagesDl">
+                <query>
+                    <![CDATA[select e from eis_LifeCycleStage e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="lifeCycleStagesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="lifeCycleStagesTable"
+                dataLoader="lifeCycleStagesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="lifeCycleStagesTable"
+                    width="100%"
+                    dataContainer="lifeCycleStagesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="groupCode"/>
+                <column id="typeCode"/>
+                <column id="code"/>
+                <column id="definition"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="lifeCycleStagesTable.create"/>
+                <button id="editBtn" action="lifeCycleStagesTable.edit"/>
+                <button id="removeBtn" action="lifeCycleStagesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

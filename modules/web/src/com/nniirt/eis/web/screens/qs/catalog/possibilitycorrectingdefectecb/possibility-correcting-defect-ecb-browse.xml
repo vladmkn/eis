@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://possibilityCorrectingDefectECBBrowse.caption"
+        focusComponent="possibilityCorrectingDefectECBsTable"
+        messagesPack="com.nniirt.eis.web.screens.qs.catalog.possibilitycorrectingdefectecb">
+    <data readOnly="true">
+        <collection id="possibilityCorrectingDefectECBsDc"
+                    class="com.nniirt.eis.entity.qs.catalog.PossibilityCorrectingDefectECB">
+            <view extends="_local"/>
+            <loader id="possibilityCorrectingDefectECBsDl">
+                <query>
+                    <![CDATA[select e from eis_PossibilityCorrectingDefectECB e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="possibilityCorrectingDefectECBsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="possibilityCorrectingDefectECBsTable"
+                dataLoader="possibilityCorrectingDefectECBsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="possibilityCorrectingDefectECBsTable"
+                    width="100%"
+                    dataContainer="possibilityCorrectingDefectECBsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="groupCode"/>
+                <column id="typeCode"/>
+                <column id="code"/>
+                <column id="definition"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="possibilityCorrectingDefectECBsTable.create"/>
+                <button id="editBtn" action="possibilityCorrectingDefectECBsTable.edit"/>
+                <button id="removeBtn" action="possibilityCorrectingDefectECBsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

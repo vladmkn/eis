@@ -1,0 +1,16 @@
+alter table EIS_NTK_ITEM rename column gb_width to gb_width__u41105 ;
+alter table EIS_NTK_ITEM rename column gb_diameter to gb_diameter__u31114 ;
+alter table EIS_NTK_ITEM rename column gm_length to gm_length__u43119 ;
+alter table EIS_NTK_ITEM rename column gm_width to gm_width__u87748 ;
+alter table EIS_NTK_ITEM rename column gm_height to gm_height__u86650 ;
+alter table EIS_NTK_ITEM rename column gm_diameter to gm_diameter__u18362 ;
+alter table EIS_NTK_ITEM rename column gb_length to gb_length__u22741 ;
+alter table EIS_NTK_ITEM rename column gb_height to gb_height__u82850 ;
+alter table EIS_NTK_ITEM add column GB_HEIGHT decimal(19, 8) ;
+alter table EIS_NTK_ITEM add column GB_LENGTH decimal(19, 8) ;
+alter table EIS_NTK_ITEM add column GM_DIAMETER decimal(19, 8) ;
+alter table EIS_NTK_ITEM add column GM_HEIGHT decimal(19, 8) ;
+alter table EIS_NTK_ITEM add column GM_WIDTH decimal(19, 8) ;
+alter table EIS_NTK_ITEM add column GM_LENGTH decimal(19, 8) ;
+alter table EIS_NTK_ITEM add column GB_DIAMETER decimal(19, 8) ;
+alter table EIS_NTK_ITEM add column GB_WIDTH decimal(19, 8) ;

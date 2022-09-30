@@ -7,6 +7,16 @@
         <menu id="application-eis-qs" caption="Служба качества">
             <item screen="eis_TechnicalForm.browse" caption="mainMsg://menu_config.eis_TechnicalForm.browse"/>
             <item screen="eis_DivisionIndex.browse" caption="mainMsg://menu_config.eis_DivisionIndex.browse"/>
+            <separator></separator>
+            <menu id="application-eis-qs-catalogs" caption="mainMsg://menu_config.application-eis-catalogs">
+                <item screen="eis_DefectType.browse" caption="mainMsg://menu_config.eis_DefectType.browse"/>
+                <item screen="eis_PossibilityCorrectingDefect.browse"
+                      caption="mainMsg://menu_config.eis_PossibilityCorrectingDefect.browse"/>
+                <item screen="eis_PossibilityCorrectingDefectECB.browse"
+                      caption="mainMsg://menu_config.eis_PossibilityCorrectingDefectECB.browse"/>
+                <item screen="eis_DefectNature.browse" caption="mainMsg://menu_config.eis_DefectNature.browse"/>
+                <item screen="eis_TypePurchasedItem.browse" caption="mainMsg://menu_config.eis_TypePurchasedItem.browse"/>
+            </menu>
         </menu>
         <separator></separator>
         <menu id="application-eis-catalogs" caption="mainMsg://menu_config.application-eis-catalogs">

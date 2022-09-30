@@ -61,15 +61,15 @@ create table EIS_NTK_ITEM (
     ROUTE varchar(255),
     NAME varchar(255) not null,
     GEOMETRY varchar(255),
-    GB_LENGTH integer,
-    GB_WIDTH integer,
-    GB_HEIGHT integer,
-    GB_DIAMETER integer,
+    GB_LENGTH decimal(19, 8),
+    GB_WIDTH decimal(19, 8),
+    GB_HEIGHT decimal(19, 8),
+    GB_DIAMETER decimal(19, 8),
     WEIGHT decimal(28, 8),
-    GM_LENGTH integer,
-    GM_WIDTH integer,
-    GM_HEIGHT integer,
-    GM_DIAMETER integer,
+    GM_LENGTH decimal(19, 8),
+    GM_WIDTH decimal(19, 8),
+    GM_HEIGHT decimal(19, 8),
+    GM_DIAMETER decimal(19, 8),
     PRODUCT_ID varchar(255),
     COMPONENT_ID uuid,
     QUANTITY decimal(28, 8),
@@ -414,6 +414,10 @@ create table EIS_ANALYSIS_FORM (
     V_DEFECT_AS_IS text,
     V_DEFECT_CAUSE text,
     APPENDIX text,
+    POSSIBILITY_CORRECTING_DEFECT_ID uuid,
+    POSSIBILITY_CORRECTING_DEFECT_ECB_ID uuid,
+    DEFECT_TYPE_ID uuid,
+    DEFECT_NATURE_ID uuid,
     FORM_CREATOR varchar(300),
     FORM_CREATOR_PHONE varchar(50),
     FORM_INSTANCE_PLACE varchar(50),
@@ -428,3 +432,169 @@ create table EIS_ANALYSIS_FORM (
     primary key (ID)
 )^
 -- end EIS_ANALYSIS_FORM
+-- begin EIS_DEFECT_TYPE
+create table EIS_DEFECT_TYPE (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    GROUP_CODE varchar(10),
+    TYPE_CODE varchar(10),
+    ABBR varchar(10),
+    DEFINITION_ varchar(255),
+    CODE varchar(10),
+    --
+    primary key (ID)
+)^
+-- end EIS_DEFECT_TYPE
+-- begin EIS_POSSIBILITY_CORRECTING_DEFECT_ECB
+create table EIS_POSSIBILITY_CORRECTING_DEFECT_ECB (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    GROUP_CODE varchar(10),
+    TYPE_CODE varchar(10),
+    CODE varchar(10),
+    DEFINITION_ varchar(255),
+    --
+    primary key (ID)
+)^
+-- end EIS_POSSIBILITY_CORRECTING_DEFECT_ECB
+-- begin EIS_TYPE_PURCHASED_ITEM
+create table EIS_TYPE_PURCHASED_ITEM (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    CODE varchar(10),
+    DEFINITION_ varchar(255),
+    --
+    primary key (ID)
+)^
+-- end EIS_TYPE_PURCHASED_ITEM
+-- begin EIS_POSSIBILITY_CORRECTING_DEFECT
+create table EIS_POSSIBILITY_CORRECTING_DEFECT (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    GROUP_CODE varchar(10),
+    TYPE_CODE varchar(10),
+    CODE varchar(10),
+    DEFINITION_ varchar(255),
+    --
+    primary key (ID)
+)^
+-- end EIS_POSSIBILITY_CORRECTING_DEFECT
+-- begin EIS_DEFECT_NATURE
+create table EIS_DEFECT_NATURE (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    GROUP_CODE varchar(10),
+    TYPE_CODE varchar(10),
+    CODE varchar(10),
+    DEFINITION_ varchar(255),
+    --
+    primary key (ID)
+)^
+-- end EIS_DEFECT_NATURE
+-- begin EIS_LIFE_CYCLE_STAGE
+create table EIS_LIFE_CYCLE_STAGE (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    GROUP_CODE varchar(10),
+    TYPE_CODE varchar(10),
+    CODE varchar(10),
+    DEFINITION_ varchar(255),
+    --
+    primary key (ID)
+)^
+-- end EIS_LIFE_CYCLE_STAGE
+-- begin EIS_ANALYSIS_FORM_REPLACEMENT_TICKET
+create table EIS_ANALYSIS_FORM_REPLACEMENT_TICKET (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    TICKET_NUM varchar(255),
+    ANALYSIS_FORM_ID uuid not null,
+    --
+    primary key (ID)
+)^
+-- end EIS_ANALYSIS_FORM_REPLACEMENT_TICKET
+-- begin EIS_ANALYSIS_FORM_COMPONENT
+create table EIS_ANALYSIS_FORM_COMPONENT (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    COMPONENT_ID uuid,
+    QUANTITY decimal(28, 8),
+    ANALYSIS_FORM_ID uuid not null,
+    --
+    primary key (ID)
+)^
+-- end EIS_ANALYSIS_FORM_COMPONENT
+-- begin EIS_ANALYSIS_FORM_TF
+create table EIS_ANALYSIS_FORM_TF (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    TECHNICAL_FORM_ID uuid,
+    DEFINITION_ text,
+    ANALYSIS_FORM_ID uuid not null,
+    --
+    primary key (ID)
+)^
+-- end EIS_ANALYSIS_FORM_TF
