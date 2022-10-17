@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://analysisFormBrowse.caption"
+        focusComponent="analysisFormsTable"
+        messagesPack="com.nniirt.eis.web.screens.qs.analysisform">
+    <data readOnly="true">
+        <collection id="analysisFormsDc"
+                    class="com.nniirt.eis.entity.qs.AnalysisForm">
+            <view extends="_local">
+                <property name="defectDivision" view="_minimal"/>
+            </view>
+            <loader id="analysisFormsDl">
+                <query>
+                    <![CDATA[select e from eis_AnalysisForm e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="analysisFormsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="analysisFormsTable"
+                dataLoader="analysisFormsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="analysisFormsTable"
+                    width="100%"
+                    dataContainer="analysisFormsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="documentNum"/>
+                <column id="documentDate"/>
+                <column id="externalDocument"/>
+                <column id="militaryDocument"/>
+                <column id="defectDivision"/>
+                <column id="componentNumber"/>
+                <column id="quantity"/>
+                <column id="assemblyNum"/>
+                <column id="defectDivisionDef"/>
+                <column id="defectDate"/>
+                <column id="defectConditions"/>
+                <column id="defectDefinition"/>
+                <column id="defectMustBe"/>
+                <column id="defectAsIs"/>
+                <column id="vDefectDefinition"/>
+                <column id="vDefectMustBe"/>
+                <column id="vDefectAsIs"/>
+                <column id="vDefectCause"/>
+                <column id="appendix"/>
+                <column id="formCreator"/>
+                <column id="formCreatorPhone"/>
+                <column id="formInstance"/>
+                <column id="inspectionResults"/>
+                <column id="manufactureDate"/>
+                <column id="productNumber"/>
+                <column id="masterComponentDefinition"/>
+                <column id="masterComponentNumber"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="analysisFormsTable.create"/>
+                <button id="editBtn" action="analysisFormsTable.edit"/>
+                <button id="removeBtn" action="analysisFormsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

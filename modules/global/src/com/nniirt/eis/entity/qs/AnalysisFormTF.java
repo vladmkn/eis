@@ -16,6 +16,7 @@ public class AnalysisFormTF extends StandardEntity {
     @Lob
     @Column(name = "DEFINITION_")
     private String definition;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ANALYSIS_FORM_ID")
     private AnalysisForm analysisForm;

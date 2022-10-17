@@ -396,6 +396,7 @@ create table EIS_ANALYSIS_FORM (
     DOCUMENT_DATE date,
     EXTERNAL_DOCUMENT boolean,
     MILITARY_DOCUMENT boolean,
+    CHAIRMAN_ID uuid,
     DEFECT_DIVISION_ID uuid,
     COMPONENT_ID uuid,
     COMPONENT_NUMBER varchar(300),
@@ -598,3 +599,82 @@ create table EIS_ANALYSIS_FORM_TF (
     primary key (ID)
 )^
 -- end EIS_ANALYSIS_FORM_TF
+-- begin EIS_ANALYSIS_FORM_CONCLUSION_AL
+create table EIS_ANALYSIS_FORM_CONCLUSION_AL (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    MEMBER_ID uuid,
+    ANALYSIS_FORM_CONCLUSION_ID uuid not null,
+    --
+    primary key (ID)
+)^
+-- end EIS_ANALYSIS_FORM_CONCLUSION_AL
+-- begin EIS_ANALYSIS_FORM_APPROVING_PERSON
+create table EIS_ANALYSIS_FORM_APPROVING_PERSON (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    MEMBER_ID uuid,
+    ANALYSIS_FORM_ID uuid not null,
+    --
+    primary key (ID)
+)^
+-- end EIS_ANALYSIS_FORM_APPROVING_PERSON
+-- begin EIS_ANALYSIS_FORM_COMMISSION
+create table EIS_ANALYSIS_FORM_COMMISSION (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    MEMBER_ID uuid,
+    ANALYSIS_FORM_ID uuid not null,
+    --
+    primary key (ID)
+)^
+-- end EIS_ANALYSIS_FORM_COMMISSION
+-- begin EIS_ANALYSIS_FORM_CONCLUSION
+create table EIS_ANALYSIS_FORM_CONCLUSION (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    DEFINITION_ text,
+    FINALDATE varchar(300),
+    RECIPIENT varchar(300),
+    ADDRESS varchar(300),
+    FAX varchar(300),
+    PHONE varchar(300),
+    --
+    primary key (ID)
+)^
+-- end EIS_ANALYSIS_FORM_CONCLUSION
+-- begin EIS_ANALYSIS_FORM_FILE_DESCRIPTOR_LINK
+create table EIS_ANALYSIS_FORM_FILE_DESCRIPTOR_LINK (
+    ANALYSIS_FORM_ID uuid,
+    FILE_DESCRIPTOR_ID uuid,
+    primary key (ANALYSIS_FORM_ID, FILE_DESCRIPTOR_ID)
+)^
+-- end EIS_ANALYSIS_FORM_FILE_DESCRIPTOR_LINK

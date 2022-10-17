@@ -6,6 +6,7 @@
         </menu>
         <menu id="application-eis-qs" caption="Служба качества">
             <item screen="eis_TechnicalForm.browse" caption="mainMsg://menu_config.eis_TechnicalForm.browse"/>
+            <item screen="eis_AnalysisForm.browse" caption="mainMsg://menu_config.eis_AnalysisForm.browse"/>
             <item screen="eis_DivisionIndex.browse" caption="mainMsg://menu_config.eis_DivisionIndex.browse"/>
             <separator></separator>
             <menu id="application-eis-qs-catalogs" caption="mainMsg://menu_config.application-eis-catalogs">

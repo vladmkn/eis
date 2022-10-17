@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://analysisFormEdit.caption"
+        focusComponent="form"
+        messagesPack="com.nniirt.eis.web.screens.qs.analysisform">
+    <data>
+        <instance id="analysisFormDc"
+                  class="com.nniirt.eis.entity.qs.AnalysisForm">
+            <view extends="_local">
+                <property name="chairman" view="_minimal">
+                    <property name="firstname"/>
+                    <property name="patronymic"/>
+                    <property name="jobTitle" view="_minimal"/>
+                </property>
+                <property name="defectDivision" view="_minimal">
+                    <property name="name"/>
+                    <property name="master" view="_minimal"/>
+                </property>
+                <property name="replacementTicket" view="_minimal">
+                    <property name="ticketNum"/>
+                </property>
+                <property name="technicalFormLinks" view="_minimal">
+                    <property name="technicalForm" view="_minimal">
+                        <property name="documentNum"/>
+                        <property name="documentDate"/>
+                    </property>
+                    <property name="definition"/>
+                </property>
+                <property name="component" view="_minimal">
+                    <property name="name"/>
+                    <property name="blueprintname"/>
+                    <property name="uom" view="_minimal"/>
+                </property>
+                <property name="manufacturer" view="_minimal"/>
+                <property name="developer" view="_minimal"/>
+                <property name="components" view="_minimal">
+                    <property name="component" view="_minimal">
+                        <property name="name"/>
+                        <property name="blueprintname"/>
+                        <property name="uom" view="_minimal"/>
+                    </property>
+                    <property name="quantity"/>
+                </property>
+                <property name="possibilityCorrectingDefect" view="_minimal">
+                    <property name="groupCode"/>
+                    <property name="typeCode"/>
+                    <property name="code"/>
+                    <property name="definition"/>
+                </property>
+                <property name="possibilityCorrectingDefectECB" view="_minimal">
+                    <property name="groupCode"/>
+                    <property name="typeCode"/>
+                    <property name="code"/>
+                    <property name="definition"/>
+                </property>
+                <property name="defectType" view="_minimal">
+                    <property name="groupCode"/>
+                    <property name="typeCode"/>
+                    <property name="code"/>
+                    <property name="abbr"/>
+                    <property name="definition"/>
+                </property>
+                <property name="defectNature" view="_minimal">
+                    <property name="groupCode"/>
+                    <property name="typeCode"/>
+                    <property name="code"/>
+                    <property name="definition"/>
+                </property>
+                <property name="files" view="_minimal"/>
+                <property name="formCreatorDivision" view="_minimal"/>
+                <property name="commission" view="_minimal">
+                    <property name="member" view="_minimal">
+                        <property name="firstname"/>
+                        <property name="patronymic"/>
+                        <property name="jobTitle" view="_minimal"/>
+                    </property>
+                </property>
+                <property name="approvingPerson" view="_minimal">
+                    <property name="member" view="_minimal">
+                        <property name="firstname"/>
+                        <property name="patronymic"/>
+                        <property name="jobTitle" view="_minimal"/>
+                    </property>
+                </property>
+            </view>
+            <loader/>
+            <collection id="replacementTicketDc" property="replacementTicket"/>
+            <collection id="technicalFormLinksDc" property="technicalFormLinks"/>
+            <collection id="componentsDc" property="components"/>
+            <collection id="filesDc" property="files"/>
+            <collection id="commissionDc" property="commission"/>
+            <collection id="approvingPersonDc" property="approvingPerson"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <tabSheet stylename="padded-tabbar" width="100%">
+            <tab id="mainTab" caption="msg://analysisFormEdit.mainTab" margin="true" spacing="true">
+
+                <form id="form" dataContainer="analysisFormDc">
+                    <column width="350px">
+                        <textField id="documentNumField" property="documentNum"/>
+                        <dateField id="documentDateField" property="documentDate"/>
+                        <checkBox id="externalDocumentField" property="externalDocument"/>
+                        <checkBox id="militaryDocumentField" property="militaryDocument"/>
+                        <pickerField id="chairmanField" property="chairman">
+                            <actions>
+                                <action id="lookup" type="picker_lookup"/>
+                                <action id="clear" type="picker_clear"/>
+                            </actions>
+                        </pickerField>
+                        <pickerField id="defectDivisionField" property="defectDivision">
+                            <actions>
+                                <action id="lookup" type="picker_lookup"/>
+                                <action id="clear" type="picker_clear"/>
+                            </actions>
+                        </pickerField>
+                        <pickerField id="componentField" property="component">
+                            <actions>
+                                <action id="lookup" type="picker_lookup"/>
+                                <action id="clear" type="picker_clear"/>
+                            </actions>
+                        </pickerField>
+                        <textField id="componentNumberField" property="componentNumber"/>
+                        <textField id="quantityField" property="quantity"/>
+                        <textField id="assemblyNumField" property="assemblyNum"/>
+                        <pickerField id="manufacturerField" property="manufacturer">
+                            <actions>
+                                <action id="lookup" type="picker_lookup"/>
+                                <action id="clear" type="picker_clear"/>
+                            </actions>
+                        </pickerField>
+                        <pickerField id="developerField" property="developer">
+                            <actions>
+                                <action id="lookup" type="picker_lookup"/>
+                                <action id="clear" type="picker_clear"/>
+                            </actions>
+                        </pickerField>
+                        <textField id="defectDivisionDefField" property="defectDivisionDef"/>
+                        <dateField id="defectDateField" property="defectDate"/>
+                        <textArea id="defectConditionsField" property="defectConditions" rows="5"/>
+                        <textArea id="defectDefinitionField" property="defectDefinition" rows="5"/>
+                        <textArea id="defectMustBeField" property="defectMustBe" rows="5"/>
+                        <textArea id="defectAsIsField" property="defectAsIs" rows="5"/>
+                        <textArea id="vDefectDefinitionField" property="vDefectDefinition" rows="5"/>
+                        <textArea id="vDefectMustBeField" property="vDefectMustBe" rows="5"/>
+                        <textArea id="vDefectAsIsField" property="vDefectAsIs" rows="5"/>
+                        <textArea id="vDefectCauseField" property="vDefectCause" rows="5"/>
+                        <textArea id="appendixField" property="appendix" rows="5"/>
+                        <pickerField id="possibilityCorrectingDefectField" property="possibilityCorrectingDefect">
+                            <actions>
+                                <action id="lookup" type="picker_lookup"/>
+                                <action id="clear" type="picker_clear"/>
+                            </actions>
+                        </pickerField>
+                        <pickerField id="possibilityCorrectingDefectECBField" property="possibilityCorrectingDefectECB">
+                            <actions>
+                                <action id="lookup" type="picker_lookup"/>
+                                <action id="clear" type="picker_clear"/>
+                            </actions>
+                        </pickerField>
+                        <pickerField id="defectTypeField" property="defectType">
+                            <actions>
+                                <action id="lookup" type="picker_lookup"/>
+                                <action id="clear" type="picker_clear"/>
+                            </actions>
+                        </pickerField>
+                        <pickerField id="defectNatureField" property="defectNature">
+                            <actions>
+                                <action id="lookup" type="picker_lookup"/>
+                                <action id="clear" type="picker_clear"/>
+                            </actions>
+                        </pickerField>
+                        <textField id="formCreatorField" property="formCreator"/>
+                        <textField id="formCreatorPhoneField" property="formCreatorPhone"/>
+                        <textField id="formInstanceField" property="formInstance"/>
+                        <pickerField id="formCreatorDivisionField" property="formCreatorDivision">
+                            <actions>
+                                <action id="lookup" type="picker_lookup"/>
+                                <action id="clear" type="picker_clear"/>
+                            </actions>
+                        </pickerField>
+                        <textArea id="inspectionResultsField" property="inspectionResults" rows="5"/>
+                        <dateField id="manufactureDateField" property="manufactureDate"/>
+                        <textField id="productNumberField" property="productNumber"/>
+                        <textField id="masterComponentDefinitionField" property="masterComponentDefinition"/>
+                        <textField id="masterComponentNumberField" property="masterComponentNumber"/>
+                    </column>
+                </form>
+                <groupBox id="replacementTicketBox"
+                          caption="msg://com.nniirt.eis.entity.qs/AnalysisForm.replacementTicket">
+                    <table id="replacementTicketTable" dataContainer="replacementTicketDc" width="100%" height="200px">
+                        <actions>
+                            <action id="create" type="create"/>
+                            <action id="edit" type="edit"/>
+                            <action id="remove" type="remove"/>
+                        </actions>
+                        <columns>
+                            <column id="ticketNum"/>
+                        </columns>
+                        <buttonsPanel>
+                            <button action="replacementTicketTable.create"/>
+                            <button action="replacementTicketTable.edit"/>
+                            <button action="replacementTicketTable.remove"/>
+                        </buttonsPanel>
+                    </table>
+                </groupBox>
+                <groupBox id="technicalFormLinksBox"
+                          caption="msg://com.nniirt.eis.entity.qs/AnalysisForm.technicalFormLinks">
+                    <table id="technicalFormLinksTable" dataContainer="technicalFormLinksDc" width="100%"
+                           height="200px">
+                        <actions>
+                            <action id="create" type="create"/>
+                            <action id="edit" type="edit"/>
+                            <action id="remove" type="remove"/>
+                        </actions>
+                        <columns>
+                            <column id="technicalForm"/>
+                            <column id="definition"/>
+                        </columns>
+                        <buttonsPanel>
+                            <button action="technicalFormLinksTable.create"/>
+                            <button action="technicalFormLinksTable.edit"/>
+                            <button action="technicalFormLinksTable.remove"/>
+                        </buttonsPanel>
+                    </table>
+                </groupBox>
+                <groupBox id="componentsBox" caption="msg://com.nniirt.eis.entity.qs/AnalysisForm.components">
+                    <table id="componentsTable" dataContainer="componentsDc" width="100%" height="200px">
+                        <actions>
+                            <action id="create" type="create"/>
+                            <action id="edit" type="edit"/>
+                            <action id="remove" type="remove"/>
+                        </actions>
+                        <columns>
+                            <column id="component"/>
+                            <column id="quantity"/>
+                        </columns>
+                        <buttonsPanel>
+                            <button action="componentsTable.create"/>
+                            <button action="componentsTable.edit"/>
+                            <button action="componentsTable.remove"/>
+                        </buttonsPanel>
+                    </table>
+                </groupBox>
+                <groupBox id="filesBox" caption="msg://com.nniirt.eis.entity.qs/AnalysisForm.files">
+                    <table id="filesTable" dataContainer="filesDc" width="100%" height="200px">
+                        <actions>
+                            <action id="add" type="add"/>
+                            <action id="exclude" type="exclude"/>
+                        </actions>
+                        <columns>
+                            <column id="name"/>
+                            <column id="createDate"/>
+                            <column id="extension"/>
+                        </columns>
+                        <buttonsPanel>
+                            <button action="filesTable.add"/>
+                            <button action="filesTable.exclude"/>
+                        </buttonsPanel>
+                    </table>
+                </groupBox>
+            </tab>
+            <tab id="materialTab" caption="msg://analysisFormEdit.commissionTab" margin="true" spacing="true">
+                <split width="950px" height="650px" orientation="vertical" pos="50"
+                       maxSplitPosition="400px" minSplitPosition="150px">
+                    <table id="commissionTable" dataContainer="commissionDc" width="100%" height="100%"
+                           emptyStateMessage="Необходимо добавить членов комиссии">
+                        <actions>
+                            <action id="create" type="create"/>
+                            <action id="edit" type="edit"/>
+                            <action id="remove" type="remove"/>
+                        </actions>
+                        <columns>
+                            <column id="member"/>
+                        </columns>
+                        <buttonsPanel>
+                            <button action="commissionTable.create"/>
+                            <button action="commissionTable.edit"/>
+                            <button action="commissionTable.remove"/>
+                        </buttonsPanel>
+                    </table>
+                    <groupBox id="approvingPersonBox"
+                              caption="msg://com.nniirt.eis.entity.qs/AnalysisForm.approvingPerson">
+                        <table id="approvingPersonTable" dataContainer="approvingPersonDc" width="100%" height="200px"
+                               emptyStateMessage="Укажите согласующих должностных лиц">
+                            <actions>
+                                <action id="create" type="create"/>
+                                <action id="edit" type="edit"/>
+                                <action id="remove" type="remove"/>
+                            </actions>
+                            <columns>
+                                <column id="member"/>
+                            </columns>
+                            <buttonsPanel>
+                                <button action="approvingPersonTable.create"/>
+                                <button action="approvingPersonTable.edit"/>
+                                <button action="approvingPersonTable.remove"/>
+                            </buttonsPanel>
+                        </table>
+                    </groupBox>
+                </split>
+            </tab>
+        </tabSheet>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

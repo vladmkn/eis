@@ -1,10 +1,12 @@
 package com.nniirt.eis.entity.qs;
 
 import com.haulmont.chile.core.annotations.Composition;
+import com.haulmont.cuba.core.entity.FileDescriptor;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
 import com.haulmont.cuba.core.global.DeletePolicy;
 import com.nniirt.eis.entity.NomenclatureItem;
+import com.nniirt.eis.entity.catalog.Employee;
 import com.nniirt.eis.entity.catalog.Product;
 import com.nniirt.eis.entity.qs.catalog.DefectNature;
 import com.nniirt.eis.entity.qs.catalog.DefectType;
@@ -33,6 +35,10 @@ public class AnalysisForm extends StandardEntity {
 
     @Column(name = "MILITARY_DOCUMENT")
     private Boolean militaryDocument;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CHAIRMAN_ID")
+    private Employee chairman;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DEFECT_DIVISION_ID")
@@ -142,6 +148,12 @@ public class AnalysisForm extends StandardEntity {
     @Column(name = "FORM_INSTANCE_PLACE", length = 50)
     private String formInstance;
 
+    @ManyToMany
+    @JoinTable(name = "EIS_ANALYSIS_FORM_FILE_DESCRIPTOR_LINK",
+            joinColumns = @JoinColumn(name = "ANALYSIS_FORM_ID"),
+            inverseJoinColumns = @JoinColumn(name = "FILE_DESCRIPTOR_ID"))
+    private List<FileDescriptor> files;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FORM_CREATOR_DIVISION_ID")
     private DivisionIndex formCreatorDivision;
@@ -166,6 +178,48 @@ public class AnalysisForm extends StandardEntity {
 
     @Column(name = "MASTER_COMPONENT_NUMBER", length = 300)
     private String masterComponentNumber;
+
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "analysisForm")
+    private List<AnalysisFormCommission> commission;
+
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "analysisForm")
+    private List<AnalysisFormApprovingPerson> approvingPerson;
+
+    public Employee getChairman() {
+        return chairman;
+    }
+
+    public void setChairman(Employee chairman) {
+        this.chairman = chairman;
+    }
+
+    public void setFiles(List<FileDescriptor> files) {
+        this.files = files;
+    }
+
+    public List<FileDescriptor> getFiles() {
+        return files;
+    }
+
+    public List<AnalysisFormApprovingPerson> getApprovingPerson() {
+        return approvingPerson;
+    }
+
+    public void setApprovingPerson(List<AnalysisFormApprovingPerson> approvingPerson) {
+        this.approvingPerson = approvingPerson;
+    }
+
+    public List<AnalysisFormCommission> getCommission() {
+        return commission;
+    }
+
+    public void setCommission(List<AnalysisFormCommission> commission) {
+        this.commission = commission;
+    }
 
     public List<AnalysisFormComponent> getComponents() {
         return components;

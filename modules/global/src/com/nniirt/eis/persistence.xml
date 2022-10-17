@@ -28,5 +28,9 @@
         <class>com.nniirt.eis.entity.qs.AnalysisFormReplacementTicket</class>
         <class>com.nniirt.eis.entity.qs.AnalysisFormTF</class>
         <class>com.nniirt.eis.entity.qs.AnalysisFormComponent</class>
+        <class>com.nniirt.eis.entity.qs.AnalysisFormConclusion</class>
+        <class>com.nniirt.eis.entity.qs.AnalysisFormConclusionAL</class>
+        <class>com.nniirt.eis.entity.qs.AnalysisFormCommission</class>
+        <class>com.nniirt.eis.entity.qs.AnalysisFormApprovingPerson</class>
     </persistence-unit>
 </persistence>
