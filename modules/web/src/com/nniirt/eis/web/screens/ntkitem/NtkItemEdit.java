@@ -240,6 +240,8 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
                 getEditedEntity().getHts() != null && getEditedEntity().getHts() &&
                 getEditedEntity().getOme() != null && getEditedEntity().getOme() &&
                 getEditedEntity().getOgt() != null && getEditedEntity().getOgt() &&
+                getEditedEntity().getOgtadd() != null && getEditedEntity().getOgtadd() &&
+                getEditedEntity().getOtpp() != null && getEditedEntity().getOtpp() &&
                 (getEditedEntity().getStatus() == null || getEditedEntity().getStatus() != DocumentStatuses.COMPLETED)) {
                     dialogs.createOptionDialog()
                     .withCaption("Внимание!")
@@ -263,11 +265,13 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
         boolean check = true;
         for(NtkRemarkItem item : event.getSelected()){
             boolean ogt = (security.isSpecificPermitted("app.ntk.ogt") && (item.getOgt() == null ? false : item.getOgt()));
+            boolean ogtadd = (security.isSpecificPermitted("app.ntk.ogtadd") && (item.getOgtadd() == null ? false : item.getOgtadd()));
             boolean hts = (security.isSpecificPermitted("app.ntk.hts") && (item.getHts() == null ? false : item.getHts()));
             boolean ome = (security.isSpecificPermitted("app.ntk.ome") && (item.getOme() == null ? false : item.getOme()));
             boolean bmn = (security.isSpecificPermitted("app.ntk.bmn") && (item.getBmn() == null ? false : item.getBmn()));
+            boolean otpp = (security.isSpecificPermitted("app.ntk.otpp") && (item.getOtpp() == null ? false : item.getOtpp()));
 
-            if(!(ogt || hts || ome || bmn)) check = false;
+            if(!(ogt || ogtadd || hts || ome || bmn || otpp)) check = false;
         }
         remarksTableRemove.setEnabled(check);
     }
@@ -277,11 +281,13 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
         boolean check = true;
         for(NtkBOMItem item : event.getSelected()){
             boolean ogt = (security.isSpecificPermitted("app.ntk.ogt") && (item.getOgt() == null ? false : item.getOgt()));
+            boolean ogtadd = (security.isSpecificPermitted("app.ntk.ogtadd") && (item.getOgtadd() == null ? false : item.getOgtadd()));
             boolean hts = (security.isSpecificPermitted("app.ntk.hts") && (item.getHts() == null ? false : item.getHts()));
             boolean ome = (security.isSpecificPermitted("app.ntk.ome") && (item.getOme() == null ? false : item.getOme()));
             boolean bmn = (security.isSpecificPermitted("app.ntk.bmn") && (item.getBmn() == null ? false : item.getBmn()));
+            boolean otpp = (security.isSpecificPermitted("app.ntk.otpp") && (item.getOtpp() == null ? false : item.getOtpp()));
 
-            if(!(ogt || hts || ome || bmn)) check = false;
+            if(!(ogt || ogtadd || hts || ome || bmn || otpp)) check = false;
         }
         componentsTableRemove.setEnabled(check);
     }
