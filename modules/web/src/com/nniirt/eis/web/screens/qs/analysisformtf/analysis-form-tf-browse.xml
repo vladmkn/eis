@@ -1,48 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
-        caption="msg://analysisFormComponentBrowse.caption"
-        focusComponent="analysisFormComponentsTable"
-        messagesPack="com.nniirt.eis.web.screens.analysisformcomponent">
+        caption="msg://analysisFormTFBrowse.caption"
+        focusComponent="analysisFormTFsTable"
+        messagesPack="com.nniirt.eis.web.screens.qs.analysisformtf">
     <data readOnly="true">
-        <collection id="analysisFormComponentsDc"
-                    class="com.nniirt.eis.entity.qs.AnalysisFormComponent">
+        <collection id="analysisFormTFsDc"
+                    class="com.nniirt.eis.entity.qs.AnalysisFormTF">
             <view extends="_local">
-                <property name="component" view="_minimal"/>
+                <property name="technicalForm" view="_minimal">
+                    <property name="documentNum"/>
+                    <property name="documentDate"/>
+                </property>
             </view>
-            <loader id="analysisFormComponentsDl">
+            <loader id="analysisFormTFsDl">
                 <query>
-                    <![CDATA[select e from eis_AnalysisFormComponent e]]>
+                    <![CDATA[select e from eis_AnalysisFormTF e]]>
                 </query>
             </loader>
         </collection>
     </data>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="analysisFormComponentsTable"
+    <layout expand="analysisFormTFsTable"
             spacing="true">
         <filter id="filter"
-                applyTo="analysisFormComponentsTable"
-                dataLoader="analysisFormComponentsDl">
+                applyTo="analysisFormTFsTable"
+                dataLoader="analysisFormTFsDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="analysisFormComponentsTable"
+        <groupTable id="analysisFormTFsTable"
                     width="100%"
-                    dataContainer="analysisFormComponentsDc">
+                    dataContainer="analysisFormTFsDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="quantity"/>
+                <column id="technicalForm"/>
+                <column id="definition"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="analysisFormComponentsTable.create"/>
-                <button id="editBtn" action="analysisFormComponentsTable.edit"/>
-                <button id="removeBtn" action="analysisFormComponentsTable.remove"/>
+                <button id="createBtn" action="analysisFormTFsTable.create"/>
+                <button id="editBtn" action="analysisFormTFsTable.edit"/>
+                <button id="removeBtn" action="analysisFormTFsTable.remove"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

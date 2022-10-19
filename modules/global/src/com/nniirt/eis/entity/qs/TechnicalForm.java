@@ -1,6 +1,7 @@
 package com.nniirt.eis.entity.qs;
 
 import com.haulmont.chile.core.annotations.Composition;
+import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.FileDescriptor;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Table(name = "EIS_TECHNICAL_FORM")
 @Entity(name = "eis_TechnicalForm")
+@NamePattern("Технический акт № %s от %s|documentNum,documentDate")
 public class TechnicalForm extends StandardEntity {
     private static final long serialVersionUID = 2002532952014752579L;
 

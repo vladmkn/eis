@@ -37,7 +37,9 @@
                     <property name="component" view="_minimal">
                         <property name="name"/>
                         <property name="blueprintname"/>
-                        <property name="uom" view="_minimal"/>
+                        <property name="uom" view="_minimal">
+                            <property name="nickname" />
+                        </property>
                     </property>
                     <property name="quantity"/>
                 </property>
@@ -66,7 +68,12 @@
                     <property name="code"/>
                     <property name="definition"/>
                 </property>
-                <property name="files" view="_minimal"/>
+                <property name="files" view="_minimal">
+                    <property name="name"/>
+                    <property name="extension"/>
+                    <property name="size"/>
+                    <property name="version"/>
+                </property>
                 <property name="formCreatorDivision" view="_minimal"/>
                 <property name="commission" view="_minimal">
                     <property name="member" view="_minimal">
@@ -82,6 +89,18 @@
                         <property name="jobTitle" view="_minimal"/>
                     </property>
                 </property>
+                <property name="product" view="_local"/>
+                <property name="conclusion" view="_minimal">
+                    <property name="accountable" view="_minimal">
+                        <property name="member" view="_minimal">
+                            <property name="nickname"/>
+                            <property name="name" />
+                        </property>
+                    </property>
+                    <property name="accountableInfo"/>
+                    <property name="definition"/>
+                    <property name="finaldate"/>
+                </property>
             </view>
             <loader/>
             <collection id="replacementTicketDc" property="replacementTicket"/>
@@ -90,124 +109,105 @@
             <collection id="filesDc" property="files"/>
             <collection id="commissionDc" property="commission"/>
             <collection id="approvingPersonDc" property="approvingPerson"/>
+            <collection id="conclusionDc" property="conclusion"/>
         </instance>
+        <collection id="productsDc" class="com.nniirt.eis.entity.catalog.Product" view="_minimal">
+            <loader id="productsDl">
+                <query>
+                    <![CDATA[select e from eis_Product e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="divisionDc" class="com.nniirt.eis.entity.qs.DivisionIndex" view="_minimal">
+            <loader id="divisionDl">
+                <query>
+                    <![CDATA[select e from eis_DivisionIndex e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="possibilityCorrectingDefectDc"
+                    class="com.nniirt.eis.entity.qs.catalog.PossibilityCorrectingDefect"
+                    view="_minimal">
+            <loader id="possibilityCorrectingDefectDl">
+                <query>
+                    <![CDATA[select e from eis_PossibilityCorrectingDefect e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="possibilityCorrectingDefectECBDc"
+                    class="com.nniirt.eis.entity.qs.catalog.PossibilityCorrectingDefectECB"
+                    view="_minimal">
+            <loader id="possibilityCorrectingDefectECBDl">
+                <query>
+                    <![CDATA[select e from eis_PossibilityCorrectingDefectECB e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="defectTypeDc" class="com.nniirt.eis.entity.qs.catalog.DefectType"
+                    view="_minimal">
+            <loader id="defectTypeDl">
+                <query>
+                    <![CDATA[select e from eis_DefectType e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="defectNatureDc" class="com.nniirt.eis.entity.qs.catalog.DefectNature"
+                    view="_minimal">
+            <loader id="defectNatureDl">
+                <query>
+                    <![CDATA[select e from eis_DefectNature e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="employeeDc" class="com.nniirt.eis.entity.catalog.Employee"
+                    view="_minimal">
+            <loader id="employeeDl">
+                <query>
+                    <![CDATA[select e from eis_Employee e]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <dialogMode height="600"
                 width="800"/>
     <layout expand="editActions" spacing="true">
         <tabSheet stylename="padded-tabbar" width="100%">
             <tab id="mainTab" caption="msg://analysisFormEdit.mainTab" margin="true" spacing="true">
-
                 <form id="form" dataContainer="analysisFormDc">
                     <column width="350px">
-                        <textField id="documentNumField" property="documentNum"/>
-                        <dateField id="documentDateField" property="documentDate"/>
+                        <lookupPickerField id="defectDivisionField" property="defectDivision"
+                                           optionsContainer="divisionDc"/>
+                        <textField id="defectDivisionDefField" property="defectDivisionDef"/>
+                        <textField id="documentNumField" property="documentNum" colspan="2"/>
+                        <dateField id="documentDateField" property="documentDate" colspan="2"/>
+                        <pickerField id="componentField" property="component" colspan="2" width="100%">
+                            <actions>
+                                <action id="lookup" type="picker_lookup"/>
+                                <action id="clear" type="picker_clear"/>
+                            </actions>
+                        </pickerField>
+                        <textField id="quantityField" property="quantity"/>
+                        <textField id="assemblyNumField" property="assemblyNum" colspan="2"/>
+                        <dateField id="manufactureDateField" property="manufactureDate" colspan="2"/>
+                        <textField id="masterComponentDefinitionField" property="masterComponentDefinition"/>
+                        <lookupPickerField id="productField" property="product" optionsContainer="productsDc"/>
+                        <lookupPickerField id="manufacturerField" property="manufacturer"
+                                           optionsContainer="divisionDc" colspan="2"/>
+                        <lookupPickerField id="developerField" property="developer" optionsContainer="divisionDc"
+                                           colspan="2"/>
+                        <dateField id="beginDateField" property="beginDate"/>
+                    </column>
+                    <column width="150px">
                         <checkBox id="externalDocumentField" property="externalDocument"/>
                         <checkBox id="militaryDocumentField" property="militaryDocument"/>
-                        <pickerField id="chairmanField" property="chairman">
-                            <actions>
-                                <action id="lookup" type="picker_lookup"/>
-                                <action id="clear" type="picker_clear"/>
-                            </actions>
-                        </pickerField>
-                        <pickerField id="defectDivisionField" property="defectDivision">
-                            <actions>
-                                <action id="lookup" type="picker_lookup"/>
-                                <action id="clear" type="picker_clear"/>
-                            </actions>
-                        </pickerField>
-                        <pickerField id="componentField" property="component">
-                            <actions>
-                                <action id="lookup" type="picker_lookup"/>
-                                <action id="clear" type="picker_clear"/>
-                            </actions>
-                        </pickerField>
                         <textField id="componentNumberField" property="componentNumber"/>
-                        <textField id="quantityField" property="quantity"/>
-                        <textField id="assemblyNumField" property="assemblyNum"/>
-                        <pickerField id="manufacturerField" property="manufacturer">
-                            <actions>
-                                <action id="lookup" type="picker_lookup"/>
-                                <action id="clear" type="picker_clear"/>
-                            </actions>
-                        </pickerField>
-                        <pickerField id="developerField" property="developer">
-                            <actions>
-                                <action id="lookup" type="picker_lookup"/>
-                                <action id="clear" type="picker_clear"/>
-                            </actions>
-                        </pickerField>
-                        <textField id="defectDivisionDefField" property="defectDivisionDef"/>
-                        <dateField id="defectDateField" property="defectDate"/>
-                        <textArea id="defectConditionsField" property="defectConditions" rows="5"/>
-                        <textArea id="defectDefinitionField" property="defectDefinition" rows="5"/>
-                        <textArea id="defectMustBeField" property="defectMustBe" rows="5"/>
-                        <textArea id="defectAsIsField" property="defectAsIs" rows="5"/>
-                        <textArea id="vDefectDefinitionField" property="vDefectDefinition" rows="5"/>
-                        <textArea id="vDefectMustBeField" property="vDefectMustBe" rows="5"/>
-                        <textArea id="vDefectAsIsField" property="vDefectAsIs" rows="5"/>
-                        <textArea id="vDefectCauseField" property="vDefectCause" rows="5"/>
-                        <textArea id="appendixField" property="appendix" rows="5"/>
-                        <pickerField id="possibilityCorrectingDefectField" property="possibilityCorrectingDefect">
-                            <actions>
-                                <action id="lookup" type="picker_lookup"/>
-                                <action id="clear" type="picker_clear"/>
-                            </actions>
-                        </pickerField>
-                        <pickerField id="possibilityCorrectingDefectECBField" property="possibilityCorrectingDefectECB">
-                            <actions>
-                                <action id="lookup" type="picker_lookup"/>
-                                <action id="clear" type="picker_clear"/>
-                            </actions>
-                        </pickerField>
-                        <pickerField id="defectTypeField" property="defectType">
-                            <actions>
-                                <action id="lookup" type="picker_lookup"/>
-                                <action id="clear" type="picker_clear"/>
-                            </actions>
-                        </pickerField>
-                        <pickerField id="defectNatureField" property="defectNature">
-                            <actions>
-                                <action id="lookup" type="picker_lookup"/>
-                                <action id="clear" type="picker_clear"/>
-                            </actions>
-                        </pickerField>
-                        <textField id="formCreatorField" property="formCreator"/>
-                        <textField id="formCreatorPhoneField" property="formCreatorPhone"/>
-                        <textField id="formInstanceField" property="formInstance"/>
-                        <pickerField id="formCreatorDivisionField" property="formCreatorDivision">
-                            <actions>
-                                <action id="lookup" type="picker_lookup"/>
-                                <action id="clear" type="picker_clear"/>
-                            </actions>
-                        </pickerField>
-                        <textArea id="inspectionResultsField" property="inspectionResults" rows="5"/>
-                        <dateField id="manufactureDateField" property="manufactureDate"/>
-                        <textField id="productNumberField" property="productNumber"/>
-                        <textField id="masterComponentDefinitionField" property="masterComponentDefinition"/>
                         <textField id="masterComponentNumberField" property="masterComponentNumber"/>
+                        <textField id="productNumberField" property="productNumber"/>
+                        <dateField id="endDateField" property="endDate"/>
                     </column>
                 </form>
-                <groupBox id="replacementTicketBox"
-                          caption="msg://com.nniirt.eis.entity.qs/AnalysisForm.replacementTicket">
-                    <table id="replacementTicketTable" dataContainer="replacementTicketDc" width="100%" height="200px">
-                        <actions>
-                            <action id="create" type="create"/>
-                            <action id="edit" type="edit"/>
-                            <action id="remove" type="remove"/>
-                        </actions>
-                        <columns>
-                            <column id="ticketNum"/>
-                        </columns>
-                        <buttonsPanel>
-                            <button action="replacementTicketTable.create"/>
-                            <button action="replacementTicketTable.edit"/>
-                            <button action="replacementTicketTable.remove"/>
-                        </buttonsPanel>
-                    </table>
-                </groupBox>
                 <groupBox id="technicalFormLinksBox"
-                          caption="msg://com.nniirt.eis.entity.qs/AnalysisForm.technicalFormLinks">
+                          caption="msg://com.nniirt.eis.entity.qs/AnalysisForm.technicalFormLinks" width="1200px">
                     <table id="technicalFormLinksTable" dataContainer="technicalFormLinksDc" width="100%"
                            height="200px">
                         <actions>
@@ -226,7 +226,68 @@
                         </buttonsPanel>
                     </table>
                 </groupBox>
-                <groupBox id="componentsBox" caption="msg://com.nniirt.eis.entity.qs/AnalysisForm.components">
+                <tabSheet id="mainTabDefect" stylename="padded-tabbar" width="1200px">
+                    <tab id="mainTabDefectConditions" caption="msg://analysisFormEdit.mainTabDefectConditions"
+                         margin="true" spacing="true">
+                        <textArea id="defectConditionsField" property="defectConditions" rows="5" width="100%"
+                                  dataContainer="analysisFormDc"/>
+                    </tab>
+                    <tab id="mainTabInspectionResults" caption="msg://analysisFormEdit.mainTabInspectionResults"
+                         margin="true" spacing="true">
+                        <textArea id="inspectionResultsField" property="inspectionResults" rows="5" width="100%"
+                                  dataContainer="analysisFormDc"/>
+                    </tab>
+                    <tab id="mainTabDefectDefinition" caption="msg://analysisFormEdit.mainTabDefectDefinition"
+                         margin="true" spacing="true">
+                        <textArea id="defectDefinitionField" property="defectDefinition" rows="5" width="100%"
+                                  dataContainer="analysisFormDc"/>
+                    </tab>
+                    <tab id="mainTabDefectMustBe" caption="msg://analysisFormEdit.mainTabDefectMustBe" margin="true"
+                         spacing="true">
+                        <textArea id="defectMustBeField" property="defectMustBe" rows="5" width="100%"
+                                  dataContainer="analysisFormDc"/>
+                    </tab>
+                    <tab id="mainTabDefectAsIs" caption="msg://analysisFormEdit.mainTabDefectAsIs" margin="true"
+                         spacing="true">
+                        <textArea id="defectAsIsField" property="defectAsIs" rows="5" width="100%"
+                                  dataContainer="analysisFormDc"/>
+                    </tab>
+                </tabSheet>
+                <hbox spacing="true">
+                    <label value="Дата обнаружения дефекта" align="MIDDLE_LEFT"/>
+                    <dateField id="defectDateField" property="defectDate" dateFormat="dd.MM.yyyy"
+                               dataContainer="analysisFormDc"/>
+                    <label value="Вид дефекта" align="MIDDLE_LEFT"/>
+                    <lookupPickerField id="defectTypeField" property="defectType"
+                                       optionsContainer="defectTypeDc" dataContainer="analysisFormDc"/>
+                    <label value="Установленный характер дефекта" align="MIDDLE_LEFT"/>
+                    <lookupPickerField id="defectNatureField" property="defectNature"
+                                       optionsContainer="defectNatureDc" dataContainer="analysisFormDc"/>
+                </hbox>
+                <tabSheet id="mainTabDefectV" stylename="padded-tabbar" width="1200px">
+                    <tab id="mainTabDefectDefinitionV" caption="msg://analysisFormEdit.mainTabDefectDefinitionV"
+                         margin="true" spacing="true">
+                        <textArea id="vDefectDefinitionField" property="vDefectDefinition" rows="5" width="100%"
+                                  dataContainer="analysisFormDc"/>
+                    </tab>
+                    <tab id="mainTabDefectMustBeV" caption="msg://analysisFormEdit.mainTabDefectMustBe" margin="true"
+                         spacing="true">
+                        <textArea id="vDefectMustBeField" property="vDefectMustBe" rows="5" width="100%"
+                                  dataContainer="analysisFormDc"/>
+                    </tab>
+                    <tab id="mainTabDefectAsIsV" caption="msg://analysisFormEdit.mainTabDefectAsIs" margin="true"
+                         spacing="true">
+                        <textArea id="vDefectAsIsField" property="vDefectAsIs" rows="5" width="100%"
+                                  dataContainer="analysisFormDc"/>
+                    </tab>
+                    <tab id="mainTabDefectCauseV" caption="msg://analysisFormEdit.mainDefectCauseV"
+                         margin="true" spacing="true">
+                        <textArea id="vDefectCauseField" property="vDefectCause" rows="5" width="100%"
+                                  dataContainer="analysisFormDc"/>
+                    </tab>
+                </tabSheet>
+                <groupBox id="componentsBox" caption="msg://com.nniirt.eis.entity.qs/AnalysisForm.components"
+                          width="1200px">
                     <table id="componentsTable" dataContainer="componentsDc" width="100%" height="200px">
                         <actions>
                             <action id="create" type="create"/>
@@ -236,6 +297,7 @@
                         <columns>
                             <column id="component"/>
                             <column id="quantity"/>
+                            <column id="component.uom.nickname" caption="ЕИ"/>
                         </columns>
                         <buttonsPanel>
                             <button action="componentsTable.create"/>
@@ -244,25 +306,80 @@
                         </buttonsPanel>
                     </table>
                 </groupBox>
-                <groupBox id="filesBox" caption="msg://com.nniirt.eis.entity.qs/AnalysisForm.files">
-                    <table id="filesTable" dataContainer="filesDc" width="100%" height="200px">
+                <groupBox id="replacementTicketBox"
+                          caption="msg://com.nniirt.eis.entity.qs/AnalysisForm.replacementTicket" width="1200px">
+                    <table id="replacementTicketTable" dataContainer="replacementTicketDc" width="100%" height="200px">
                         <actions>
-                            <action id="add" type="add"/>
-                            <action id="exclude" type="exclude"/>
+                            <action id="create" type="create"/>
+                            <action id="edit" type="edit"/>
+                            <action id="remove" type="remove"/>
                         </actions>
                         <columns>
-                            <column id="name"/>
-                            <column id="createDate"/>
-                            <column id="extension"/>
+                            <column id="ticketNum"/>
                         </columns>
                         <buttonsPanel>
-                            <button action="filesTable.add"/>
-                            <button action="filesTable.exclude"/>
+                            <button action="replacementTicketTable.create"/>
+                            <button action="replacementTicketTable.edit"/>
+                            <button action="replacementTicketTable.remove"/>
                         </buttonsPanel>
                     </table>
                 </groupBox>
+                <groupBox id="conclusionBox" caption="msg://com.nniirt.eis.entity.qs/AnalysisForm.conclusion"
+                          width="1200px">
+                    <table id="conclusionTable" dataContainer="conclusionDc" width="100%" height="300px">
+                        <actions>
+                            <action id="create" type="create"/>
+                            <action id="edit" type="edit"/>
+                            <action id="remove" type="remove"/>
+                        </actions>
+                        <columns>
+                            <column id="definition" width="700"/>
+                            <column id="accountableInfo" width="200"/>
+                            <column id="finaldate" width="200"/>
+                        </columns>
+                        <buttonsPanel>
+                            <button action="conclusionTable.create"/>
+                            <button action="conclusionTable.edit"/>
+                            <button action="conclusionTable.remove"/>
+                        </buttonsPanel>
+                    </table>
+                </groupBox>
+                <form id="form1" dataContainer="analysisFormDc">
+                    <column width="450px">
+                        <textArea id="appendixField" property="appendix" rows="5"/>
+                        <lookupPickerField id="possibilityCorrectingDefectField" property="possibilityCorrectingDefect"
+                                           optionsContainer="possibilityCorrectingDefectDc"/>
+                        <lookupPickerField id="possibilityCorrectingDefectECBField"
+                                           property="possibilityCorrectingDefectECB"
+                                           optionsContainer="possibilityCorrectingDefectECBDc"/>
+                    </column>
+                </form>
+                <vbox spacing="true">
+                    <hbox spacing="true">
+                        <label value="Акт оформил" align="MIDDLE_LEFT"/>
+                        <textField id="formCreatorField" property="formCreator" dataContainer="analysisFormDc"/>
+                        <label value="Составлен в" align="MIDDLE_LEFT"/>
+                        <textField id="formInstanceField" property="formInstance" dataContainer="analysisFormDc"/>
+                        <label value="экземплярах," align="MIDDLE_LEFT"/>
+                        <label value=" экземпляр № " align="MIDDLE_LEFT"/>
+                        <textField id="formInstanceNumberField" property="formInstanceNumber" dataContainer="analysisFormDc"/>
+                    </hbox>
+                    <hbox spacing="true">
+                        <label value="телефон" align="MIDDLE_LEFT"/>
+                        <textField id="formCreatorPhoneField" property="formCreatorPhone"
+                                   dataContainer="analysisFormDc"/>
+                        <label value="подразделение" align="MIDDLE_LEFT"/>
+                        <lookupPickerField id="formCreatorDivisionField" property="formCreatorDivision"
+                                           optionsContainer="divisionDc" dataContainer="analysisFormDc"/>
+                    </hbox>
+                </vbox>
             </tab>
-            <tab id="materialTab" caption="msg://analysisFormEdit.commissionTab" margin="true" spacing="true">
+            <tab id="commissionTab" caption="msg://analysisFormEdit.commissionTab" margin="true" spacing="true">
+                <form id="commissionForm" dataContainer="analysisFormDc">
+                    <column width="450px">
+                        <lookupPickerField id="chairmanField" property="chairman" optionsContainer="employeeDc"/>
+                    </column>
+                </form>
                 <split width="950px" height="650px" orientation="vertical" pos="50"
                        maxSplitPosition="400px" minSplitPosition="150px">
                     <table id="commissionTable" dataContainer="commissionDc" width="100%" height="100%"
@@ -301,6 +418,39 @@
                         </table>
                     </groupBox>
                 </split>
+            </tab>
+            <tab id="addTab" caption="msg://analysisFormEdit.filesTab" margin="true" spacing="true">
+                <buttonsPanel>
+                    <upload id="upload"
+                            dropZone="contentHBox"
+                            showClearButton="false"
+                            uploadButtonIcon="UPLOAD"
+                            uploadButtonCaption=""
+                            fileStoragePutMode="MANUAL"
+                            permittedExtensions=".png,.jpg,.pdf,.doc,.docx"
+                            showFileName="false"/>
+                    <button action="filesTable.download"/>
+                    <button action="filesTable.remove" stylename="danger"/>
+                </buttonsPanel>
+                <hbox id="contentHBox" spacing="true" width="950px">
+                    <table id="filesTable" dataContainer="filesDc"
+                           emptyStateMessage="Прикрепить файлы к документу можно с использованием метода Drag’n’Drop"
+                           width="100%" height="200px">
+                        <actions>
+                            <action id="add" type="add"/>
+                            <action id="remove" type="remove"/>
+                            <action id="edit" type="edit"/>
+                            <action id="exclude" type="exclude"/>
+                            <action id="download" trackSelection="true" icon="DOWNLOAD"/>
+                        </actions>
+                        <columns>
+                            <column id="name" width="350px"/>
+                            <column id="extension"/>
+                            <column id="size"/>
+                            <column id="createDate"/>
+                        </columns>
+                    </table>
+                </hbox>
             </tab>
         </tabSheet>
         <hbox id="editActions" spacing="true">

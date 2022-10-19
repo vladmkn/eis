@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://analysisFormTFEdit.caption"
+        focusComponent="form"
+        messagesPack="com.nniirt.eis.web.screens.qs.analysisformtf">
+    <data>
+        <instance id="analysisFormTFDc"
+                  class="com.nniirt.eis.entity.qs.AnalysisFormTF">
+            <view extends="_local">
+                <property name="technicalForm" view="_minimal">
+                    <property name="documentNum"/>
+                    <property name="documentDate"/>
+                </property>
+            </view>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="analysisFormTFDc">
+            <column width="350px">
+                <pickerField id="technicalFormField" property="technicalForm">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <textArea id="definitionField" property="definition" rows="5"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

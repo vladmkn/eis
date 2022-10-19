@@ -1,5 +1,6 @@
 package com.nniirt.eis.entity.qs.catalog;
 
+import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Table;
 
 @Table(name = "EIS_DEFECT_TYPE")
 @Entity(name = "eis_DefectType")
+@NamePattern("%s|definition")
 public class DefectType extends StandardEntity {
     private static final long serialVersionUID = 3135584085802928482L;
 

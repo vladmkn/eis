@@ -6,7 +6,13 @@
     <data>
         <instance id="analysisFormComponentDc"
                   class="com.nniirt.eis.entity.qs.AnalysisFormComponent">
-            <view extends="_local"/>
+            <view extends="_local">
+                <property name="component" view="_minimal">
+                    <property name="uom" view="_minimal">
+                        <property name="nickname" />
+                    </property>
+                </property>
+            </view>
             <loader/>
         </instance>
     </data>
@@ -15,7 +21,9 @@
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="analysisFormComponentDc">
             <column width="350px">
+                <pickerField id="componentField" property="component"/>
                 <textField id="quantityField" property="quantity"/>
+                <textField id="uomField" property="component.uom.nickname" editable="false"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

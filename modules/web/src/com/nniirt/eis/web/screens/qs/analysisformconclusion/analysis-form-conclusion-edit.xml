@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://analysisFormConclusionEdit.caption"
+        focusComponent="form"
+        messagesPack="com.nniirt.eis.web.screens.qs.analysisformconclusion">
+    <data>
+        <instance id="analysisFormConclusionDc"
+                  class="com.nniirt.eis.entity.qs.AnalysisFormConclusion">
+            <view extends="_local">
+                <property name="accountable" view="_local">
+                    <property name="member" view="_local">
+                        <property name="name"/>
+                        <property name="nickname"/>
+                    </property>
+                </property>
+            </view>
+            <loader/>
+            <collection id="accountableDc" property="accountable"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="analysisFormConclusionDc">
+            <column width="550px">
+                <textArea id="definitionField" property="definition" rows="5"/>
+                <textField id="finaldateField" property="finaldate"/>
+                <textField id="recipientField" property="recipient"/>
+                <textField id="addressField" property="address"/>
+                <textField id="faxField" property="fax"/>
+                <textField id="phoneField" property="phone"/>
+            </column>
+        </form>
+        <groupBox id="accountableBox" caption="msg://com.nniirt.eis.entity.qs/AnalysisFormConclusion.accountable"
+                  width="600px">
+            <table id="accountableTable" dataContainer="accountableDc" width="100%" height="200px">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="member"/>
+<!--                    <column id="member.name"/>-->
+                </columns>
+                <buttonsPanel>
+                    <button action="accountableTable.create"/>
+                    <button action="accountableTable.edit"/>
+                    <button action="accountableTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

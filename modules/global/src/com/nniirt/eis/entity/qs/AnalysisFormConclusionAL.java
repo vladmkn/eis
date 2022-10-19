@@ -12,6 +12,7 @@ public class AnalysisFormConclusionAL extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private DivisionIndex member;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ANALYSIS_FORM_CONCLUSION_ID")
     private AnalysisFormConclusion analysisFormConclusion;

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://analysisFormConclusionALEdit.caption"
+        focusComponent="form"
+        messagesPack="com.nniirt.eis.web.screens.qs.analysisformconclusional">
+    <data>
+        <instance id="analysisFormConclusionALDc"
+                  class="com.nniirt.eis.entity.qs.AnalysisFormConclusionAL">
+            <view extends="_local">
+                <property name="member" view="_minimal">
+                    <property name="name"/>
+                    <property name="master" view="_minimal"/>
+                </property>
+            </view>
+            <loader/>
+        </instance>
+        <collection id="divisionDc" class="com.nniirt.eis.entity.qs.DivisionIndex" view="_minimal">
+            <loader id="divisionDl">
+                <query>
+                    <![CDATA[select e from eis_DivisionIndex e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="analysisFormConclusionALDc">
+            <column width="350px">
+                <lookupPickerField id="memberField" property="member"
+                                   optionsContainer="divisionDc"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

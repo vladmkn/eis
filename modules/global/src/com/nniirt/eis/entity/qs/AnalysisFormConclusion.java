@@ -1,6 +1,7 @@
 package com.nniirt.eis.entity.qs;
 
 import com.haulmont.chile.core.annotations.Composition;
+import com.haulmont.chile.core.annotations.MetaProperty;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
 import com.haulmont.cuba.core.global.DeletePolicy;
@@ -36,6 +37,32 @@ public class AnalysisFormConclusion extends StandardEntity {
 
     @Column(name = "PHONE", length = 300)
     private String phone;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ANALYSIS_FORM_ID")
+    private AnalysisForm analysisForm;
+
+    @MetaProperty(related = "accountable")
+    public String getAccountableInfo() {
+        String list = "";
+
+        if(accountable != null)
+        for (AnalysisFormConclusionAL item: accountable) {
+            if(item.getMember() != null) {
+                list += (list != "" ? ", " : "") + item.getMember().getNickname();
+            }
+        }
+        
+        return list;
+    }
+
+    public AnalysisForm getAnalysisForm() {
+        return analysisForm;
+    }
+
+    public void setAnalysisForm(AnalysisForm analysisForm) {
+        this.analysisForm = analysisForm;
+    }
 
     public String getPhone() {
         return phone;

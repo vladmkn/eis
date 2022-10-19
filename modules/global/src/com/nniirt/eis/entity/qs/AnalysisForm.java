@@ -148,6 +148,9 @@ public class AnalysisForm extends StandardEntity {
     @Column(name = "FORM_INSTANCE_PLACE", length = 50)
     private String formInstance;
 
+    @Column(name = "FORM_INSTANCE_NUMBER")
+    private String formInstanceNumber;
+
     @ManyToMany
     @JoinTable(name = "EIS_ANALYSIS_FORM_FILE_DESCRIPTOR_LINK",
             joinColumns = @JoinColumn(name = "ANALYSIS_FORM_ID"),
@@ -188,6 +191,51 @@ public class AnalysisForm extends StandardEntity {
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "analysisForm")
     private List<AnalysisFormApprovingPerson> approvingPerson;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "BEGIN_DATE")
+    private Date beginDate;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "END_DATE")
+    private Date endDate;
+
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "analysisForm")
+    private List<AnalysisFormConclusion> conclusion;
+
+    public String getFormInstanceNumber() {
+        return formInstanceNumber;
+    }
+
+    public void setFormInstanceNumber(String formInstanceNumber) {
+        this.formInstanceNumber = formInstanceNumber;
+    }
+
+    public List<AnalysisFormConclusion> getConclusion() {
+        return conclusion;
+    }
+
+    public void setConclusion(List<AnalysisFormConclusion> conclusion) {
+        this.conclusion = conclusion;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Date getBeginDate() {
+        return beginDate;
+    }
+
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
+    }
 
     public Employee getChairman() {
         return chairman;
@@ -325,35 +373,35 @@ public class AnalysisForm extends StandardEntity {
         this.appendix = appendix;
     }
 
-    public String getvDefectCause() {
+    public String getVDefectCause() {
         return vDefectCause;
     }
 
-    public void setvDefectCause(String vDefectCause) {
+    public void setVDefectCause(String vDefectCause) {
         this.vDefectCause = vDefectCause;
     }
 
-    public String getvDefectAsIs() {
+    public String getVDefectAsIs() {
         return vDefectAsIs;
     }
 
-    public void setvDefectAsIs(String vDefectAsIs) {
+    public void setVDefectAsIs(String vDefectAsIs) {
         this.vDefectAsIs = vDefectAsIs;
     }
 
-    public String getvDefectMustBe() {
+    public String getVDefectMustBe() {
         return vDefectMustBe;
     }
 
-    public void setvDefectMustBe(String vDefectMustBe) {
+    public void setVDefectMustBe(String vDefectMustBe) {
         this.vDefectMustBe = vDefectMustBe;
     }
 
-    public String getvDefectDefinition() {
+    public String getVDefectDefinition() {
         return vDefectDefinition;
     }
 
-    public void setvDefectDefinition(String vDefectDefinition) {
+    public void setVDefectDefinition(String vDefectDefinition) {
         this.vDefectDefinition = vDefectDefinition;
     }
 

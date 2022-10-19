@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://analysisFormCommissionBrowse.caption"
+        focusComponent="analysisFormCommissionsTable"
+        messagesPack="com.nniirt.eis.web.screens.qs.analysisformcommission">
+    <data readOnly="true">
+        <collection id="analysisFormCommissionsDc"
+                    class="com.nniirt.eis.entity.qs.AnalysisFormCommission">
+            <view extends="_local">
+                <property name="member" view="_minimal">
+                    <property name="firstname"/>
+                    <property name="patronymic"/>
+                    <property name="jobTitle" view="_minimal"/>
+                </property>
+            </view>
+            <loader id="analysisFormCommissionsDl">
+                <query>
+                    <![CDATA[select e from eis_AnalysisFormCommission e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="analysisFormCommissionsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="analysisFormCommissionsTable"
+                dataLoader="analysisFormCommissionsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="analysisFormCommissionsTable"
+                    width="100%"
+                    dataContainer="analysisFormCommissionsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="member"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="analysisFormCommissionsTable.create"/>
+                <button id="editBtn" action="analysisFormCommissionsTable.edit"/>
+                <button id="removeBtn" action="analysisFormCommissionsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

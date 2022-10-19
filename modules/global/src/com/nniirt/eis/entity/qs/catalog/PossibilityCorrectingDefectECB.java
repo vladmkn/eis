@@ -1,5 +1,6 @@
 package com.nniirt.eis.entity.qs.catalog;
 
+import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Table;
 
 @Table(name = "EIS_POSSIBILITY_CORRECTING_DEFECT_ECB")
 @Entity(name = "eis_PossibilityCorrectingDefectECB")
+@NamePattern("%s|definition")
 public class PossibilityCorrectingDefectECB extends StandardEntity {
     private static final long serialVersionUID = -8793381522616415609L;
 

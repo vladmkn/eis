@@ -422,6 +422,7 @@ create table EIS_ANALYSIS_FORM (
     FORM_CREATOR varchar(300),
     FORM_CREATOR_PHONE varchar(50),
     FORM_INSTANCE_PLACE varchar(50),
+    FORM_INSTANCE_NUMBER varchar(255),
     FORM_CREATOR_DIVISION_ID uuid,
     INSPECTION_RESULTS text,
     MANUFACTURE_DATE date,
@@ -429,6 +430,8 @@ create table EIS_ANALYSIS_FORM (
     PRODUCT_NUMBER varchar(300),
     MASTER_COMPONENT_DEFINITION varchar(300),
     MASTER_COMPONENT_NUMBER varchar(300),
+    BEGIN_DATE date,
+    END_DATE date,
     --
     primary key (ID)
 )^
@@ -667,6 +670,7 @@ create table EIS_ANALYSIS_FORM_CONCLUSION (
     ADDRESS varchar(300),
     FAX varchar(300),
     PHONE varchar(300),
+    ANALYSIS_FORM_ID uuid not null,
     --
     primary key (ID)
 )^

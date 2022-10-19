@@ -9,6 +9,10 @@
                     class="com.nniirt.eis.entity.qs.AnalysisForm">
             <view extends="_local">
                 <property name="defectDivision" view="_minimal"/>
+                <property name="product" view="_minimal" />
+                <property name="component" view="_minimal">
+                    <property name="uom" view="_minimal"/>
+                </property>
             </view>
             <loader id="analysisFormsDl">
                 <query>
@@ -35,33 +39,15 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
+                <column id="assemblyNum"/>
                 <column id="documentNum"/>
                 <column id="documentDate"/>
+                <column id="defectDivision"/>
                 <column id="externalDocument"/>
                 <column id="militaryDocument"/>
-                <column id="defectDivision"/>
-                <column id="componentNumber"/>
-                <column id="quantity"/>
-                <column id="assemblyNum"/>
-                <column id="defectDivisionDef"/>
-                <column id="defectDate"/>
-                <column id="defectConditions"/>
-                <column id="defectDefinition"/>
-                <column id="defectMustBe"/>
-                <column id="defectAsIs"/>
-                <column id="vDefectDefinition"/>
-                <column id="vDefectMustBe"/>
-                <column id="vDefectAsIs"/>
-                <column id="vDefectCause"/>
-                <column id="appendix"/>
-                <column id="formCreator"/>
-                <column id="formCreatorPhone"/>
-                <column id="formInstance"/>
-                <column id="inspectionResults"/>
-                <column id="manufactureDate"/>
-                <column id="productNumber"/>
-                <column id="masterComponentDefinition"/>
-                <column id="masterComponentNumber"/>
+                <column id="product" />
+                <column id="component" />
+                <column id="quantity" />
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

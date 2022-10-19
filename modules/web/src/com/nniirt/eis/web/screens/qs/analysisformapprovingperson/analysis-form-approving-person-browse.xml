@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://analysisFormApprovingPersonBrowse.caption"
+        focusComponent="analysisFormApprovingPersonsTable"
+        messagesPack="com.nniirt.eis.web.screens.qs.analysisformapprovingperson">
+    <data readOnly="true">
+        <collection id="analysisFormApprovingPersonsDc"
+                    class="com.nniirt.eis.entity.qs.AnalysisFormApprovingPerson">
+            <view extends="_local">
+                <property name="member" view="_minimal">
+                    <property name="firstname"/>
+                    <property name="patronymic"/>
+                    <property name="jobTitle" view="_minimal"/>
+                </property>
+            </view>
+            <loader id="analysisFormApprovingPersonsDl">
+                <query>
+                    <![CDATA[select e from eis_AnalysisFormApprovingPerson e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="analysisFormApprovingPersonsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="analysisFormApprovingPersonsTable"
+                dataLoader="analysisFormApprovingPersonsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="analysisFormApprovingPersonsTable"
+                    width="100%"
+                    dataContainer="analysisFormApprovingPersonsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="member"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="analysisFormApprovingPersonsTable.create"/>
+                <button id="editBtn" action="analysisFormApprovingPersonsTable.edit"/>
+                <button id="removeBtn" action="analysisFormApprovingPersonsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

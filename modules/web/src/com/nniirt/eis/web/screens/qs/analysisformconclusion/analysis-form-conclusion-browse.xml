@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://analysisFormConclusionBrowse.caption"
+        focusComponent="analysisFormConclusionsTable"
+        messagesPack="com.nniirt.eis.web.screens.qs.analysisformconclusion">
+    <data readOnly="true">
+        <collection id="analysisFormConclusionsDc"
+                    class="com.nniirt.eis.entity.qs.AnalysisFormConclusion">
+            <view extends="_local"/>
+            <loader id="analysisFormConclusionsDl">
+                <query>
+                    <![CDATA[select e from eis_AnalysisFormConclusion e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="analysisFormConclusionsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="analysisFormConclusionsTable"
+                dataLoader="analysisFormConclusionsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="analysisFormConclusionsTable"
+                    width="100%"
+                    dataContainer="analysisFormConclusionsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="definition"/>
+                <column id="finaldate"/>
+                <column id="recipient"/>
+                <column id="address"/>
+                <column id="fax"/>
+                <column id="phone"/>
+                <column id="accountableInfo"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="analysisFormConclusionsTable.create"/>
+                <button id="editBtn" action="analysisFormConclusionsTable.edit"/>
+                <button id="removeBtn" action="analysisFormConclusionsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

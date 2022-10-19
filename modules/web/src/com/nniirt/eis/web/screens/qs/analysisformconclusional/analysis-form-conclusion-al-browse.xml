@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://analysisFormConclusionALBrowse.caption"
+        focusComponent="analysisFormConclusionALsTable"
+        messagesPack="com.nniirt.eis.web.screens.qs.analysisformconclusional">
+    <data readOnly="true">
+        <collection id="analysisFormConclusionALsDc"
+                    class="com.nniirt.eis.entity.qs.AnalysisFormConclusionAL">
+            <view extends="_local">
+                <property name="member" view="_minimal">
+                    <property name="name"/>
+                    <property name="master" view="_minimal"/>
+                </property>
+            </view>
+            <loader id="analysisFormConclusionALsDl">
+                <query>
+                    <![CDATA[select e from eis_AnalysisFormConclusionAL e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="analysisFormConclusionALsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="analysisFormConclusionALsTable"
+                dataLoader="analysisFormConclusionALsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="analysisFormConclusionALsTable"
+                    width="100%"
+                    dataContainer="analysisFormConclusionALsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="member"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="analysisFormConclusionALsTable.create"/>
+                <button id="editBtn" action="analysisFormConclusionALsTable.edit"/>
+                <button id="removeBtn" action="analysisFormConclusionALsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

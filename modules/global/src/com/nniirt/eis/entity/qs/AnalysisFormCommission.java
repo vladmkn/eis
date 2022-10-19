@@ -13,6 +13,7 @@ public class AnalysisFormCommission extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Employee member;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ANALYSIS_FORM_ID")
     private AnalysisForm analysisForm;

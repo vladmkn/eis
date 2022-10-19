@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://analysisFormCommissionEdit.caption"
+        focusComponent="form"
+        messagesPack="com.nniirt.eis.web.screens.qs.analysisformcommission">
+    <data>
+        <instance id="analysisFormCommissionDc"
+                  class="com.nniirt.eis.entity.qs.AnalysisFormCommission">
+            <view extends="_local">
+                <property name="member" view="_minimal">
+                    <property name="firstname"/>
+                    <property name="patronymic"/>
+                    <property name="jobTitle" view="_minimal"/>
+                </property>
+            </view>
+            <loader/>
+        </instance>
+        <collection id="employeeDc" class="com.nniirt.eis.entity.catalog.Employee"
+                    view="_minimal">
+            <loader id="employeeDl">
+                <query>
+                    <![CDATA[select e from eis_Employee e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="analysisFormCommissionDc">
+            <column width="350px">
+                <lookupPickerField id="memberField" property="member" optionsContainer="employeeDc"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
