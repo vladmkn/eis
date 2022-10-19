@@ -77,11 +77,14 @@ create table EIS_NTK_ITEM (
     MATERIAL_SIZE varchar(255),
     STATUS integer,
     OGT boolean,
+    OGTADD boolean,
     OGTMATERIAL boolean,
     HTSMATERIAL boolean,
+    OGTADDMATERIAL boolean,
     HTS boolean,
     OME boolean,
     BMN boolean,
+    OTPP boolean,
     --
     primary key (ID)
 )^
@@ -113,6 +116,8 @@ create table EIS_NTK_BOM_ITEM (
     HTS boolean,
     OME boolean,
     BMN boolean,
+    OTPP boolean,
+    OGTADD boolean,
     --
     primary key (ID)
 )^
@@ -373,9 +378,11 @@ create table EIS_NTK_REMARK_ITEM (
     --
     TEXT text not null,
     OGT boolean,
+    OGTADD boolean,
     HTS boolean,
     OME boolean,
     BMN boolean,
+    OTPP boolean,
     NTK_ITEM_ID uuid not null,
     --
     primary key (ID)

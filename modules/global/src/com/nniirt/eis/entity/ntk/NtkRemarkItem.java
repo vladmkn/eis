@@ -19,6 +19,9 @@ public class NtkRemarkItem extends StandardEntity {
     @Column(name = "OGT")
     private Boolean ogt;
 
+    @Column(name = "OGTADD")
+    private Boolean ogtadd;
+
     @Column(name = "HTS")
     private Boolean hts;
 
@@ -28,9 +31,28 @@ public class NtkRemarkItem extends StandardEntity {
     @Column(name = "BMN")
     private Boolean bmn;
 
+    @Column(name = "OTPP")
+    private Boolean otpp;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "NTK_ITEM_ID")
     private NtkItem ntkItem;
+
+    public Boolean getOtpp() {
+        return otpp;
+    }
+
+    public void setOtpp(Boolean otpp) {
+        this.otpp = otpp;
+    }
+
+    public Boolean getOgtadd() {
+        return ogtadd;
+    }
+
+    public void setOgtadd(Boolean ogtadd) {
+        this.ogtadd = ogtadd;
+    }
 
     public NtkItem getNtkItem() {
         return ntkItem;

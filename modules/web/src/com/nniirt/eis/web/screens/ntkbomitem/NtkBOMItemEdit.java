@@ -21,11 +21,15 @@ public class NtkBOMItemEdit extends StandardEditor<NtkBOMItem> {
     @Inject
     protected CheckBox ogtField;
     @Inject
+    protected CheckBox ogtaddField;
+    @Inject
     protected CheckBox htsField;
     @Inject
     protected CheckBox omeField;
     @Inject
     protected CheckBox bmnField;
+    @Inject
+    protected CheckBox otppField;
     @Inject
     private Security security;
     @Inject
@@ -38,15 +42,19 @@ public class NtkBOMItemEdit extends StandardEditor<NtkBOMItem> {
 
         if(componentField.getValue() == null) {
             if (security.isSpecificPermitted("app.ntk.ogt")) ogtField.setValue(Boolean.TRUE); else
+            if (security.isSpecificPermitted("app.ntk.ogtadd")) ogtaddField.setValue(Boolean.TRUE); else
             if (security.isSpecificPermitted("app.ntk.hts")) htsField.setValue(Boolean.TRUE); else
             if (security.isSpecificPermitted("app.ntk.ome")) omeField.setValue(Boolean.TRUE); else
-            if (security.isSpecificPermitted("app.ntk.bmn")) bmnField.setValue(Boolean.TRUE);
+            if (security.isSpecificPermitted("app.ntk.bmn")) bmnField.setValue(Boolean.TRUE); else
+            if (security.isSpecificPermitted("app.ntk.otpp")) otppField.setValue(Boolean.TRUE);
         }
 
         boolean check =  ((security.isSpecificPermitted("app.ntk.ogt") && ogtField.getValue()) ||
+                (security.isSpecificPermitted("app.ntk.ogtadd") && ogtaddField.getValue()) ||
                 (security.isSpecificPermitted("app.ntk.hts") && htsField.getValue()) ||
                 (security.isSpecificPermitted("app.ntk.ome") && omeField.getValue()) ||
-                (security.isSpecificPermitted("app.ntk.bmn") && bmnField.getValue())) &&
+                (security.isSpecificPermitted("app.ntk.bmn") && bmnField.getValue()) ||
+                (security.isSpecificPermitted("app.ntk.otpp") && otppField.getValue())) &&
                 !(getEditedEntity().getNtkItem().getStatus() != null &&
                         getEditedEntity().getNtkItem().getStatus() == DocumentStatuses.COMPLETED);
 

@@ -3,9 +3,11 @@
     <specific>
         <category id="app">
             <permission id="app.ntk.ogt"/>
+            <permission id="app.ntk.ogtadd"/>
             <permission id="app.ntk.hts"/>
             <permission id="app.ntk.ome"/>
             <permission id="app.ntk.bmn"/>
+            <permission id="app.ntk.otpp"/>
         </category>
     </specific>
 </permission-config>

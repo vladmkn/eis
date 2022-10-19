@@ -63,6 +63,28 @@ public class NtkBOMItem extends StandardEntity {
     @Column(name = "BMN")
     private Boolean bmn;
 
+    @Column(name = "OTPP")
+    private Boolean otpp;
+
+    @Column(name = "OGTADD")
+    private Boolean ogtadd;
+
+    public Boolean getOtpp() {
+        return otpp;
+    }
+
+    public void setOtpp(Boolean otpp) {
+        this.otpp = otpp;
+    }
+
+    public Boolean getOgtadd() {
+        return ogtadd;
+    }
+
+    public void setOgtadd(Boolean ogtadd) {
+        this.ogtadd = ogtadd;
+    }
+
     public Boolean getBmn() {
         return bmn;
     }

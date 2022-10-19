@@ -53,6 +53,8 @@
                 <column id="kzap"/>
                 <column id="ratio"/>
                 <column id="remark"/>
+                <column id="otpp"/>
+                <column id="ogtadd"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

@@ -77,10 +77,13 @@
 <!--                <column id="route"/>-->
                 <column id="status"/>
                 <column id="ogt" width="70px"/>
+                <column id="ogtadd" width="70px"/>
                 <column id="hts" width="70px"/>
                 <column id="ome" width="70px"/>
                 <column id="bmn" width="70px"/>
+                <column id="otpp" width="70px"/>
                 <column id="createdBy" width="150px"/>
+                <column id="createTs" width="150px"/>
                 <column id="updatedBy" width="150px"/>
                 <column id="updateTs" width="150px"/>
             </columns>

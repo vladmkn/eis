@@ -45,16 +45,16 @@
             <tab id="mainTab" caption="msg://ntkItemEdit.mainTab" margin="true" spacing="true">
                 <hbox spacing="true" margin="true">
                     <form id="formMainTab" dataContainer="ntkItemDc" captionPosition="TOP">
-                        <column width="350px">
+                        <column width="400px">
                             <textField id="blueprintField" property="blueprint"/>
                             <textField id="nameField" colspan="3" property="name" width="100%"/>
                             <textField id="routeField" property="route"/>
                             <groupBox caption="Габариты ДСЕ, мм" stylename="well" orientation="horizontal"
                                       colspan="2" width="100%" align="MIDDLE_CENTER" id="grpGeometry" >
-                                <textField id="gbLengthField" property="gbLength" caption="длина" width="100px" dataContainer="ntkItemDc"/>
-                                <textField id="gbWidthField" property="gbWidth" caption="ширина" width="100px" dataContainer="ntkItemDc"/>
-                                <textField id="gbHeightField" property="gbHeight" caption="высота" width="100px" dataContainer="ntkItemDc"/>
-                                <textField id="gbDiameterField" property="gbDiameter" caption="диаметр" width="100px" dataContainer="ntkItemDc"/>
+                                <textField id="gbLengthField" property="gbLength" caption="длина" width="130px" dataContainer="ntkItemDc"/>
+                                <textField id="gbWidthField" property="gbWidth" caption="ширина" width="130px" dataContainer="ntkItemDc"/>
+                                <textField id="gbHeightField" property="gbHeight" caption="высота/толщина" width="130px" dataContainer="ntkItemDc"/>
+                                <textField id="gbDiameterField" property="gbDiameter" caption="диаметр" width="130px" dataContainer="ntkItemDc"/>
                             </groupBox>
                         </column>
                         <column width="150px">
@@ -68,11 +68,15 @@
                         </column>
                     </form>
                     <groupBox caption="Выполнено" id="checkGroupBox">
-                        <checkBox id="ogtField" property="ogt" dataContainer="ntkItemDc" caption="ОГТ"/>
+                        <checkBox id="ogtField" property="ogt" dataContainer="ntkItemDc" caption="ОГТ1"/>
+                        <checkBox id="ogtaddField" property="ogtadd" dataContainer="ntkItemDc" caption="ОГТ2"/>
                         <checkBox id="htsField" property="hts" dataContainer="ntkItemDc" caption="ХТС"/>
                         <checkBox id="omeField" property="ome" dataContainer="ntkItemDc" caption="ОМЭ"/>
                         <checkBox id="bmnField" property="bmn" dataContainer="ntkItemDc" caption="БМН"/>
+                        <checkBox id="otppField" property="otpp" dataContainer="ntkItemDc" caption="ОТПП"/>
                         <checkBox id="ogtmaterialField" property="ogtmaterial" dataContainer="ntkItemDc"
+                                  visible="false"/>
+                        <checkBox id="ogtaddmaterialField" property="ogtaddmaterial" dataContainer="ntkItemDc"
                                   visible="false"/>
                         <checkBox id="htsmaterialField" property="htsmaterial" dataContainer="ntkItemDc"
                                   visible="false"/>
@@ -81,16 +85,16 @@
             </tab>
             <tab id="materialTab" caption="msg://ntkItemEdit.materialTab" margin="true" spacing="true">
                 <form id="formMaterialTab" dataContainer="ntkItemDc" captionPosition="TOP">
-                    <column width="350px">
+                    <column width="450px">
                         <pickerField id="componentField" property="component" colspan="2" width="100%"/>
                         <textField id="quantityField" property="quantity"/>
                         <textField id="materialRouteField" property="materialRoute"/>
                         <groupBox caption="Размер заготовки, мм" stylename="well" orientation="horizontal"
                                   width="100%" align="MIDDLE_CENTER" colspan="2" id="grpMaterialSize" >
-                            <textField id="gmLengthField" property="gmLength" caption="длина" width="100px" dataContainer="ntkItemDc"/>
-                            <textField id="gmWidthField" property="gmWidth" caption="ширина" width="100px" dataContainer="ntkItemDc"/>
-                            <textField id="gmHeightField" property="gmHeight" caption="высота" width="100px" dataContainer="ntkItemDc"/>
-                            <textField id="gmDiameterField" property="gmDiameter" caption="диаметр" width="100px" dataContainer="ntkItemDc"/>
+                            <textField id="gmLengthField" property="gmLength" caption="длина" width="130px" dataContainer="ntkItemDc"/>
+                            <textField id="gmWidthField" property="gmWidth" caption="ширина" width="130px" dataContainer="ntkItemDc"/>
+                            <textField id="gmHeightField" property="gmHeight" caption="высота/толщина" width="130px" dataContainer="ntkItemDc"/>
+                            <textField id="gmDiameterField" property="gmDiameter" caption="диаметр" width="130px" dataContainer="ntkItemDc"/>
                         </groupBox>
                     </column>
                     <column width="100px">
@@ -124,10 +128,19 @@
                         <column id="component.uom"/>
                         <column id="quantity"/>
                         <column id="route"/>
-                        <column id="ogt" width="70px"/>
-                        <column id="hts" width="70px"/>
-                        <column id="ome" width="70px"/>
-                        <column id="bmn" width="70px"/>
+                        <column id="ogt" width="70px" visible="true"/>
+                        <column id="ogtadd" width="70px" visible="true"/>
+                        <column id="hts" width="70px" visible="true"/>
+                        <column id="ome" width="70px" visible="true"/>
+                        <column id="bmn" width="70px" visible="true"/>
+                        <column id="otpp" width="70px" visible="true"/>
+                        <column id="smet"/>
+                        <column id="slkm"/>
+                        <column id="shim"/>
+                        <column id="sdrag"/>
+                        <column id="saktiv"/>
+                        <column id="ratio"/>
+                        <column id="kzap"/>
                         <column id="createdBy" width="150px"/>
                         <column id="updatedBy" width="150px"/>
                         <column id="updateTs" width="150px"/>
@@ -150,10 +163,12 @@
                     </actions>
                     <columns>
                         <column id="text"/>
-                        <column id="ogt" width="70px"/>
-                        <column id="hts" width="70px"/>
-                        <column id="ome" width="70px"/>
-                        <column id="bmn" width="70px"/>
+                        <column id="ogt" width="70px" visible="true"/>
+                        <column id="ogtadd" width="70px" visible="true"/>
+                        <column id="hts" width="70px" visible="true"/>
+                        <column id="ome" width="70px" visible="true"/>
+                        <column id="bmn" width="70px" visible="true"/>
+                        <column id="otpp" width="70px" visible="true"/>
                         <column id="createdBy" width="150px"/>
                         <column id="updatedBy" width="150px"/>
                         <column id="updateTs" width="150px"/>

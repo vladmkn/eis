@@ -92,11 +92,17 @@ public class NtkItem extends StandardEntity {
     @Column(name = "OGT")
     private Boolean ogt;
 
+    @Column(name = "OGTADD")
+    private Boolean ogtadd;
+
     @Column(name = "OGTMATERIAL")
     private Boolean ogtmaterial;
 
     @Column(name = "HTSMATERIAL")
     private Boolean htsmaterial;
+
+    @Column(name = "OGTADDMATERIAL")
+    private Boolean ogtaddmaterial;
 
     @Column(name = "HTS")
     private Boolean hts;
@@ -106,6 +112,33 @@ public class NtkItem extends StandardEntity {
 
     @Column(name = "BMN")
     private Boolean bmn;
+
+    @Column(name = "OTPP")
+    private Boolean otpp;
+
+    public Boolean getOgtaddmaterial() {
+        return ogtaddmaterial;
+    }
+
+    public void setOgtaddmaterial(Boolean ogtaddmaterial) {
+        this.ogtaddmaterial = ogtaddmaterial;
+    }
+
+    public Boolean getOtpp() {
+        return otpp;
+    }
+
+    public void setOtpp(Boolean otpp) {
+        this.otpp = otpp;
+    }
+
+    public Boolean getOgtadd() {
+        return ogtadd;
+    }
+
+    public void setOgtadd(Boolean ogtadd) {
+        this.ogtadd = ogtadd;
+    }
 
     public void setGbLength(BigDecimal gbLength) {
         this.gbLength = gbLength;
