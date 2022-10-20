@@ -8,10 +8,7 @@ import com.haulmont.cuba.core.global.DeletePolicy;
 import com.nniirt.eis.entity.NomenclatureItem;
 import com.nniirt.eis.entity.catalog.Employee;
 import com.nniirt.eis.entity.catalog.Product;
-import com.nniirt.eis.entity.qs.catalog.DefectNature;
-import com.nniirt.eis.entity.qs.catalog.DefectType;
-import com.nniirt.eis.entity.qs.catalog.PossibilityCorrectingDefect;
-import com.nniirt.eis.entity.qs.catalog.PossibilityCorrectingDefectECB;
+import com.nniirt.eis.entity.qs.catalog.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -139,6 +136,10 @@ public class AnalysisForm extends StandardEntity {
     @JoinColumn(name = "DEFECT_NATURE_ID")
     private DefectNature defectNature;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TYPE_PURCHASED_ITEM_ID")
+    private TypePurchasedItem typePurchasedItem;
+
     @Column(name = "FORM_CREATOR", length = 300)
     private String formCreator;
 
@@ -204,6 +205,14 @@ public class AnalysisForm extends StandardEntity {
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "analysisForm")
     private List<AnalysisFormConclusion> conclusion;
+
+    public TypePurchasedItem getTypePurchasedItem() {
+        return typePurchasedItem;
+    }
+
+    public void setTypePurchasedItem(TypePurchasedItem typePurchasedItem) {
+        this.typePurchasedItem = typePurchasedItem;
+    }
 
     public String getFormInstanceNumber() {
         return formInstanceNumber;

@@ -5,15 +5,16 @@ import com.haulmont.cuba.core.entity.FileDescriptor;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.FileStorageException;
 import com.haulmont.cuba.gui.Notifications;
-import com.haulmont.cuba.gui.components.Action;
-import com.haulmont.cuba.gui.components.FileUploadField;
-import com.haulmont.cuba.gui.components.Table;
+import com.haulmont.cuba.gui.components.*;
 import com.haulmont.cuba.gui.export.ExportDisplay;
 import com.haulmont.cuba.gui.export.ExportFormat;
 import com.haulmont.cuba.gui.model.CollectionPropertyContainer;
 import com.haulmont.cuba.gui.screen.*;
 import com.haulmont.cuba.gui.upload.FileUploadingAPI;
+import com.haulmont.reports.gui.actions.EditorPrintFormAction;
 import com.nniirt.eis.entity.qs.AnalysisForm;
+import com.nniirt.eis.entity.qs.catalog.DefectNature;
+import com.nniirt.eis.entity.qs.catalog.TypePurchasedItem;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
@@ -46,6 +47,12 @@ public class AnalysisFormEdit extends StandardEditor<AnalysisForm> {
     protected MessageBundle messageBundle;
     @Inject
     protected Logger logger;
+    @Inject
+    protected LookupPickerField defectNatureField;
+    @Inject
+    protected LookupPickerField typePurchasedItemField;
+    @Inject
+    protected Label typePurchasedItemLabel;
 
     @Subscribe("filesTable.download")
     protected void onFilesTableDownload(Action.ActionPerformedEvent event) {
@@ -76,6 +83,31 @@ public class AnalysisFormEdit extends StandardEditor<AnalysisForm> {
 
             logger.error(failedMessage, e);
         }
+    }
+
+    @Subscribe
+    public void onInit(InitEvent event) {
+
+        switchDefectNature(false);
+
+        defectNatureField.addValueChangeListener(valueChangeEvent -> {
+                Boolean flag = false;
+
+                Object obj = ((HasValue.ValueChangeEvent) valueChangeEvent).getValue();
+
+                if(obj != null) {
+                    DefectNature val = (DefectNature) obj;
+                    flag = val.getDefinition().equals("Дефект КИ (покупного)");
+                }else flag = false;
+
+                switchDefectNature(flag);
+            });
+    }
+
+    private void switchDefectNature(Boolean flag)
+    {
+        typePurchasedItemField.setVisible(flag);
+        typePurchasedItemLabel.setVisible(flag);
     }
 
 }

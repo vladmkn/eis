@@ -38,7 +38,7 @@
                         <property name="name"/>
                         <property name="blueprintname"/>
                         <property name="uom" view="_minimal">
-                            <property name="nickname" />
+                            <property name="nickname"/>
                         </property>
                     </property>
                     <property name="quantity"/>
@@ -94,13 +94,14 @@
                     <property name="accountable" view="_minimal">
                         <property name="member" view="_minimal">
                             <property name="nickname"/>
-                            <property name="name" />
+                            <property name="name"/>
                         </property>
                     </property>
                     <property name="accountableInfo"/>
                     <property name="definition"/>
                     <property name="finaldate"/>
                 </property>
+                <property name="typePurchasedItem" view="_minimal"/>
             </view>
             <loader/>
             <collection id="replacementTicketDc" property="replacementTicket"/>
@@ -164,6 +165,14 @@
             <loader id="employeeDl">
                 <query>
                     <![CDATA[select e from eis_Employee e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="typePurchasedItemDc" class="com.nniirt.eis.entity.qs.catalog.TypePurchasedItem"
+                    view="_minimal">
+            <loader id="typePurchasedItemDl">
+                <query>
+                    <![CDATA[select e from eis_TypePurchasedItem e]]>
                 </query>
             </loader>
         </collection>
@@ -258,11 +267,16 @@
                     <dateField id="defectDateField" property="defectDate" dateFormat="dd.MM.yyyy"
                                dataContainer="analysisFormDc"/>
                     <label value="Вид дефекта" align="MIDDLE_LEFT"/>
-                    <lookupPickerField id="defectTypeField" property="defectType"
+                    <lookupPickerField id="defectTypeField" property="defectType"  width="300px"
                                        optionsContainer="defectTypeDc" dataContainer="analysisFormDc"/>
+                </hbox>
+                <hbox  spacing="true">
                     <label value="Установленный характер дефекта" align="MIDDLE_LEFT"/>
-                    <lookupPickerField id="defectNatureField" property="defectNature"
+                    <lookupPickerField id="defectNatureField" property="defectNature"  width="300px"
                                        optionsContainer="defectNatureDc" dataContainer="analysisFormDc"/>
+                    <label id="typePurchasedItemLabel" value="Тип ПКИ" align="MIDDLE_CENTER"/>
+                    <lookupPickerField id="typePurchasedItemField" property="typePurchasedItem"  width="300px"
+                                       optionsContainer="typePurchasedItemDc" dataContainer="analysisFormDc"/>
                 </hbox>
                 <tabSheet id="mainTabDefectV" stylename="padded-tabbar" width="1200px">
                     <tab id="mainTabDefectDefinitionV" caption="msg://analysisFormEdit.mainTabDefectDefinitionV"
@@ -362,7 +376,8 @@
                         <textField id="formInstanceField" property="formInstance" dataContainer="analysisFormDc"/>
                         <label value="экземплярах," align="MIDDLE_LEFT"/>
                         <label value=" экземпляр № " align="MIDDLE_LEFT"/>
-                        <textField id="formInstanceNumberField" property="formInstanceNumber" dataContainer="analysisFormDc"/>
+                        <textField id="formInstanceNumberField" property="formInstanceNumber"
+                                   dataContainer="analysisFormDc"/>
                     </hbox>
                     <hbox spacing="true">
                         <label value="телефон" align="MIDDLE_LEFT"/>

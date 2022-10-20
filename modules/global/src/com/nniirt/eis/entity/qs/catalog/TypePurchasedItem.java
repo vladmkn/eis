@@ -1,5 +1,6 @@
 package com.nniirt.eis.entity.qs.catalog;
 
+import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Table;
 
 @Table(name = "EIS_TYPE_PURCHASED_ITEM")
 @Entity(name = "eis_TypePurchasedItem")
+@NamePattern("%s|definition")
 public class TypePurchasedItem extends StandardEntity {
     private static final long serialVersionUID = 6398504249799466807L;
 
