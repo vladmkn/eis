@@ -13,6 +13,9 @@
                         <property name="nickname"/>
                     </property>
                 </property>
+                <property name="analysisForm" view="_local">
+                    <property name="externalDocument"/>
+                </property>
             </view>
             <loader/>
             <collection id="accountableDc" property="accountable"/>

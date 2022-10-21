@@ -100,6 +100,10 @@
                     <property name="accountableInfo"/>
                     <property name="definition"/>
                     <property name="finaldate"/>
+                    <property name="recipient"/>
+                    <property name="phone"/>
+                    <property name="fax"/>
+                    <property name="address"/>
                 </property>
                 <property name="typePurchasedItem" view="_minimal"/>
             </view>
@@ -267,15 +271,16 @@
                     <dateField id="defectDateField" property="defectDate" dateFormat="dd.MM.yyyy"
                                dataContainer="analysisFormDc"/>
                     <label value="Вид дефекта" align="MIDDLE_LEFT"/>
-                    <lookupPickerField id="defectTypeField" property="defectType"  width="300px"
+                    <lookupPickerField id="defectTypeField" property="defectType" width="400px"
+                                       inputPrompt="...заполняет отдел надежности"
                                        optionsContainer="defectTypeDc" dataContainer="analysisFormDc"/>
                 </hbox>
-                <hbox  spacing="true">
+                <hbox spacing="true">
                     <label value="Установленный характер дефекта" align="MIDDLE_LEFT"/>
-                    <lookupPickerField id="defectNatureField" property="defectNature"  width="300px"
+                    <lookupPickerField id="defectNatureField" property="defectNature" width="300px"
                                        optionsContainer="defectNatureDc" dataContainer="analysisFormDc"/>
                     <label id="typePurchasedItemLabel" value="Тип ПКИ" align="MIDDLE_CENTER"/>
-                    <lookupPickerField id="typePurchasedItemField" property="typePurchasedItem"  width="300px"
+                    <lookupPickerField id="typePurchasedItemField" property="typePurchasedItem" width="300px"
                                        optionsContainer="typePurchasedItemDc" dataContainer="analysisFormDc"/>
                 </hbox>
                 <tabSheet id="mainTabDefectV" stylename="padded-tabbar" width="1200px">
@@ -350,6 +355,10 @@
                             <column id="definition" width="700"/>
                             <column id="accountableInfo" width="200"/>
                             <column id="finaldate" width="200"/>
+                            <column id="recipient" width="200"/>
+                            <column id="address" width="200"/>
+                            <column id="fax" width="200"/>
+                            <column id="phone" width="200"/>
                         </columns>
                         <buttonsPanel>
                             <button action="conclusionTable.create"/>
@@ -362,10 +371,12 @@
                     <column width="450px">
                         <textArea id="appendixField" property="appendix" rows="5"/>
                         <lookupPickerField id="possibilityCorrectingDefectField" property="possibilityCorrectingDefect"
-                                           optionsContainer="possibilityCorrectingDefectDc"/>
+                                           optionsContainer="possibilityCorrectingDefectDc"
+                                           inputPrompt="...заполняет отдел надежности"/>
                         <lookupPickerField id="possibilityCorrectingDefectECBField"
                                            property="possibilityCorrectingDefectECB"
-                                           optionsContainer="possibilityCorrectingDefectECBDc"/>
+                                           optionsContainer="possibilityCorrectingDefectECBDc"
+                                           inputPrompt="...заполняет отдел надежности"/>
                     </column>
                 </form>
                 <vbox spacing="true">

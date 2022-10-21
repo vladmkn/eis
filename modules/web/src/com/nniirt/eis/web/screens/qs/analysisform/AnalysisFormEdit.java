@@ -1,6 +1,7 @@
 package com.nniirt.eis.web.screens.qs.analysisform;
 
 import com.haulmont.cuba.core.app.FileStorageService;
+import com.haulmont.cuba.core.entity.Entity;
 import com.haulmont.cuba.core.entity.FileDescriptor;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.FileStorageException;
@@ -13,10 +14,12 @@ import com.haulmont.cuba.gui.screen.*;
 import com.haulmont.cuba.gui.upload.FileUploadingAPI;
 import com.haulmont.reports.gui.actions.EditorPrintFormAction;
 import com.nniirt.eis.entity.qs.AnalysisForm;
+import com.nniirt.eis.entity.qs.AnalysisFormConclusion;
 import com.nniirt.eis.entity.qs.catalog.DefectNature;
 import com.nniirt.eis.entity.qs.catalog.TypePurchasedItem;
 import org.slf4j.Logger;
 
+import javax.annotation.Nullable;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +56,12 @@ public class AnalysisFormEdit extends StandardEditor<AnalysisForm> {
     protected LookupPickerField typePurchasedItemField;
     @Inject
     protected Label typePurchasedItemLabel;
+
+    @Inject
+    protected CheckBox externalDocumentField;
+
+    @Inject
+    protected Table conclusionTable;
 
     @Subscribe("filesTable.download")
     protected void onFilesTableDownload(Action.ActionPerformedEvent event) {
@@ -102,6 +111,34 @@ public class AnalysisFormEdit extends StandardEditor<AnalysisForm> {
 
                 switchDefectNature(flag);
             });
+
+        externalDocumentField.addValueChangeListener(valueChangeEvent -> switchExternalDocument(valueChangeEvent.getValue()));
+    }
+
+    private void switchExternalDocument(Boolean externalDocument)
+    {
+        boolean extDoc = Boolean.TRUE.equals(externalDocument);
+
+        conclusionTable.getColumn("recipient").setCollapsed(!extDoc);
+        conclusionTable.getColumn("address").setCollapsed(!extDoc);
+        conclusionTable.getColumn("fax").setCollapsed(!extDoc);
+        conclusionTable.getColumn("phone").setCollapsed(!extDoc);
+
+//        if(extDoc) {
+//            conclusionTable.addGeneratedColumn("recipient", new Table.ColumnGenerator<AnalysisFormConclusion>() {
+//                @Override
+//                public Component generateCell(AnalysisFormConclusion entity) {
+//                    Label field = (Label) componentsFactory.createComponent(Label.NAME);
+//                    field.setValue(declaration.getValue());
+//                    return field;
+//                }
+//            });
+//        }else {
+//            conclusionTable.removeColumn(conclusionTable.getColumn("recipient"));
+//            conclusionTable.removeColumn(conclusionTable.getColumn("address"));
+//            conclusionTable.removeColumn(conclusionTable.getColumn("fax"));
+//            conclusionTable.removeColumn(conclusionTable.getColumn("phone"));
+//        }
     }
 
     private void switchDefectNature(Boolean flag)
