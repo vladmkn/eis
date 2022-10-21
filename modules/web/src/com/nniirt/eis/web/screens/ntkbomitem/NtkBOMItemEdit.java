@@ -1,10 +1,7 @@
 package com.nniirt.eis.web.screens.ntkbomitem;
 
 import com.haulmont.cuba.core.global.Security;
-import com.haulmont.cuba.gui.components.Button;
-import com.haulmont.cuba.gui.components.CheckBox;
-import com.haulmont.cuba.gui.components.Form;
-import com.haulmont.cuba.gui.components.PickerField;
+import com.haulmont.cuba.gui.components.*;
 import com.haulmont.cuba.gui.screen.*;
 import com.nniirt.eis.entity.DocumentStatuses;
 import com.nniirt.eis.entity.NtkBOMItem;
@@ -36,6 +33,41 @@ public class NtkBOMItemEdit extends StandardEditor<NtkBOMItem> {
     private Form form;
     @Inject
     private Button commitAndCloseBtn;
+    @Inject
+    private TextField routeField;
+    @Inject
+    private TextField quantityField;
+    @Inject
+    private TextField kzapField;
+    @Inject
+    private TextField ratioField;
+    @Inject
+    private TextField slkmField;
+    @Inject
+    private TextArea remarkField;
+    @Inject
+    private TextField sdragField;
+    @Inject
+    private TextField smetField;
+    @Inject
+    private TextField saktivField;
+    @Inject
+    private TextField shimField;
+
+    private void setAccessToForm(Boolean wr, Boolean otpp)
+    {
+        componentField.setEditable(wr);
+        quantityField.setEditable(wr);
+        kzapField.setEditable(wr);
+        ratioField.setEditable(wr);
+        slkmField.setEditable(wr);
+        remarkField.setEditable(wr);
+        sdragField.setEditable(wr);
+        smetField.setEditable(wr);
+        saktivField.setEditable(wr);
+        shimField.setEditable(wr);
+        routeField.setEditable(wr || otpp);
+    }
 
     @Subscribe
     protected void onAfterShow(AfterShowEvent event) {
@@ -58,9 +90,11 @@ public class NtkBOMItemEdit extends StandardEditor<NtkBOMItem> {
                 !(getEditedEntity().getNtkItem().getStatus() != null &&
                         getEditedEntity().getNtkItem().getStatus() == DocumentStatuses.COMPLETED);
 
-        form.setEditable(check);
-        commitAndCloseBtn.setEnabled(check);
-        commitAndCloseBtn.setVisible(check);
+        setAccessToForm(check, security.isSpecificPermitted("app.ntk.otpp"));
 
+        commitAndCloseBtn.setEnabled(check || security.isSpecificPermitted("app.ntk.otpp"));
+        commitAndCloseBtn.setVisible(check || security.isSpecificPermitted("app.ntk.otpp"));
     }
+
+
 }

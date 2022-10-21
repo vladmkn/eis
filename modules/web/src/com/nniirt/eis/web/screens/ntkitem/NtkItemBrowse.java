@@ -10,11 +10,13 @@ import com.haulmont.cuba.gui.components.Action;
 import com.haulmont.cuba.gui.components.DialogAction;
 import com.haulmont.cuba.gui.components.GroupTable;
 import com.haulmont.cuba.gui.components.Table;
+import com.haulmont.cuba.gui.data.GroupInfo;
 import com.haulmont.cuba.gui.screen.*;
 import com.nniirt.eis.entity.DocumentStatuses;
 import com.nniirt.eis.entity.NtkItem;
 import com.nniirt.eis.entity.ntk.NtkRemarkItem;
 import com.nniirt.eis.service.NtkService;
+import org.springframework.lang.Nullable;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -47,6 +49,21 @@ public class NtkItemBrowse extends StandardLookup<NtkItem> {
     @Subscribe
     public void onInit(InitEvent event) {
         cloneNtk.setVisible(security.isSpecificPermitted("app.ntk.ogt"));
+
+        ntkItemsTable.setStyleProvider(new GroupTable.GroupStyleProvider<NtkItem>() {
+            @SuppressWarnings("unchecked")
+            @Override
+            public String getStyleName(GroupInfo info) {
+                return null;
+            }
+            @Override
+            public String getStyleName(NtkItem item, @Nullable String property) {
+                if (Boolean.TRUE.equals(item.getStatus() == DocumentStatuses.COMPLETED)) {
+                    return "completed-status";
+                }
+                return null;
+            }
+        });
     }
 
     @Subscribe("cloneNtk")

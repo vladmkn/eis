@@ -131,6 +131,29 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
     @Inject
     private TextField materialRouteField;
 
+    @Inject
+    private TextField quantityField;
+
+    @Inject
+    private  TextField blueprintField;
+
+    @Inject
+    private TextField nameField;
+
+    @Inject
+    private TextField routeField;
+
+    @Inject
+    private TextField ntkVersionField;
+
+    @Inject
+    private TextField productIdField;
+
+    @Inject
+    private LookupField statusField;
+
+    @Inject
+    private TextField weightField;
     private NomenclatureItem oldComponent;
     private String oldMaterialRoute;
     private BigDecimal oldGmLength;
@@ -155,8 +178,8 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
     @Subscribe
     protected void onAfterShow(AfterShowEvent event) {
         if(getEditedEntity().getStatus() != null && getEditedEntity().getStatus() == DocumentStatuses.COMPLETED){
-            formMainTab.setEditable(false);
-            formMaterialTab.setEditable(false);
+            setAccessToMainTab(false, false);
+            setAccessToMaterialTab(false, false);
             componentsTable.setEditable(false);
             remarksTable.setEditable(false);
             remarksTableRemove.setVisible(false);
@@ -196,30 +219,57 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
             remarksTableCreate.setVisible(check);
             componentsTableCreate.setVisible(check);
 
-            formMainTab.setEditable(security.isSpecificPermitted("app.ntk.ogt"));
+            setAccessToMainTab(security.isSpecificPermitted("app.ntk.ogt"),
+                    security.isSpecificPermitted("app.ntk.otpp"));
+
+            setAccessToMaterialTab(security.isSpecificPermitted("app.ntk.ogt"),
+                    security.isSpecificPermitted("app.ntk.otpp"));
+
             enableGeometry(security.isSpecificPermitted("app.ntk.ogt"));
 
             if(componentField.getValue() != null && ogtmaterialField.getValue() && !htsmaterialField.getValue()
                     && !ogtaddmaterialField.getValue()) {
-                formMaterialTab.setEditable(security.isSpecificPermitted("app.ntk.ogt"));
+                setAccessToMaterialTab(security.isSpecificPermitted("app.ntk.ogt"),
+                        security.isSpecificPermitted("app.ntk.otpp"));
                 enableMaterialGeometry(security.isSpecificPermitted("app.ntk.ogt"));
             }
             if(componentField.getValue() != null && htsmaterialField.getValue() && !ogtmaterialField.getValue()
                     && !ogtaddmaterialField.getValue()) {
-                formMaterialTab.setEditable(security.isSpecificPermitted("app.ntk.hts"));
+                setAccessToMaterialTab(security.isSpecificPermitted("app.ntk.hts"),
+                        security.isSpecificPermitted("app.ntk.otpp"));
                 enableMaterialGeometry(security.isSpecificPermitted("app.ntk.hts"));
             }
             if(componentField.getValue() != null && ogtaddmaterialField.getValue() && !ogtmaterialField.getValue()
                     && !htsmaterialField.getValue()) {
-                formMaterialTab.setEditable(security.isSpecificPermitted("app.ntk.ogtadd"));
+                setAccessToMaterialTab(security.isSpecificPermitted("app.ntk.ogtadd"),
+                        security.isSpecificPermitted("app.ntk.otpp"));
                 enableMaterialGeometry(security.isSpecificPermitted("app.ntk.ogtadd"));
             }
             if(!security.isSpecificPermitted("app.ntk.hts") && !security.isSpecificPermitted("app.ntk.ogt")
                     && !security.isSpecificPermitted("app.ntk.ogtadd")) {
-                formMaterialTab.setEditable(false);
+                setAccessToMaterialTab(false, security.isSpecificPermitted("app.ntk.otpp"));
                 enableMaterialGeometry(false);
             }
         }
+    }
+
+    private void setAccessToMaterialTab(Boolean wr, Boolean otpp)
+    {
+        componentField.setEditable(wr);
+        quantityField.setEditable(wr || otpp);
+        materialRouteField.setEditable(wr || otpp);
+        grpMaterialSize.setEnabled(wr);
+    }
+
+    private void setAccessToMainTab(Boolean wr, Boolean otpp)
+    {
+        blueprintField.setEditable(wr);
+        nameField.setEditable(wr);
+        routeField.setEditable(wr || otpp);
+        ntkVersionField.setEditable(wr);
+        productIdField.setEditable(wr);
+        statusField.setEditable(wr);
+        weightField.setEnabled(wr);
     }
 
     @Subscribe
