@@ -117,7 +117,7 @@
             <tab id="componentTab" caption="Компоненты НТК" margin="true" spacing="true">
                 <table id="componentsTable" dataContainer="componentsDc" width="100%" height="300px"
                        emptyStateMessage="Вспомогательные материалы отсутствуют"
-                       presentations="true">
+                       presentations="true" textSelectionEnabled="true">
                     <actions>
                         <action id="create" type="create"/>
                         <action id="edit" type="edit"/>
@@ -155,7 +155,7 @@
             <tab id="remarkTab" caption="Примечания" margin="true" spacing="true">
                 <table id="remarksTable" dataContainer="remarksDc" width="100%" height="300px"
                        columnControlVisible="false"
-                       emptyStateMessage="Даннные по примечаниям отсутствуют">
+                       emptyStateMessage="Даннные по примечаниям отсутствуют" textSelectionEnabled="true">
                     <actions>
                         <action id="create" type="create"/>
                         <action id="edit" type="edit"/>

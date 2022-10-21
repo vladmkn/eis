@@ -55,7 +55,7 @@
         </filter>
         <groupTable id="ntkItemsTable"
                     width="100%"
-                    dataContainer="ntkItemsDc">
+                    dataContainer="ntkItemsDc" textSelectionEnabled="true">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
