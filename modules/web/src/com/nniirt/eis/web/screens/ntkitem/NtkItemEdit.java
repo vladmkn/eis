@@ -93,10 +93,10 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
     private Form formMaterialTab;
 
     @Inject
-    private Table componentsTable;
+    private GroupTable componentsTable;
 
     @Inject
-    private Table remarksTable;
+    private GroupTable remarksTable;
 
     @Inject
     private GroupBoxLayout grpGeometry;
@@ -191,9 +191,11 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
             enableGeometry(false);
             enableMaterialGeometry(false);
             ogtField.setEditable(false);
+            ogtaddField.setEditable(false);
             htsField.setEditable(false);
             omeField.setEditable(false);
             bmnField.setEditable(false);
+            otppField.setEditable(false);
         }else{
             ogtField.setEditable (security.isSpecificPermitted("app.ntk.ogt"));
             ogtaddField.setEditable (security.isSpecificPermitted("app.ntk.ogtadd"));
@@ -222,25 +224,28 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
             setAccessToMainTab(security.isSpecificPermitted("app.ntk.ogt"),
                     security.isSpecificPermitted("app.ntk.otpp"));
 
-            setAccessToMaterialTab(security.isSpecificPermitted("app.ntk.ogt"),
-                    security.isSpecificPermitted("app.ntk.otpp"));
+            setAccessToMaterialTab(componentField.getValue() == null &&
+                            (security.isSpecificPermitted("app.ntk.ogt") ||
+                            security.isSpecificPermitted("app.ntk.hts") ||
+                            security.isSpecificPermitted("app.ntk.ogtadd")),
+                            security.isSpecificPermitted("app.ntk.otpp"));
 
             enableGeometry(security.isSpecificPermitted("app.ntk.ogt"));
 
             if(componentField.getValue() != null && ogtmaterialField.getValue() && !htsmaterialField.getValue()
-                    && !ogtaddmaterialField.getValue()) {
+                    && !ogtaddmaterialField.getValue() && security.isSpecificPermitted("app.ntk.ogt")) {
                 setAccessToMaterialTab(security.isSpecificPermitted("app.ntk.ogt"),
                         security.isSpecificPermitted("app.ntk.otpp"));
                 enableMaterialGeometry(security.isSpecificPermitted("app.ntk.ogt"));
             }
             if(componentField.getValue() != null && htsmaterialField.getValue() && !ogtmaterialField.getValue()
-                    && !ogtaddmaterialField.getValue()) {
+                    && !ogtaddmaterialField.getValue() && security.isSpecificPermitted("app.ntk.hts")) {
                 setAccessToMaterialTab(security.isSpecificPermitted("app.ntk.hts"),
                         security.isSpecificPermitted("app.ntk.otpp"));
                 enableMaterialGeometry(security.isSpecificPermitted("app.ntk.hts"));
             }
             if(componentField.getValue() != null && ogtaddmaterialField.getValue() && !ogtmaterialField.getValue()
-                    && !htsmaterialField.getValue()) {
+                    && !htsmaterialField.getValue() && security.isSpecificPermitted("app.ntk.ogtadd")) {
                 setAccessToMaterialTab(security.isSpecificPermitted("app.ntk.ogtadd"),
                         security.isSpecificPermitted("app.ntk.otpp"));
                 enableMaterialGeometry(security.isSpecificPermitted("app.ntk.ogtadd"));
@@ -258,7 +263,7 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
         componentField.setEditable(wr);
         quantityField.setEditable(wr || otpp);
         materialRouteField.setEditable(wr || otpp);
-        grpMaterialSize.setEnabled(wr);
+        enableMaterialGeometry(wr);
     }
 
     private void setAccessToMainTab(Boolean wr, Boolean otpp)
@@ -269,7 +274,7 @@ public class NtkItemEdit extends StandardEditor<NtkItem> {
         ntkVersionField.setEditable(wr);
         productIdField.setEditable(wr);
         statusField.setEditable(wr);
-        weightField.setEnabled(wr);
+        weightField.setEditable(wr);
     }
 
     @Subscribe
