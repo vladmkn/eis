@@ -62,6 +62,8 @@ public class AnalysisFormEdit extends StandardEditor<AnalysisForm> {
 
     @Inject
     protected Table conclusionTable;
+    @Inject
+    protected Button printBtn;
 
     @Subscribe("filesTable.download")
     protected void onFilesTableDownload(Action.ActionPerformedEvent event) {
@@ -113,6 +115,8 @@ public class AnalysisFormEdit extends StandardEditor<AnalysisForm> {
             });
 
         externalDocumentField.addValueChangeListener(valueChangeEvent -> switchExternalDocument(valueChangeEvent.getValue()));
+
+        printBtn.setAction(new EditorPrintFormAction(this, null));
     }
 
     private void switchExternalDocument(Boolean externalDocument)

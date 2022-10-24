@@ -38,6 +38,7 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
+                <action id="run" type="listPrintForm"/>
             </actions>
             <columns>
                 <column id="assemblyNum"/>
@@ -56,6 +57,7 @@
                 <button id="createBtn" action="analysisFormsTable.create"/>
                 <button id="editBtn" action="analysisFormsTable.edit"/>
                 <button id="removeBtn" action="analysisFormsTable.remove"/>
+                <button id="runBtn" action="analysisFormsTable.run"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
