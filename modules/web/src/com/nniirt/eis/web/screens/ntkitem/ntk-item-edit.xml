@@ -116,7 +116,8 @@
         <tabSheet stylename="padded-tabbar">
             <tab id="componentTab" caption="Компоненты НТК" margin="true" spacing="true">
                 <groupTable id="componentsTable" dataContainer="componentsDc" width="100%" height="AUTO"
-                            emptyStateMessage="Вспомогательные материалы отсутствуют">
+                            columnControlVisible="true"
+                            emptyStateMessage="Вспомогательные материалы отсутствуют" textSelectionEnabled="true">
                     <actions>
                         <action id="create" type="create"/>
                         <action id="edit" type="edit"/>

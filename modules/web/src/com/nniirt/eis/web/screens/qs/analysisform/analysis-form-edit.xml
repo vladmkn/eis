@@ -222,7 +222,7 @@
                 <groupBox id="technicalFormLinksBox"
                           caption="msg://com.nniirt.eis.entity.qs/AnalysisForm.technicalFormLinks" width="1200px">
                     <table id="technicalFormLinksTable" dataContainer="technicalFormLinksDc" width="100%"
-                           height="200px">
+                           height="200px" textSelectionEnabled="true">
                         <actions>
                             <action id="create" type="create"/>
                             <action id="edit" type="edit"/>

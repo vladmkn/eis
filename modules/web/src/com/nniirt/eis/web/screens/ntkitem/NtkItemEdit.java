@@ -7,6 +7,7 @@ import com.haulmont.cuba.gui.actions.list.EditAction;
 import com.haulmont.cuba.gui.actions.list.RemoveAction;
 import com.haulmont.cuba.gui.components.*;
 //import com.haulmont.cuba.gui.components.actions.RemoveAction;
+import com.haulmont.cuba.gui.data.GroupInfo;
 import com.haulmont.cuba.gui.screen.*;
 import com.haulmont.reports.gui.actions.EditorPrintFormAction;
 import com.nniirt.eis.entity.DocumentStatuses;
@@ -15,6 +16,7 @@ import com.nniirt.eis.entity.NtkBOMItem;
 import com.nniirt.eis.entity.NtkItem;
 import com.nniirt.eis.entity.ntk.NtkRemarkItem;
 import com.nniirt.eis.service.NtkService;
+import org.springframework.lang.Nullable;
 
 import javax.inject.Inject;
 import javax.inject.Named;
